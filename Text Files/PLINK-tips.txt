@@ -1,0 +1,22 @@
+PLINK Tips
+All information can be found at http://zzz.bwh.harvard.edu/plink/data.shtml
+These are my highlights
+
+	use the --out option to name your files, then you can use --rerun to rerun a previous job and only have to type edits
+	you can use --ped and --map for marking ped/map files
+	binary files are easier for PLINK to digest, so converting may help runtime
+The first six columns of a PED file should be as follows:
+	 Family ID
+     Individual ID
+     Paternal ID
+     Maternal ID
+     Sex (1=male; 2=female; other=unknown)
+     Phenotype
+MAP files should contain exactly four columns:
+	 chromosome (1-22, X, Y or 0 if unplaced)
+     rs# or snp identifier
+     Genetic distance (morgans)
+     Base-pair position (bp units)
+You can use PLINK to make bed/bim/fam files
+	plink --file mydata --out newname --make-bed
+examples, additionally, if you leave out the --out option, it will default the data to plink.bed/plind.bim...

@@ -1,0 +1,15 @@
+{
+	"jobName": "Plink-Ex",
+	"softwareName": "PLINK-hpc-1.07u2",
+	"processorsPerNode": 1,
+	"requestedTime":"01:00:00",
+	"memoryPerNode": 1,
+	"nodeCount": 1,
+	"archive": true,
+	"inputs": {
+		"file.list": "http://datacommmons.cyverse.org/browse/iplant/home/shared/syngenta_sim/PE DMAP_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_3pctMissing"
+	},
+	"parameters": {
+		"out.basename": "success"
+	}
+}

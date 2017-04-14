@@ -1,0 +1,14 @@
+{
+      "jobName": "FLMMThomasFull",
+      "softwareName": "FaST-LMM-hpc-2.07u1",
+      "requestedTime": "02:00:00",
+      "archive": true,
+              "inputs":{
+                      "inputPED": "http://de.cyverse.org/dl/d/37133A62-A10C-4570-BE52-F310E0A14558/dongwang.ped",
+                      "inputMAP": "http://de.cyverse.org/dl/d/13678EB4-F19E-4231-A3C6-7113AD427DE7/dongwang.map",
+                      "inputPHENO": "http://de.cyverse.org/dl/d/29361BFA-2EA0-4AAE-A40C-499E412D9980/dongwangpheno.txt"
+              },
+              "parameters":{
+                      "output": "full_results"
+              }
+}

@@ -1,0 +1,27 @@
+General
+	python PATHTOMERGE/merge.py –output ALPHASIMPREFIX alphasim –snp SimulatedData/Chip1SnpInformation.txt –pedigree SimulatedData/PedigreeTbvTdvTpv.txt –gender SimulatedData/Gender.txt –geno SimulatedData/AllIndividualsSnpChips/Chip1Genotype.txt –sol Selection/SelectionFolder1/SnpSolutions.txt
+
+Check python --version
+	if not 2.7+, run:
+		module load python/2.7.12
+	
+mine
+	run from home (tbillman)'
+`module load python/2.7.12`
+
+python Validate/CurrentReleaseStable/Util_1/Merger/merge.py alphasim –s Chip1SnpInformation.txt –p PedigreeTbvTdvTpv.txt –g Gender.txt –n Chip1Genotype.txt –k SnpSolutions.txt
+python Validate/CurrentReleaseStable/Util_1/Merger/merge.py alphasim -output, ASout/Chip1SnpInformation.txt, ASout/PedigreeTbvTdvTpv.txt, ASout/Gender.txt, ASout/Chip1Genotype.txt, Asout/SnpSolutions.txt
+
+Current Error:
+merge.py: error: not recognizing -s/--snp arguments
+
+
+This error fixed by loading update python
+	error
+	Traceback (most recent call last):
+	File "Validate/CurrentReleaseStable/Util_1/Merger/merge.py", line 1, in <module>
+		from MergeTypes.BayesRMerge import BayesRMerge
+	File "/home1/04737/tbillman/Validate/CurrentReleaseStable/Util_1/Merger/MergeTypes/BayesRMerge.py", line 30
+		with open(self.bim_path) as bim_file, open(self.param_path) as param_file:
+                                        ^
+	SyntaxError: invalid syntax

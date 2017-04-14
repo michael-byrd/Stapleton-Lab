@@ -1,0 +1,535 @@
+{
+	"name": "bayesR",
+	"version": "2.00",
+	"helpURI": "https://github.com/syntheke/bayesR",
+	"label": "bayesR",
+	"defaultQueue": "normal",
+	"defaultMaxRunTime": "12:00:00",
+	"defaultNodeCount": 1,
+	"defaultProcessorsPerNode": 1,
+	"defaultMemoryPerNode": 1,
+	"shortDescription": "Analyzing complex traits using a Bayesian mixture model.",
+	"longDescription": "bayesR implements a Bayesian mixture model for the analysis of complex traits using Markov chain Monte Carlo. It simultaneously identifies associated SNPs, estimates the genetic varianece exomplained by SNPs, describes the genetic architecture of the trait, and predicts phenotype from SNP genotypes.",
+	"executionSystem": "tacc-stampede-tbillman",
+	"executionType": "HPC",
+	"parallelism": "SERIAL",
+	"deploymentPath": "tbillman/applications/bayesR-2.00",
+	"deploymentSystem": "data.iplantcollaborative.org",
+	"templatePath": "wrapper.sh",
+	"testPath": "test.sh",
+	"checkpointable": false,
+	"tags": [
+		"bayesR", "Bayesian mixture model", "Markov chain Monte Carlo", "MCMC"
+	],
+	"ontology": [
+		"http://edamontology.org/topic_0625",
+		"http://edamontology.org/operation_3517",
+		"http://edamontology.org/operation_2945"
+	],
+	"inputs": [{
+		"id": "inputBED",
+		"value": {
+			"default": "agave://data.iplantcollaborative.org/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_NoMissing.bed",
+			"visible": true,
+			"required": true
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "BED file name",
+			"description": "Specifies the BED file for the data group to be analyzed",
+			"showAttribute": true
+		}
+	}, {
+		"id": "inputBIM",
+		"value": {
+			"default": "agave://data.iplantcollaborative.org/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_NoMissing.bim",
+			"visible": true,
+			"required": true
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "BIM file name",
+			"description": "Specifies the BIM file for the data group to be analyzed",
+			"showAttribute": true
+		}
+
+	}, {
+		"id": "inputFAM",
+		"value": {
+			"default": "agave://data.iplantcollaborative.org/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_NoMissing.fam",
+			"visible": true,
+			"required": true
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "FAM file name",
+			"description": "Specifies the FAM file for the data group to be analyzed",
+			"showAttribute": true
+		}
+
+	}, {
+		"id": "model",
+		"value": {
+			"visible": true,
+			"required": false
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "Model file name",
+			"description": "Specifies the model file for the data group to be analyzed using prediction",
+			"showAttribute": true,
+			"attribute": "-model"
+		}
+
+	}, {
+		"id": "freq",
+		"value": {
+			"visible": true,
+			"required": false
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "Frequency file name",
+			"description": "Specifies the frequency file for the data group to be analyzed using prediction",
+			"showAttribute": true,
+			"attribute": "-freq"
+		}
+
+	}, {
+		"id": "param",
+		"value": {
+			"visible": true,
+			"required": false
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"fileTypes": [
+				"Text-0"
+			]
+		},
+		"details":{
+			"label": "Parameter file name",
+			"description": "Specifies the parameter file for the data group to be analyzed using prediction",
+			"showAttribute": true,
+			"attribute": "-param"
+		}
+
+	}],
+
+	"parameters": [{
+		"id": "output",
+		"value": {
+			"default": "MyBayesRResults",
+			"type": "string",
+			"visible": true,
+			"required": true
+		},
+		"details":{
+			"label": "Ouput prefix",
+			"description": "The numerous output files will begin with this",
+			"attribute": "-out"
+		},
+		"semantics":{
+			"maxCardinality":1,
+			"minCardinality":1,
+			"ontology": [
+				"xs:string"
+			]
+		}
+	}, {
+		"id": "n",
+		"value": {
+			"default": 1,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Phenotype column",
+			"description": "The column from the *.fam file where phenotypes are stored",
+			"attribute": "-n"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "vara",
+		"value": {
+			"default": 0.01,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "SNP variance prior",
+			"attribute": "-vara"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:decimal"
+			]
+		}
+	}, {
+		"id": "vare",
+		"value": {
+			"default": 0.01,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Error variance prior",
+			"attribute": "-vare"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:decimal"
+			]
+		}
+	}, {
+		"id": "dfvara",
+		"value": {
+			"default": -2.0,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Degrees of freedom Va",
+			"attribute": "-dfvara"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:deciaml"
+			]
+		}
+	}, {
+		"id": "dfvare",
+		"value": {
+			"default": -2.0,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Degrees of freedom Ve",
+			"attribute": "-dfvare"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:decimal"
+			]
+		}
+	}, {
+		"id": "delta",
+		"value": {
+			"default": 1,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Prior for Dirichlet",
+			"desciption" : "The pseudo-observation for each class of the component mixture model.",
+			"attribute": "-delta"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "msize",
+		"value": {
+			"default": 0,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Number of SNPs in reduced update",
+			"desciption" : "The number of SNPs with non-zero effects to sample within a cycle.",
+			"attribute": "-msize"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "mrep",
+		"value": {
+			"default": 5000,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Reduced Update Full Cycle",
+			"desciption" : "The number of full cycles to complete before reducing to the msize paramter.",
+			"attribute": "-mrep"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "thin",
+		"value": {
+			"default": 10,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Thinning rate",
+			"desciption" : "Which sample to use for posterior inference. 10 will use every 10th sample.",
+			"attribute": "-thin"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "ndist",
+		"value": {
+			"default": 4,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Mixture distributions",
+			"desciption" : "The number of mixture distributions. Their variances' must be defined by the gpin paramter",
+			"attribute": "-ndist"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "gpin",
+		"value": {
+			"default": [0.0, 0.0001, 0.001, 0.01],
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Effect sizes of mixtures",
+			"desciption" : "Defines the SNP variance of each component. The number of components is defined by the ndist paramter",
+			"attribute": "-gpin"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			],
+			"maxCardinality": -1
+		}
+	}, {
+		"id": "predict",
+		"value": {
+			"default": false,
+			"type": "bool",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Prediction flag",
+			"desciption" : "Perform prediction analysis",
+			"attribute": "-predict"
+		},
+		"semantics": {
+			"ontology": [
+				"xs:boolean"
+			]
+		}
+	}, {
+		"id": "snpout",
+		"value": {
+			"default": false,
+			"type": "bool",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Output detailed SNP info flag",
+			"desciption" : "Output each MCMC iteration to a file",
+			"attribute": "-snpout"
+		},
+		"semantics": {
+			"ontology": [
+				"xs:boolean"
+			]
+		}
+	}, {
+		"id": "permute",
+		"value": {
+			"default": false,
+			"type": "bool",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Permute flag",
+			"desciption" : "Updates SNP effects in random order",
+			"attribute": "-permute"
+		},
+		"semantics": {
+			"ontology": [
+				"xs:boolean"
+			]
+		}
+	}, {
+		"id": "numberit",
+		"value": {
+			"default": 50000,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Chain Length",
+			"desciption" : "Length of MCMC chain",
+			"attribute": "-numit"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "burnin",
+		"value": {
+			"default": 20000,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Burnin steps",
+			"desciption" : "The amount of initial samples to discard",
+			"attribute": "-burnin"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "seed",
+		"value": {
+			"default": 0,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Random Seed",
+			"desciption" : "Initial value for random number",
+			"attribute": "-seed"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "blocksize",
+		"value": {
+			"default": 4,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Number of SNPs in block",
+			"attribute": "-blocksize"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "nthreads",
+		"value": {
+			"default": 4,
+			"type": "number",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Number of threads",
+			"attribute": "-nthreads"
+		},
+		"semantics": {
+			"maxCardinality":1,
+			"ontology": [
+				"xs:int"
+			]
+		}
+	}, {
+		"id": "shuffle",
+		"value": {
+			"default": false,
+			"type": "bool",
+			"visible": true,
+			"required": false
+		},
+		"details":{
+			"label": "Permute order of blocks",
+			"attribute": "-shuffle"
+		},
+		"semantics": {
+			"ontology": [
+				"xs:boolean"
+			]
+		}
+	}]
+}

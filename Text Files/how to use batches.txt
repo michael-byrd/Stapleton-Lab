@@ -1,0 +1,20 @@
+Parametric Launching
+ Build file "paramlist" in pwd
+ example format:
+  /home1/04109/ksierrac/applications/bayesR-master/bin/bayesR -bfile /work/04109/ksierrac/bayes_speedtest/data/AlphaSim_1 -out /work/04109/ksierrac/bayes_speedtest/alpha_output/AlphaSim_1_out;
+  /home1/04109/ksierrac/applications/bayesR-master/bin/bayesR -bfile /work/04109/ksierrac/bayes_speedtest/data/AlphaSim_2 -out /work/04109/ksierrac/bayes_speedtest/alpha_output/AlphaSim_2_out;
+  /home1/04109/ksierrac/applications/bayesR-master/bin/bayesR -bfile /work/04109/ksierrac/bayes_speedtest/data/AlphaSim_3 -out /work/04109/ksierrac/bayes_speedtest/alpha_output/AlphaSim_3_out;
+  /home1/04109/ksierrac/applications/bayesR-master/bin/bayesR -bfile /work/04109/ksierrac/bayes_speedtest/data/AlphaSim_4 -out /work/04109/ksierrac/bayes_speedtest/alpha_output/AlphaSim_4_out;
+   [path to application] -parameter [path to parameter] -out [set output path]
+use commmands:
+ module load launcher
+then 
+ module save
+ 
+submit batch with 
+sbatch -N 64 -n 128 -t 48:00:00 $TACC_LAUNCHER_DIR/launcher.slurm
+
+  /home1/04109/ksierrac/applications/bayesR-master/bin/bayesR -bfile /work/04109/ksierrac/bayes_speedtest/data/AlphaSim_1 -out /work/04109/ksierrac/bayes_speedtest/alpha_output/AlphaSim_1_out;
+  /home1/04109/ksierrac/applications/bayesR-master/bin/bayesR -bfile /work/04109/ksierrac/bayes_speedtest/data/AlphaSim_2 -out /work/04109/ksierrac/bayes_speedtest/alpha_output/AlphaSim_2_out;
+  /home1/04109/ksierrac/applications/bayesR-master/bin/bayesR -bfile /work/04109/ksierrac/bayes_speedtest/data/AlphaSim_3 -out /work/04109/ksierrac/bayes_speedtest/alpha_output/AlphaSim_3_out;
+  /home1/04109/ksierrac/applications/bayesR-master/bin/bayesR -bfile /work/04109/ksierrac/bayes_speedtest/data/AlphaSim_4 -out /work/04109/ksierrac/bayes_speedtest/alpha_output/AlphaSim_4_out;

@@ -1,0 +1,25 @@
+General Quickstart progress:
+Account setup 							Y
+Accessing Stampede 						Y
+Running Validate with Sample Data
+ Installing tools						Y
+ Configure Job Submission				Y
+ Submit Jobs							Y
+ Uploading data to the DE				Y
+ Using Demonstrate						Need to extract results before using Demonstrate
+Generating Simulation Data with AlphaSim 
+ Running AlphaSim through Agave			Errors with merger.py not recognizing -s/--snp argument
+SLURM/JSON Job Submission Guide			Y error with paramlist (me)
+Using the Data Store					Y
+GWAS Tools
+	fast llm JSON						Y 1615247795930918425-242ac114-0001-007
+	fast llm direct						have the concept
+	PUMA								Fudged with FASTLLM LASSO $$ (work on extraction with R)
+Prediction
+	Running BayesR through Agave		Y
+	Gensel								N/A
+	Ridge Predict						Y?
+	
+Questions:
+How to use Demonstrate? Get Winnow to work first
+What to do about errors in code? Meet with people

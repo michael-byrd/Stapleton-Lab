@@ -1,0 +1,20 @@
+{
+"jobName": "Winnow-DW_FLMM",
+"softwareName": "Winnow-0.9.2u1",
+"requestedTime": "02:00:00",
+"archive": true,
+    "inputs":{
+        "Class": "agave://data.iplantcollaborative.org/shared/syngenta_sim/Dong_Wang_sim/DWKT.ote.txt",
+        "Folder": "agave://data.iplantcollaborative.org/thomas_b/archive/jobs/FLMM_DW/FLMM_good_out"
+
+    },
+    "parameters":{
+        "SNP": "SNP",
+        "Score": "P",
+        "Filename": "TestResults",
+        "beta": "BETA",
+        "threshold": "0.01",
+        "seper": "whitespace",
+        "kttype": "OTE"
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "jobName": "testAlphaSim",
+  "softwareName": "AlphaSim-1.04",
+  "requestedTime": "05:00:00",
+  "archive": true,
+  "inputs":{
+    "specificationFile": "AlphaSimInputInformation.txt"
+          }
+    }

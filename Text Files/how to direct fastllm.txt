@@ -1,0 +1,7 @@
+Direct FastLLM
+
+fastlmmc -verboseOutput -bfile toydata -pheno toydata.phe.txt -covar toydata.covar.txt -out MyResults.csv
+bfile = name for .bed/.bim/.fam files
+pheno = phenotype files with extension
+covar = name of covariate data file with extension
+out = name of your output data, which is placed in the same folder as your data and program

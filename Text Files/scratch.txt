@@ -1,0 +1,22 @@
+C:\Users\Thomas\Desktop\Stapleton\Local_data\Winnow_Out
+
+Demonstrate Test1 using Winnow Out
+
+Demonstrate(Desktop\Stapleton\Local_data\Winnow_Out, outputdir=NULL, settingsfile=NULL, make.AUC.plot=TRUE, AUC.plot.title="Mean AUC By Population Structure and Heritability", make.MAE.plot=TRUE, MAE.plot.title="Mean MAE By Population Structure and Heritability",herit.strings=list("_03_","_04_","_06_"),herit.values=list(0.3,0.4,0.6),struct.strings=list("PheHasStruct","PheNPStruct"),struct.values=list(TRUE,FALSE))
+
+jobs-output 40385886494256665-242ac114-0001-007 –download –path AlphaSim/Selection/SelectionFolder1/SnpSolutions.txt
+jobs-output –download –path AlphaSim/SimulatedData/Gender.txt 40385886494256665-242ac114-0001-007
+jobs-output –download –path AlphaSim/SimulatedData/PedigreeTbvTdvTpv.txt 40385886494256665-242ac114-0001-007
+jobs-output –download –path AlphaSim/SimulatedData/AllIndividualSnpCethips/Chip1Genotype.txt 40385886494256665-242ac114-0001-007
+jobs-output –download –path AlphaSim/Chromosomes/Chromosome1/Chip1SnpInformation.txt 40385886494256665-242ac114-0001-007
+
+Trying to convert with PLINK (need ped/map files already)
+
+general use to make bed/bim/fam files from ped/map
+PATHTOPLINK/plink –file ALPHASIMPREFIX –out ALPHASIMPREFIX –make-bed
+
+plink in command line?
+
+PLINK-hpc-1.07u2 --file "http://datacommmons.cyverse.org/browse/iplant/home/shared/syngenta_sim/PE DMAP_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_3pctMissing"
+
+not recoginizing plink/PLINK-hpc-1.07u2 as commands

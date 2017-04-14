@@ -1,0 +1,17 @@
+{
+"jobName": "Bayes-test-1",
+	"softwareName": "bayesR-2.00u1",
+	"processorsPerNode": 16,
+    "requestedTime": "48:00:00",
+    "memoryPerNode": 32,
+    "nodeCount": 16,
+"archive": true,
+	"inputs":{
+		"inputBED": "agave://data.iplantcollaborative.org/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_NoMissing.bed",
+		"inputBIM": "agave://data.iplantcollaborative.org/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_NoMissing.bim",
+		"inputFAM": "agave://data.iplantcollaborative.org/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_NoMissing.fam"
+	},	
+	"parameters":{
+		"output": "Bayes-test-1"
+	}
+}

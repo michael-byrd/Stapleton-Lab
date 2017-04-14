@@ -1,0 +1,21 @@
+{
+  "jobName": "DW_W_puma1",
+  "softwareName": "Puma-1.0u1",
+  "processorsPerNode": 16,
+  "requestedTime": "01:00:00",
+  "memoryPerNode": 32,
+  "nodeCount": 1,
+  "batchQueue": "serial",
+  "archive": true,
+  "archivePath": "",
+  "inputs": {
+      "tped": "http://de.cyverse.org/dl/d/FA497D2A-21B4-472E-9033-7030FF2B4744/X_test.tped",
+      "tfam": "http://de.cyverse.org/dl/d/B0A2A7FD-660C-4903-A44E-377FBA0F8522/X_test.tfam",
+	  "covariates": "http://de.cyverse.org/dl/d/46037CAB-53DE-4A82-9456-BE99E7EFAAA1/X_cov.txt"
+  },
+  "parameters":{
+      "regression": "LINEAR",
+      "penalty":"LASSO",
+      "name":"try1"
+  }
+}

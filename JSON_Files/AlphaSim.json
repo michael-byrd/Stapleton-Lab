@@ -1,0 +1,9 @@
+{
+  "jobName": "testAlphaSim",
+  "softwareName": "AlphaSim-1.04u1",
+  "requestedTime": "05:00:00",
+  "archive": true,
+  "inputs":{
+    "specificationFile": "http://de.cyverse.org/dl/d/36ECBC9B-1D3A-4676-9A5F-7985DCBA5F00/AlphaSimSpec.txt"
+          }
+    }
