@@ -404,3 +404,20 @@ Note that PLINK Documentation link in the github guide links to Qxpak documentat
 	Successfully deployed to https://trb9259.shinyapps.io/stapleton/!!!
 	Fixed other Stapleton requests, and finished work on Shiny App
 	Still waiting on PLINK job
+	
+4/14
+	Getting send timeouts trying to check jobs
+	stampede down :(
+	
+4/15
+	Both Jobs still failed :(
+	Need to find a new way to write PLINK jobs to recognize the --map file
+
+4/16
+	Beginning to get plink to work by directly linking to Validate python code
+	maybe need to download data as well though, as it is having difficulty accessing the web data (not through agave?)
+	Data is really large though
+	
+4/17
+	Downloading bed/bim/fam files, to try and run them from Stampede
+	
