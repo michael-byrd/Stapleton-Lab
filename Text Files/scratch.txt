@@ -17,6 +17,13 @@ PATHTOPLINK/plink –file ALPHASIMPREFIX –out ALPHASIMPREFIX –make-bed
 
 plink in command line?
 
-PLINK-hpc-1.07u2 --file "http://datacommmons.cyverse.org/browse/iplant/home/shared/syngenta_sim/PE DMAP_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_3pctMissing"
-
+Validate/CurrentReleaseStable/GWAS_1/plink --bfile DWPLINK/dongwang --assoc
 not recoginizing plink/PLINK-hpc-1.07u2 as commands
+files-get -S "agave://http://datacommmons.cyverse.org/browse/iplant/home/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_NoMissing.bed" -N plink1.bed
+wget "agave://http://datacommmons.cyverse.org/browse/iplant/home/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_NoMissing.bim"
+wget "agave://http://datacommmons.cyverse.org/browse/iplant/home/shared/syngenta_sim/BEDBIMFAM_DE/PheHasStruct_001_Trait_H2_03_GenotypeData_NoMissing.fam"
+
+
+wget "http://de.cyverse.org/dl/d/332C08F1-22B1-4057-A2BE-58663EFE1608/dongwang.bed"
+wget "http://de.cyverse.org/dl/d/69259AE6-A3D9-4C83-AD46-E2B2D39AAAB7/dongwang.bim"
+wget "http://de.cyverse.org/dl/d/4C28C2FD-C346-47B2-8627-255A3E8250FF/dongwang.fam"

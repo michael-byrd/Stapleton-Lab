@@ -420,4 +420,6 @@ Note that PLINK Documentation link in the github guide links to Qxpak documentat
 	
 4/17
 	Downloading bed/bim/fam files, to try and run them from Stampede
+	got PLINK to work with downloaded DW dataset, next try to get it to work with data store data/ bigger data sets
+	It would still be convenient if we could get JSON files to work with PLINK, but the documentation for the application on Stampede is sparse
 	
