@@ -422,4 +422,10 @@ Note that PLINK Documentation link in the github guide links to Qxpak documentat
 	Downloading bed/bim/fam files, to try and run them from Stampede
 	got PLINK to work with downloaded DW dataset, next try to get it to work with data store data/ bigger data sets
 	It would still be convenient if we could get JSON files to work with PLINK, but the documentation for the application on Stampede is sparse
+	Reorganized Github/local file structure
+	
+4/25
+	Working with PLINK, trying to link to Data Store, and interpreting local output:
+	The documentation at https://www.cog-genomics.org/plink2 says that --assoc should output at plink.assoc file
+	however, ours outputted a .log and .no-sex file. Maybe this is because it is not recognizing out phenotypes??
 	

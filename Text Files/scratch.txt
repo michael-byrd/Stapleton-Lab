@@ -27,3 +27,15 @@ wget "agave://http://datacommmons.cyverse.org/browse/iplant/home/shared/syngenta
 wget "http://de.cyverse.org/dl/d/332C08F1-22B1-4057-A2BE-58663EFE1608/dongwang.bed"
 wget "http://de.cyverse.org/dl/d/69259AE6-A3D9-4C83-AD46-E2B2D39AAAB7/dongwang.bim"
 wget "http://de.cyverse.org/dl/d/4C28C2FD-C346-47B2-8627-255A3E8250FF/dongwang.fam"
+
+maybe try to run wget commands in the plink line?
+
+new structure
+
+Validate/CurrentReleaseStable/GWAS_1/plink --bed "http://de.cyverse.org/dl/d/332C08F1-22B1-4057-A2BE-58663EFE1608/dongwang.bed" --bim "http://de.cyverse.org/dl/d/69259AE6-A3D9-4C83-AD46-E2B2D39AAAB7/dongwang.bim" --fam "http://de.cyverse.org/dl/d/4C28C2FD-C346-47B2-8627-255A3E8250FF/dongwang.fam" --assoc
+^ didn't work, failed to open
+
+Validate/CurrentReleaseStable/GWAS_1/plink --file inputs/dongwang --out plinkout --assoc
+^ outputs plinkout.log and plinkout.no-sex and the documentation does not list either of those as 
+looking for different ways to link to remote data in a unix shell
+jobs-template PLINK-hpc-1.07u2 only yields an empty JSON template

@@ -1,17 +1,16 @@
 {
-  "jobName": "ridge-test-1",
-  "softwareName": "RidgePredict-1.1u1",
-  "processorsPerNode": 16,
-  "requestedTime": "01:00:00",
-  "memoryPerNode": 32,
-  "nodeCount": 1,
-  "batchQueue": "serial",
-  "archive": true,
-  "archivePath": "",
-  "inputs": {
-      "inputPed": "http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped"
-  },
-  "parameters":{
-      "outputPed": "ridge-test-output.ped"
-  }
+	"jobName": "ridge-test-1",
+	"softwareName": "RidgePredict-1.1u1",
+	"processorsPerNode": 4,
+	"requestedTime": "00:30:00",
+	"memoryPerNode": 4,
+	"nodeCount": 1,
+	"batchQueue": "development",
+	"archive": false,
+	"inputs": {
+		"inputPed": "agave://http://datacommons.cyverse.org/browse/iplant/home/shared/syngenta_sim/Dong_Wang_sim/Analysis_Files/dongwang.ped"
+	},
+	"parameters":{
+		"outputPed": "ridge-test-output.ped"
+	}
 }
