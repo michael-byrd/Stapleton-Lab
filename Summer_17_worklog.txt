@@ -79,4 +79,69 @@ PCR comparing gene expression of RNA in normal and heat stressed environments
 	get them from Stapleton, look at structure/ list (metadata list)
 	which apps to run, how to validate which is best app
 	also consider computational efficiency
-		
+	
+	getbio (MB and Kai)
+	using docker
+	
+	
+personal:
+	working on insightmaker
+	learning r packages, read documentation
+	
+	10:45
+	Start reading QxPak manual @ http://nce.ads.uga.edu/~ignacy/numpub/blupf90/docs/qxpak.pdf
+		notes:
+			complimentary to Plink
+			useful for Mixed Model Solving, QTL, SNP association
+			warnings:	make sure data is space delimited
+						0 is read as a missing value. Set true 0s to 0.000001 EXACTLY
+			File types:
+				Parameter File:
+					ML_OPTION (Optional, Values: Y/N, Default:Y)
+						Y=Maximal Likelihood method, N= Restricted Maximum Likelihood
+					MEMORY_RAM (Optional, Values: Y/N, Default:N)
+						Store all data on RAM instead of HD. Does not work of multitrait is defined
+					MULTITRAIT_OPTION (Optional, Values: Y/N, Default:N, single trait)
+						If yes, the next field must be the number of traits analyzed sequentially
+							ex: 12300 sequential traint analayises 
+								y 12300
+					DATAFILE (Optional, Default: qxpak.dat)
+						Specifies name of file containing individual, records, and effects
+						first column must be the individual
+					OUTFILE (Optional, Default: qxpak.out)
+						if append it present, new analyses are added at the end of the existing file
+					PEDIGREEFILE (Optional, Default: qxpak.ped)
+					MARKERFILE (Optional, Default: qxpak.mkr)
+						spec name of file w/ marker info. if keyword "transpose" is written after file name, snps are rows insead of columns
+						"transpose" can be written as "t" 
+					MARKER_POSITIONS (Needed with QTL)
+						name_of_chromosome, positions of each marker in cM
+						or
+						name_of_chromosome, -number_of_markers (, spacing_in_cM)
+						ex: chr77 -100 #100 markers spaced every cM
+							chr13 -2000 .05 #2000 markers spaced every 0.05 cM
+							or
+							chr77 0. 10.13 20.1
+					SEX_CHROMOSOME (Obligatory if sex chr included)
+						chrx !the whole chr is NRY
+						chrw 10 !all markers in position 10 cM assumed to be pseudoautosomal
+						chrw -10 !wrong
+						
+					QTL (Obligatory if any marker effect included)
+						which genetic effects should be included in the model.
+						spec minimum number of loci to minimize computing. 
+						format:
+							QTL_name, QTL_type, (segment), Position_specification, (Nested) (Imprinting paternal) (Imprinting maternal)
+						long list of qtl types in docs
+						dominant only works with certain experimental designs
+							two contrastng components (dominant and recessive)
+							very specific hypothesis
+							haplosufficiency
+						additive
+							one adds 3, one adds 7 
+						epistatis
+							interactions between single terms (genotype)
+							instead of being fully additive, there exists another interactions
+							maybe g1*g2, table of all possibly interactions (49 of them?)
+					TRAIT (Obligatory)
+						Defines Model for each trait
