@@ -429,3 +429,4 @@ Note that PLINK Documentation link in the github guide links to Qxpak documentat
 	The documentation at https://www.cog-genomics.org/plink2 says that --assoc should output at plink.assoc file
 	however, ours outputted a .log and .no-sex file. Maybe this is because it is not recognizing out phenotypes??
 	
+4/27

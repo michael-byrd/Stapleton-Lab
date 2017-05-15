@@ -1,0 +1,27 @@
+InsightMaker notes:
+
+General workflow:
+	Conceptualize the model
+	
+	Diagram the model in IM
+	
+	Add equations
+	
+	Run and observe results
+	
+	check results and update for validity
+	
+Types of primitives:
+	Stock:
+		"Bucket" that holds a population (has inflows and outflows)
+	Variable:
+		Contains a variable that does not have flows with other primitives
+	Converter:
+		Adding empirical or historical data to IM
+	States:
+		An "on/off switch" boolean/mathematical/depending on other primitives
+	Transitions:
+		Transitions:Flows::States:Stock triggers lengths of time/probability/condition
+	Actions:
+		Like triggers for ABM used to move agent/change primitive value/add a connection etc.
+	

@@ -37,5 +37,40 @@ Validate/CurrentReleaseStable/GWAS_1/plink --bed "http://de.cyverse.org/dl/d/332
 
 Validate/CurrentReleaseStable/GWAS_1/plink --file inputs/dongwang --out plinkout --assoc
 ^ outputs plinkout.log and plinkout.no-sex and the documentation does not list either of those as 
+
+PLINK v1.90b3n 64-bit (11 May 2015)        https://www.cog-genomics.org/plink2
+(C) 2005-2015 Shaun Purcell, Christopher Chang   GNU General Public License v3
+Logging to plinkout.log.
+Options in effect:
+  --assoc
+  --file inputs/dongwang
+  --out plinkout
+
+64375 MB RAM detected; reserving 32187 MB for main workspace.
+Allocated 7637 MB successfully, after larger attempt(s) failed.
+.ped scan complete (for binary autoconversion).
+Performing single-pass .bed write (442 variants, 280 people).
+--file: plinkout-temporary.bed + plinkout-temporary.bim +
+plinkout-temporary.fam written.
+442 variants loaded from .bim file.
+280 people (0 males, 0 females, 280 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to plinkout.nosex .
+280 phenotype values loaded from .fam.
+Warning: Ignoring phenotypes of missing-sex samples.  If you don't want those
+phenotypes to be ignored, use the --allow-no-sex flag.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 280 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.948796.
+442 variants and 280 people pass filters and QC.
+Note: No phenotypes present.
+Warning: Skipping QT --assoc since less than two phenotypes are present.
+
+
+
 looking for different ways to link to remote data in a unix shell
 jobs-template PLINK-hpc-1.07u2 only yields an empty JSON template
+
+Maybe the data has no sex, so I'm going to run it with a --no-sex option
+Validate/CurrentReleaseStable/GWAS_1/plink --file inputs/dongwang --no-sex --out plinkout --assoc
+^ Error: Half-missing call in .ped file at variant 11, line 1.

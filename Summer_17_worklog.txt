@@ -1,0 +1,82 @@
+5/10
+	e- envirotyping
+	
+	simulation - improving breeding schemes
+	
+	prediction over time
+	
+		side project-envirotyping/older data/ further analysis
+	
+	Validate-
+		optimal association and prediction
+	
+	e-
+		rerunning profile regression
+	
+	h-
+		PCR curves with R packages
+		
+	multiple stress field data
+	
+	h-
+		inbred/hybrid QTL
+	
+	variance QTL
+	
+	e-
+		insightmaker + R package breeding comparison
+	make dynamic models
+	breeding/time
+	picking tallest ones with breeding across generations
+	mobile compatible
+	
+	
+	DOCS:
+	
+	getbio (best practices and people)
+	
+	analyzing real data with validate
+	
+	datacarpentry known-truth simulation
+	
+	envirotyping: insightmaker instructions
+	
+career building activities
+
+	Notes:
+	Genotype (x-value)
+	Phenotype (y-value)
+	GWAS looks for coorelations for genetics -> phenotype
+	environment would be a COVARIATE here
+	(genotype files can be HUGE)
+	prediction == genome wide SELECTION
+	
+PCR comparing gene expression of RNA in normal and heat stressed environments 
+	-objective 	
+
+5/12
+	Rewriting task objective, subtasks, and needed skills/resources
+	
+	
+5/15
+	(8)
+	Get R package
+	do simulations (5 parameter curve) - stat heavy
+	lots of publications
+	
+	(9-12)
+	
+	Stapleton:
+	10-15 min career development plan
+	skills have/needed for different projects
+	how will it all fit in to your career?
+	Lab get together (friday/sunday afternoon?)
+	
+	Organization:
+	Where are the assets going to be? (cyverse/synapse/google drive)
+	
+	start with known-truth analysis between geno/phenotype
+	get them from Stapleton, look at structure/ list (metadata list)
+	which apps to run, how to validate which is best app
+	also consider computational efficiency
+		
