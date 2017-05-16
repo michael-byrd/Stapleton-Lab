@@ -1,0 +1,202 @@
+###############################################################
+BOX 1 - PEDIGREE
+PedigreeStatus                                    ,Internal
+	#This in general is allowing AlphaSim to to run it's own simulation for pedigree, you may include your own pedigree
+	file if you feel inclined
+NumberGenerationsBurnIn                           ,1
+	#number of generations in which no selection is performed 
+NumberGenerationsSelection                        ,10
+	#number of generations in which selection is performed
+NumberOfIndividualsInEachGeneration               ,Constant,100
+	#the number of individuals in each generation, constant in our case with 100 indaviduals per generation
+###############################################################
+BOX 2 - ANIMAL BREEDING OPTIONS  
+AnimalBreedingOnOff                               ,Off
+	#we don't use this option, so off
+NumberOfSiresInEachGeneration                     ,Constant,50
+	#Males which reproduced, same idea as above (re: constant/variable)
+NumberOfDamsInEachGeneration                      ,Constant,50
+	#Females which reproduced, same idea as above (re: constant/variable)
+###############################################################
+BOX 3 - PLANT BREEDING OPTIONS
+PlantBreedingOnOff                                ,On
+	#we do use this option, so on
+PerformMatingsConsideringTheGenderYesNo           ,No
+	#This has to do with fertilization, if No then gender does not matter, but selfing is still regulated
+NumberOfMaleParentsInEachGeneration               ,Constant,5
+	#Not relevant as we do not care about gender in crossing
+NumberOfFemaleParentsInEachGeneration             ,Constant,5
+	#Not relevant as we do not care about gender in crossing
+NumberOfParentsRegardlessTheGenderInEachGen       ,Constant,10
+	#straightforward
+PerformSelfingInAtLeastOneGenerationYesNo         ,No
+	#Straightforward
+NumberOfSelfedParentsInEachGeneration             ,Constant,0
+	#Not relevant as we are not selfing
+NumberOfGenerationsIncludingDoubledHaploids       ,1
+	#Number of generations where Double Haploid individuals are mandatory
+CreateDoubledHaploidsInTheseGenerations           ,2
+	#Which generation(s) must have these double haploid individuals
+###############################################################
+BOX 4 - FLEXIBILITY
+	#Generally this allows the user to create data concurrently with runs, we do not use this option
+GenerationFlexibilityOnOff                        ,Off
+StartStopGeneration                               ,0,0
+SelectionFlexibilityOnOff                         ,Off
+ImportAnExternalPedigreeForThisGeneration         ,0
+ImportStagePut1ToComputeBV2ToContinue             ,0
+MergeTypes                                        ,None
+NumberOfMergeRuns                                 ,0
+MergeFiles                                        ,None
+###############################################################
+BOX 5 - CHROMOSOMES
+PopulationHistoryMaCS                             ,InternalMaize
+	#explains which internal software to use, we chose maize
+EffectivePopulationSizeBaseMaCs                   ,Internal,0
+	#you can set the population size of the first burn-in generagetion, however, we set this to internal
+MutationRateMaCS                                  ,Internal,0
+	#you can set the mutation rate for chromosomes, however, we set this to internal
+ChromosomeLengthBasesMaCS                         ,Internal,0
+	#you can chose the length in bases, however, we set this to internal
+ChromosomeLengthMorgansMaCS                       ,Internal,0
+	#you can chose the length in morgans, however, we set this to internal
+ChromosomeLengthMorgansAlphaSim                   ,Internal,0
+	#same as above
+NumberOfChromosomes                               ,2
+	#total number of chromosomes you want to create
+NumberOfHaplotypes                                ,1000
+	#the number of haplotypes to sample to generate the base population
+RecombinationHotspotsOnOff                        ,Off
+###############################################################
+BOX 6 - SNP CHIPS
+UseSnpChipOnOff                                   ,On
+	#straightforward, SNP chips are; digital versions of something that is created in labs. Used to array
+	all the SNPs within a cell
+NumberOfSnpChips                                  ,1
+	#straightforward
+nSnpPerChipPerChromosme                           ,50000
+	#straightforward
+MinMaxAlleleFreqForSnp                            ,0.05,0.95
+	#controls the ratio for minor allele frequency,
+	#minor allele frequency is the frequency at which the least common allele occurs in a given population 
+SnpChipIncludesQtnYesNoRandom                     ,No
+	#deciding if the Snp chip will include the Qtn or not
+SnpChipsAreNestedYesNo                            ,No
+	#only necessary for more than one chip, straightforward
+IdOfChipUsedForSelection                          ,1
+	#only necessary for more than one chip, straightforward
+###############################################################
+BOX 7 - QTN
+NumberOfQtnPerChromosomeNormalDist                ,1000
+	#number of QTN with normally distributed effects
+NumberOfQtnPerChromosomeGammaDist                 ,0
+	#number of QTN with gamma distributed effects
+NumberOfMutationsPerChr                           ,0
+	#the number of de-novo casual mutations, these are inherited by offspring (subsequent generations)
+MutationalVarianceProportion                      ,0
+	#determine the genetic variance due to mutations
+MinMaxAlleleFreqForModel2And4                     ,0.0,0.30
+	#this cotrols the minor allele freuqency for the QTN, first number is min, second is max
+ShapeAndScaleOfGammaDistForModel3And4             ,0.30,0.40
+	#this cotrols the shape and scale of the gamma distribution of QTN effects,
+IncludeDominanceEffectsOnOff                      ,Off
+	#This will be to include the usage of dominant/recessive alleles 
+DominanceDegreeMeanAndVariance                    ,0.5,0.10
+	#two numbers which will determine the mean and variance of the normal distribution from which 
+	dominance degrees are sampled.
+QtnClustersOnOff                                  ,Off
+##############################################################
+BOX 8 - RECOMBINATION SELECTION
+RecombinationOnOff                                ,Off
+	#this will turn the recombination on our off (only used in additive model)
+HeritabilityOfRecombination                       ,0
+	#determined the heritability of the recombination (given as a rate)
+NumberOfQtnPerChromForRecombination               ,0
+	#striaghtforward
+InitialRecombinationIndexWeight                   ,0
+	#this computes the index for the first generation
+NumberGenerationsSelectionOnRecombination         ,0
+	#this will specify the number of generations slected as first generations
+LaterGenRecombinationIndexWeight                  ,0
+	#this will be used to compute for later generations
+DistributionOfQtnForRecombination                 ,Normal
+	#straightforward
+ShapeAndScaleOfGammaDist                          ,0,0
+	#straightforward
+###############################################################
+BOX 9 - GENE EDITING
+GeneEditingOnOff                                  ,Off
+	#straightforward. 
+	#AlphaSim will write in gene editing to the output based on a series of other user supplied variables
+EditTopOrBottom                                   ,Top
+	#editing for the best performing, or the worst performing
+NumberOfEditedIndividuals                         ,0
+	#straightforward
+NumberOfGeneEditsPerIndividual                    ,0
+	#straightforward
+PerformGEOnUserQtnSelectionYesNo                  ,No
+	#the user can provide their own selection of QTN to be edited
+###############################################################
+BOX 10 - SELECTION
+SelectionBasedOnRestrictedOrUnrestrictedQtn       ,Unrestricted
+	#This determined the QTN model
+DistributionOfQtnOfSelectionTraits                ,Normal
+	#can be normal or gamma
+SelectionMethod                                   ,GBLUP
+	#GBLUP - selection is performed using genomic-estimated breeding values
+	#Pheno - selection is performed using phenotypic values
+	#TBV - selection is performed using true breeding values
+AddQtnToTheSnpChipYesNo                           ,No
+	#must be provided for GBLUP, and must agree with above, "SnpChipIncludesQtnYesNoRandom"
+UseExternalSnpSolutionsYesNo                      ,No
+	#must be provided for GBLUP, we chose to do this internally however.
+SelectionPhenotypingStrategy                      ,RandomPhenotypes
+	#must be provided for GBLUP, if random the below will specify which generations to sample 
+FirstAndLastTrainingGenForRandomPhenotypesStrat   ,1,1
+	#straightforward
+TrainingSetSizeForRandomPhenotypesStrat           ,10
+	#number of indaviduals randomly selected for phenotype analysis
+FixTheTrainingDataAcrossGenerationsOnOff          ,Off
+	#the snp solutions (computed using a training data set) are used to compute the gEBV of the test 
+	individuals of other selection generations
+UseTrainingDataFromGeneration                     ,2
+	#specifies which generation to use for creating training data
+ComputeAverageCoancestryYesNo                     ,No
+	#straightforward
+GenerationsOfPedigreePriorToTraining              ,0
+###############################################################
+BOX 11 - OPTIMAL CONTRIBUTION SELECTION
+	#optimises the contribution of each individual to the next generation by accounting for
+	the genetic potential of the selected indaviduals and for the genetic variation between them 
+OptimalContributionSelectionOnOff                 ,Off
+SizeOfXvectPopulationAndMaxNbOfGenerations        ,0,0
+PercentageDifferenceInbreeding                    ,0
+###############################################################
+BOX 12 - TRAITS
+NumberOfTraits                                    ,1
+	#number of traits to be simulated by AlphaSiom
+IndexWeights                                      ,1.0
+	#the weight of each trait (totaling one) for this case we have one trait therefore 1. 
+TraitHeritability                                 ,0.5
+	#total genetic variance/total phenotypic variance
+TraitGeneticVariance                              ,1.0
+	#samples additive effects of QTN, and also the variance between traits (re: only one so 1)
+###############################################################
+BOX 13 - TRAIT CORRELATIONS
+	#if only one trait is simulated then this value is one 
+Genetic Correlation Matrix
+1.0
+Residual Correlation Matrix
+1.0
+###############################################################
+BOX 14 - OUTPUTS
+	#striaghtforward
+KeepChromosomesFolderYesNo                        ,Yes
+WriteFullSequenceOutOnOff                         ,Off
+ZipSequenceOutputFilesYesNo                       ,No
+###############################################################
+BOX 15 - GENOME COMPRESSION
+	#this allows the user to drop the number of segregating sites
+GenomeCompressionOnOff                            ,Off
+GenomeCompression                                 ,50.00
+###############################################################

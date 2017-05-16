@@ -145,3 +145,31 @@ personal:
 							maybe g1*g2, table of all possibly interactions (49 of them?)
 					TRAIT (Obligatory)
 						Defines Model for each trait
+						
+						
+	Reading AlphaSim Documentation
+	
+5/16
+	Called about getting HVAC fixed
+	Continue QxPak documentation
+	Getting permission denied error accessing QxPak stampede app
+	Continue reading AlphaSim Docs
+	Reading and updating Example AlphaSim file
+	Upload it to Google Drive
+	
+	Example alphasim job : 8565365730777371111-242ac115-0001-007 submitted @11:15 am
+	used AlphaSimEx.json linking to AlphSimExSpec.txt in my Discovery Environment
+	Job FAILED. I think because there was not an empty set of parameters
+	
+	Added in parameters, and new job # 7702303666237805031-242ac115-0001-007 Submitted@11:23 am 
+	
+	asked Agave API crew about QxPak
+	job 7702 still queued at 1:23
+	
+	Meanwhile,
+		Trying to run GEMMA. I can link to a python version via Validate/CurrentReleaseStable/GWAS_1/gemma
+		run data with .bed/.bim/.fam data
+		used mixed-model analysis. general idea is to use the following format:
+		Validate/CurrentReleaseStable/GWAS_1/gemma -bfile inputs/DWBED/dongwang -gk 1 -o output
+		
+	GenSel specifically prediction

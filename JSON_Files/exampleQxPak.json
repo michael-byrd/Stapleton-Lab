@@ -1,0 +1,14 @@
+{
+  "name": "exampleQxPak",
+  "appId": "qxpak-stampede-5.05u2",
+  "archive": true,
+  "inputs": {
+    "parameter_file": "agave://data.iplantcollaborative.org/home/shared/iplantcollaborative/example_data/qxpak/input/parameterFile.par",
+    "data_file": "agave://data.iplantcollaborative.org/home/shared/iplantcollaborative/example_data/qxpak/input/dataFile.dat",
+    "pedigree_file": "agave://data.iplantcollaborative.org/home/shared/iplantcollaborative/example_data/qxpak/input/pedigreeFile.ped",
+    "marker_file": "agave://data.iplantcollaborative.org/home/shared/iplantcollaborative/example_data/qxpak/input/markerFile.mkr"
+  },
+  "parameter": {
+    "output": "test"
+  }
+}

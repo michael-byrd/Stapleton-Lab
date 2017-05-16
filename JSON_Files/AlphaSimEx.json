@@ -1,0 +1,11 @@
+{ 
+	"jobName": "testAlphaSim",
+	"softwareName": "AlphaSim-1.04u1",
+	"requestedTime": "05:00:00",
+	"archive": true,
+	"inputs":{ 
+		"specificationFile": "agave://data.iplantcollaborative.org/thomas_b/AlphaSim/AlphaSimExSpec.txt" 
+	},
+	"parameters":{
+	}
+}
