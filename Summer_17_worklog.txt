@@ -173,3 +173,15 @@ personal:
 		Validate/CurrentReleaseStable/GWAS_1/gemma -bfile inputs/DWBED/dongwang -gk 1 -o output
 		
 	GenSel specifically prediction
+	Decided to disregard GenSel for now
+	
+5/17
+	Working with qpcR package
+		got example to work, seems pretty simple to translate to out data
+		possible issue with data formatting, idk though
+		There seems to be issues with some of the data trials, which are really throwing off some of the models
+		Specifically only one or two out of five of the UCN No hormone Fam data seemed to go well
+		In the UCN No hormone Hex data, 3 or 4 out of the 5 trials seemed to have gone well
+			This is disheartening as this looks like the best set of data we will have for out plate
+	AlphaSim still Queued at noon (24+ hours of queue time)
+	
