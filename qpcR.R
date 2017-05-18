@@ -37,4 +37,17 @@ muhl5<- pcrfit(ucnh, 2, c(6,12,18,24,30), l5, weights = "1/error^2")
 plot(muhl5)
 #it seems like D8 did not grow, and the max diff in C8 is low as well
 plot(x=ucnh[,2], y=ucnh[,6])
-plot(x=ucnh[,2], y=ucnh[,30])
+plot(x=ucnh[,2], y=ucnh[,24])
+#by using is.outliers in the other file, we can remove D8 or column 24 as an outlier
+#this will give us a stronger fit
+amunhl5<- pcrfit(ucnh, 2, c(6,12,18,30), l5, weights = "1/error^2")
+plot(amunhl5)
+#after arithmetic adjustment (all values minus initial value in respective column)
+aaucnh<- read.csv(file="UCNnhHexArithAdjust.csv",header=TRUE, sep = ",")
+amaaunhl5<- pcrfit(aaucnh, 1, c(7,8,9,11), l5, weights = "1/error^2")
+plot(amaaunhl5)
+#I think the arithmetic doesn't work because it involves multiplying by 0/negative numbers
+
+#Now I want to try with data as a proportion of the starting value
+amgaunhl5<- pcrfit(aaucnh, 1, c(12,13,14,16), l5, weights = "1/error^2")
+plot(amgaunhl5)

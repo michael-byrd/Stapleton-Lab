@@ -177,7 +177,7 @@ personal:
 	
 5/17
 	Working with qpcR package
-		got example to work, seems pretty simple to translate to out data
+		got example to work, seems pretty simple to translate to our data
 		possible issue with data formatting, idk though
 		There seems to be issues with some of the data trials, which are really throwing off some of the models
 		Specifically only one or two out of five of the UCN No hormone Fam data seemed to go well
@@ -187,4 +187,15 @@ personal:
 	Working with a mathematical way to rule out outliers in the qpcR data. 
 	Current want to work with the KOD function which requires a modlist
 	R is taking a long time to generate this modlist
+	
+5/18
+	Job 7702 STILL QUEUED (45+ hours of queue time) 
+	I'm going to run it in the development queue to see if I can just have it run at all
+	New dev batchQueue job#: 5627905105917252071-242ac115-0001-007 submitted 9:32 am
+	job pending at 11:09
+	Writing some documentation for the qpcR implementation
+	There were too many poor curves in the UCN - NH - Fam data, so they couldn't even be marked as outliers
+	However, in the UCN -NH - Hex data, there was only one bad curve, which can actually be marked as an outlier
+	I'd like to find some way to normalize the starting points of the curves, to really analyse the differences between them
+	as is it seems like we are taking the average of a bunch of similar looking parallel sigmoidal curves
 	
