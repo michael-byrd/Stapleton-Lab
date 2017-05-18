@@ -27,7 +27,9 @@ plot(m2)
 #2:5 is chosen as there are 4 replicates in columns 2 through 5 respectively
 
 #with our data
-mufl5<- pcrfit(ucnf, 2, c(6,12,18,24,30), l5, weights = "1/error^2")
+mufcol<-c(6,12,18,24,30)
+mufoutliers<-KOD(mufcol,method = "uni1")
+mufl5<- pcrfit(ucnf, 2, mufcol, l5, weights = "1/error^2")
 plot(mufl5)
 #this data has like 3 out of 5 sets which don't "take off"
 

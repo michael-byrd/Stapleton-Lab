@@ -182,6 +182,9 @@ personal:
 		There seems to be issues with some of the data trials, which are really throwing off some of the models
 		Specifically only one or two out of five of the UCN No hormone Fam data seemed to go well
 		In the UCN No hormone Hex data, 3 or 4 out of the 5 trials seemed to have gone well
-			This is disheartening as this looks like the best set of data we will have for out plate
-	AlphaSim still Queued at noon (24+ hours of queue time)
+			This is disheartening as this looks like the best set of data we will have
+		AlphaSim (7702) still Queued at noon (24+ hours of queue time)
+	Working with a mathematical way to rule out outliers in the qpcR data. 
+	Current want to work with the KOD function which requires a modlist
+	R is taking a long time to generate this modlist
 	
