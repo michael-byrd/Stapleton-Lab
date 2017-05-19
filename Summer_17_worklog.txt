@@ -210,3 +210,4 @@ personal:
 	4 vs 5 parameter tests
 	indiviually pick best fit curves and compare influetial points (inflection points)
 	
+	Read Material about Departmental Honors and 499, email Dr. Ye about possibility of doing it in the upcoming year
