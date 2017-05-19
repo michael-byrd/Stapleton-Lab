@@ -35,6 +35,7 @@ plot(mufl5)
 
 muhl5<- pcrfit(ucnh, 2, c(6,12,18,24,30), l5, weights = "1/error^2")
 plot(muhl5)
+
 #it seems like D8 did not grow, and the max diff in C8 is low as well
 plot(x=ucnh[,2], y=ucnh[,6])
 plot(x=ucnh[,2], y=ucnh[,24])
@@ -51,3 +52,5 @@ plot(amaaunhl5)
 #Now I want to try with data as a proportion of the starting value
 amgaunhl5<- pcrfit(aaucnh, 1, c(12,13,14,16), l5, weights = "1/error^2")
 plot(amgaunhl5)
+test<-pcrfit(aaucnh, cyc = 1, fluo = c(12,13,14,16), l4)
+plot(test)

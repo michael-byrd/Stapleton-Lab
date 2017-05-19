@@ -17,3 +17,9 @@ plot(ucnhmod, which = 'single')
 ucnhKOD<- KOD(ucnhmod, method = "uni1", plot = TRUE)
 is.outlier(ucnhKOD)
 #This actually gave us D8 as an outlier
+
+#confirming that this is also an outlier in the geometrically adjusted data
+gaucnhmod<- modlist(aaucnh, cyc = 2, fluo = c(12,13,14,15,16), model = l4)
+plot (gaucnhmod ,which = "single")
+gaucnhKOD<- KOD(gaucnhmod, method = "uni1", plot = TRUE)
+is.outlier(gaucnhKOD)

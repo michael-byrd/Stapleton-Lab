@@ -196,6 +196,17 @@ personal:
 	Writing some documentation for the qpcR implementation
 	There were too many poor curves in the UCN - NH - Fam data, so they couldn't even be marked as outliers
 	However, in the UCN -NH - Hex data, there was only one bad curve, which can actually be marked as an outlier
-	I'd like to find some way to normalize the starting points of the curves, to really analyse the differences between them
-	as is it seems like we are taking the average of a bunch of similar looking parallel sigmoidal curves
+		I'd like to find some way to normalize the starting points of the curves, to really analyse the differences between them
+		as is it seems like we are taking the average of a bunch of similar looking parallel sigmoidal curves
+			It seems that there is some error with doing the arithmetically or geometrically adjusted data			
+			Both yield:
+				Error in qr.default(.swts * attr(rhs, "gradient")) : 
+				NA/NaN/Inf in foreign function call (arg 1)	
+		I originally thought that this had to do with the zero values in the arithmetically adjusted file, but the error persists in the geometric data
+	
+	Graphpad prism (odd data input structure) good documentation
+	specialty curve fitting funtions, diverse stats tests
+	also in R?
+	4 vs 5 parameter tests
+	indiviually pick best fit curves and compare influetial points (inflection points)
 	
