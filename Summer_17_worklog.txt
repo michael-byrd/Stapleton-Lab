@@ -326,3 +326,12 @@ Friday 5/19 Meeting notes:
 		Make your own git repo (talk to Thomas about it)			
 		
 		421 junction is really dangerous, and careful when turning left into the driveway
+		
+5/22/17
+	Prep for Monday meeting:
+	what are my goals for this week?
+		continue PCR curve/ratio analysis
+			work on outlier analysis
+			work on more data sets
+	Get data for 9-11
+	Talk to Dr. Wang about setting up 499 project, neural network for mortgage pool predictions?	

@@ -8,6 +8,7 @@ plot(ucnfmod, which = "single")
 
 ucnfKOD<- KOD(ucnfmod, method = "uni1", remove = TRUE, plot = TRUE)
 plot(ucnfKOD)
+is.outlier(ucnfmod)
 is.outlier(ucnfKOD)
 #this does not mark any of them as outliers, i assume this is because the majority are low, and the sample
 #does not have a high proportion of successful tests
@@ -15,6 +16,7 @@ is.outlier(ucnfKOD)
 ucnhmod<- modlist(ucnh, cyc = 2, fluo = mufcol, model = l5)
 plot(ucnhmod, which = 'single')
 ucnhKOD<- KOD(ucnhmod, method = "uni1", plot = TRUE)
+is.outlier(ucnhmod)
 is.outlier(ucnhKOD)
 #This actually gave us D8 as an outlier
 
@@ -23,3 +25,4 @@ gaucnhmod<- modlist(aaucnh, cyc = 2, fluo = c(12,13,14,15,16), model = l4)
 plot (gaucnhmod ,which = "single")
 gaucnhKOD<- KOD(gaucnhmod, method = "uni1", plot = TRUE)
 is.outlier(gaucnhKOD)
+is.outlier(gaucnhmod)
