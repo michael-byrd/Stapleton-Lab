@@ -1,0 +1,44 @@
+	Monday Meeting Notes 5/22:
+	Stap:
+		Get everyone's github, get added to cyverse/validate page
+		decide on a data repo for all data being used (some will only be working with cyverse)
+			you can use cyverse or synapse or thingshare (synapse seems the best)
+		doing grant review Wed/Th, out of town after that, available by slack after Wednesday
+		Question: What is the goal for when DW data will be predicted/associated what is the timeline?
+	Elena: 
+		signing up for something
+		something about dilutions
+	Lauren:
+		get all SNPs figured out
+		contact whoever needs to be contacted
+		practice assay with genetics materials (in genetics lab) (have reagents organized)
+	Dave:
+		Reccommend using 1.08 instead of 1.04 (might as well update)
+		Learn how to update app on Agave, (copy and paste most of it) why doesn't spec sheet run on 1.08
+		why isn't demonstrate running in R (use another type of plot/table)
+		what kind of graphics are good for demonstrating True/false positives
+	Austin:
+		found package for breeding language
+		now has to run github data, then start breaking it down and reworking it
+		Stap can put you in contact with the boss of the project
+		normal problem, why docker is very popular
+	Byrd:
+		finish pipeline
+		get Suggs up to speed with getbio
+		learn how to use Agave ToGo
+	Suggs:
+		Good GWAS interactions
+		get to demonstrate locally
+		getbio stuff (hopeful
+	Thomas:
+		Continue working on PCR simulation/ begin calculating ratios
+		get data for tasks 9-11 on board (that involves sharing data through synapse)
+		Talking with Dr. Wang about 499 for the upcoming year
+	Ben:
+		Using QTL package (similar to VQTL)
+		use data sets given to Ben/Austin with the package
+		Stap: have you looked at the alternative package (in slack), they have a repo & R code
+		couldn't find R code (will be sent it by Stap)
+	
+	Going to be using synapse for sharing data
+	Gao is putting on computational tutorials 1-3, maybe using horizons to replace TealWare
