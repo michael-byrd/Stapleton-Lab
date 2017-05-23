@@ -13,6 +13,7 @@ plot(m1)
 ucnf<- read.csv(file="UCN-Q.csv",header=TRUE, sep = ",")
 #mufl4 stands for Model of No-Hormone Fam Logistic 4-paramter model
 munfl4<- pcrfit(ucnf, 2, 6, l4)
+munfl4gof<-pcrGOF(munfl4)
 plot(munfl4)
 
 #trying with unc-q Hex data sheet

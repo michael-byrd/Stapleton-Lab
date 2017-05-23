@@ -367,7 +367,19 @@ Friday 5/19 Meeting notes:
 		How do we want to model this?
 		Goals: make tidy data, remove lines where the lots failed quality seed control
 		how to use measured score phenotype
-	
+		Model == Assosciation tests (look for important variables)
+		
 	Questions:
 		What are the Genotype scores?
+			Comment about the scores, Y value, not normally distributed, one measurement
+			Use as a covariate? 
+			always a background level of pathogen, but higher in the applied groups
+	Null: The same SNPs effect all the stress factors
+	Null: Should see the same features without the presence of stress, whether or not there is other stresses
+	
+	Created LogCurveGeneration.R to generate logistic functions with known-truth data
+		uploaded to github
 		
+	Look at true and false positive rates with different levels of 
+	look at difference between curves, with factorial
+	as noise increases, difference has to increase to say powerful
