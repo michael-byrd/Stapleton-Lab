@@ -335,3 +335,39 @@ Friday 5/19 Meeting notes:
 			work on more data sets
 	Get data for 9-11
 	Talk to Dr. Wang about setting up 499 project, neural network for mortgage pool predictions?	
+	
+	7702 job finished, and looks like to ran even though it gave an error stating that the file was incorrectly named
+	5627 job still pending in dev queue
+	setting up Synapse
+	qpcR documentation
+		logging when certain trials are considered outliers
+		question about astersisks sent to author of package
+	Writing a little more documentation about when outliers are marked
+	Begin work on (9), Multiple-Stress QTL
+	
+5/23/17
+	Continue emailing Dr. Wang about 499
+	Try to interpret the Multiple-Stress QTL discussion section
+	(This is also known as the Manching Experiment)
+		Try to determing which SNPs determine plant height in across different environments
+		adjust for plants with correlated/similar genotypes
+		fit model according to enviroment covariates
+		environments are structured with single and multiple stress treatments
+		Are the same SNPs responsible in different stress environments?
+		Additionally, there is variation with physical spacing and its relationship with genetic similarities (LD)
+		We can use TPM or haplotype analysis to create P values for this
+	Reccommended steps:
+		Read Heather's Defense
+			Got a general idea of the experimental design
+			Seeing how maize reacts to different stresses, and their combinations
+			The stresses used were: low nitrogen, low water, and a pathogen
+		Read plant height metadata
+		Pick GWAS tools 
+		
+		How do we want to model this?
+		Goals: make tidy data, remove lines where the lots failed quality seed control
+		how to use measured score phenotype
+	
+	Questions:
+		What are the Genotype scores?
+		
