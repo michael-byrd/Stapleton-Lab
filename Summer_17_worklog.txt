@@ -383,3 +383,32 @@ Friday 5/19 Meeting notes:
 	Look at true and false positive rates with different levels of 
 	look at difference between curves, with factorial
 	as noise increases, difference has to increase to say powerful
+
+5/24
+	Begin researching how much variance is acceptable in my generated models before the tests substantiate the difference
+	Clean up qpcR.R file, and merge it with the outlier file into qpcRclean.R
+	Wanting to test type I/II error rates in different differences in these curves
+	The three variables are as follows(Upper bound, midpoint, and steepness)
+	How to test false positive/negative rates:
+	
+	
+	use matrix for filling in equation paramters
+	generate stuff with noise, then analyze like they were real data
+	dsc2, similar to validate
+	Github, in R/python framework
+	Tell a story with data. Show how to do it. Learn Python and R, and good applied software engineering
+	Enthought, free license have to sign up. Also CodeAcademy
+	Julia is a new up and coming language, ease of use with python, and libraries like C
+	Juypiter, notebook that lets you run code interactively, with wikiesque flexibility
+	
+	Began working through codecademy Python, got up to conditionals/console something
+	
+5/24
+	Plan:	Continue working through Python tutorials
+			pursue D-1/D-2 forms with the Honors College
+			Contact Dr. Wang about statistically determining differences of curves
+			Take a stab at beginning (9), outline process
+			
+		Called Honors College about filling out DH1 forms, will do after I finish my coffee
+		In the meantime, I'll continue with the Python tutorial
+		

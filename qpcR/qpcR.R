@@ -13,12 +13,13 @@ plot(m1)
 ucnf<- read.csv(file="UCN-Q.csv",header=TRUE, sep = ",")
 #mufl4 stands for Model of No-Hormone Fam Logistic 4-paramter model
 munfl4<- pcrfit(ucnf, 2, 6, l4)
-munfl4gof<-pcrGOF(munfl4)
+pcrGOF(munfl4)
 plot(munfl4)
 
 #trying with unc-q Hex data sheet
 ucnh<- read.csv(file="UCN-QH.csv", header = TRUE, sep = ",") # as above but hex data
 munhl4<-pcrfit(ucnh, 2, 6, l4)
+pcrGOF(munhl4)
 plot(munhl4)
 
 #now working with replicate models
@@ -29,9 +30,12 @@ plot(m2)
 
 #with our data
 mufcol<-c(6,12,18,24,30)
-mufoutliers<-KOD(mufcol,method = "uni1")
 mufl5<- pcrfit(ucnf, 2, mufcol, l5, weights = "1/error^2")
+mufmod<- modlist(ucnf, 2, mufcol, l5)
+mufoutliers<-KOD(mufmod,method = "uni1")
 plot(mufl5)
+pcrGOF(mufl5)
+is.outlier(mufoutliers)
 #this data has like 3 out of 5 sets which don't "take off"
 
 muhl5<- pcrfit(ucnh, 2, c(6,12,18,24,30), l5, weights = "1/error^2")
@@ -51,7 +55,8 @@ plot(amaaunhl5)
 #I think the arithmetic doesn't work because it involves multiplying by 0/negative numbers
 
 #Now I want to try with data as a proportion of the starting value
-amgaunhl5<- pcrfit(aaucnh, 1, c(12,13,14,16), l5, weights = "1/error^2")
+amgaunhl5<- pcrfit(aaucnh, 1, c(12,13,14,16), l5)
 plot(amgaunhl5)
+pcrGOF(amgaunhl5)
 test<-pcrfit(aaucnh, cyc = 1, fluo = c(12,13,14,16), l4)
 plot(test)
