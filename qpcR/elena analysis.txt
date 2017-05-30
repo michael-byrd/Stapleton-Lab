@@ -18,4 +18,11 @@ from Elena:
 		gc = G 1:9 odd
 		rs = A:H 11 and 12, and H1:H4
 		rc = H5:H9
-		
+	
+	I'd like to begin comparing the 3,000 level fam data with the 3000 level control data
+	This involves Odd C columns as gs, and A11, A12, E11, E12, H 1 as rs
+	additionally, we can use C1,C3,C5,C7,C9 as rs and H 5:9 for rc
+	rearranged: A11, A12, C1, C3, C5, C7, C9, E11, E12,H1, H5 : H9
+	fluo = c(12,13,26,28,30,32,34,60,61,86,90:94)
+	group = c(rep("rs",2), rep("gs",5), rep("rs", 3), rep("rc",5))
+	
