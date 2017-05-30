@@ -2,11 +2,11 @@
 #Altering LogCurveGeneration to be selfcontained
 
 #parameters
-upper<-10
+upper<-12
 mid<-6
-steep<-2
-randc<-.05
-numrep<- 20
+steep<-1
+randc<-.08
+numrep<- 12
 #defined curve function
 curve<- function(upper,mid,steep, randc){
 #Generating signal
@@ -19,18 +19,16 @@ sig<- function(x,steep = 1, mid = 3, upper = 3) {
 #generating y values
 #signal
 signal<-c(sig(x,steep, mid, upper))
-plot(x,signal)
 #Generating noise
 noiseval<-sapply(signal, function(signal) rnorm(n = 1,mean = 0,sd = signal*randc))
-plot(x,noiseval)
 #Adding noise and signal to produce stochastic curve
 y<-c(signal+noiseval)
-plot(x,y)
 #preparing column names
 curvesdf<- data.frame(x,y)
 return(curvesdf)
 }
-
+#generate whole set of curve
+curvesetgen<-function(upper,mid,steep,randc,numrep){
 #base case set up
 curvesdf<-curve(upper,mid,steep,randc)
 curveset<-curvesdf
@@ -38,17 +36,20 @@ i=2
 
 #recursion for upper number of trials
 for(i in 2:numrep){
+  #increase count of i
   i<- i+1
+  #curve dataframe for next individual curve
   curvesdf<- curve(upper,mid,steep,randc)
+  #add fluo column to existing dataframe
   curveset <- cbind(curveset, curvesdf[,2])
+  #rename columns
   j=1
   colnames(curveset)<- "Cycle"
   for (j in 2:i) {
     colnames(curveset)[j] <-paste("Fluorescense", j-1)
   }
-  
-  
 }
-
+return(curveset)
+}
 #final data
-print(curveset)
+curveset<-curvesetgen(upper,mid,steep, randc,numrep)

@@ -403,7 +403,7 @@ Friday 5/19 Meeting notes:
 	
 	Began working through codecademy Python, got up to conditionals/console something
 	
-5/24
+5/25
 	Plan:	Continue working through Python tutorials
 			pursue D-1/D-2 forms with the Honors College
 			Contact Dr. Wang about statistically determining differences of curves
@@ -411,4 +411,44 @@ Friday 5/19 Meeting notes:
 			
 		Called Honors College about filling out DH1 forms, will do after I finish my coffee
 		In the meantime, I'll continue with the Python tutorial
+		Created R file to make logistic curves and replicate them an arbitrary number of times
 		
+		general advice from fonner(for beginners)
+		how do you guys normally do support tickets? (intercom software, etc)
+		
+5/26
+	want to finish/clean up the pcr fits, then working on calculating ratios
+	began learning python
+	created program to build dataframes of known truth reps 
+	odd stuff with not detecting outliers
+	submitted DH1 form
+	
+					sdk = software development kit
+	
+	Ben write to Robert Cordy (how to access at Chapel Hill in applied stats lab)
+	Gabe, work on code review(project review) call out things that seem odd
+	Work on documentation when your software is down
+	When will we have Validate ready?
+	Thomas, write a prescreening function(write a feeder function) 
+	
+	look for GenSel (obscure) matt vaughn, send a request about it (Fonner) (how to find stuff)
+	
+	Syngenta -> Association
+	Gensel -> Association
+	Dong Wang -> Association
+	Syngenta Mask -> Prediction
+	AlphaSim (missing) -> Prediction
+	
+5/29
+	continue learning Python
+	Still having issues with outlier detection, looking into new methods of detection
+	Fixed issues with function not running (error with cycle = 0?)
+	Found new function mselect() that runs data with all available models, and chooses the best one (very helpful)
+	Learned how to use pcrbatch() and began using ratiocalc()
+	Better method to show goodness of fit utilizing GOF and only printing the R^2 value
+	
+5/30
+	Waiting for a stand up meeting
+	Continue learning Python
+	new file for theory behind data analysis
+	

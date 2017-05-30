@@ -1,0 +1,21 @@
+from Elena:
+		for new data:
+		BLUE/GREEN cells : gene of interest
+		RED cells : reference gene
+		NUMBERS : treatment
+		NTC : control
+		
+	Markings for ratiocalc:
+		gs = gene of interest and treatment group
+		gc = gene of interest and control group
+		rs = reference gene and treatment group
+		rc = reference gene and control group
+	
+		
+	Looking for best comparisons
+	Testing Fam data:
+		gs = A:F 1:9 odd
+		gc = G 1:9 odd
+		rs = A:H 11 and 12, and H1:H4
+		rc = H5:H9
+		
