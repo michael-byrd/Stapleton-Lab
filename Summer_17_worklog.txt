@@ -452,3 +452,67 @@ Friday 5/19 Meeting notes:
 	Continue learning Python
 	new file for theory behind data analysis
 	
+5/31
+	Continue working with Python tutorials, making good progress
+	Email qpcR author concerning error in ratiocalc(). Waiting to hear back about that
+	Begin looking into D3 while waiting for response from Andrej
+	
+6/1
+	Finished a few more Python courses
+	Still no email from Andrej
+	Begin looking back at multiple stress QTL nvm
+	Looking into the source code behind ratiocalc
+		the expression involves :
+			(eff.gc^cp.gc/eff.gs^cp.gs)/(eff.rc^cp.rc/eff.rs^cp.rs)
+		I want to check if these are all present in our pcrbatch
+		It seems that propagate() is giving us a "try-error" response,
+		so I'll look at its source code
+		For propagate to give try-error, it has to be unable to take the derivative of the expression
+		
+6/2
+	Continue with Python
+	meeting stuff
+	
+	Friday 6/2/17 Meeting
+		Dave:
+			Not a ton of progress Agave down
+			Doing work with Shiny Apps, good platform for data visualization
+			use Winnow output, should scale
+			Working with Michaels
+		Yunkai:
+			Widget done, app can't be run locally (very slow)
+		Elena:
+			Got PCR results, looking at curves
+			passed data to Thomas
+			working with Lauren to prep for field collection
+			(15th?)
+		Lauren:
+			Working on spreadsheets
+			Contact with data to design primer set for types of plants
+			Ran through PCR example
+		Ben:
+			Lest week had to reconfigure data to run vQTL package in R
+			Had Suggs run a python code to reconfigure data
+			use it to run package
+			shaky on what some of the graphs mean (email author)
+		Byrd:
+			Gabe and Byrd have been working of finding a machine to run LifeRay
+			Blocks with something involving JDk (fixed)
+			tutorials for creating portlets, and uploading them into LifeRay (creating objects)
+			making web page from Stapleton spreadsheet
+			need to figure out steps to go from simple to complicated tasks
+		Thomas:
+			been encountering errors with ratiocalc function in qpcR
+			Looking into source code of functions to understand error
+			Waiting for email response from the author
+			Working toward fully understanding multiple stress field data analysis project in the meantime
+			Learning Python
+	
+6/5/17
+	Prep for meeting?
+	Review more Manching data
+	
+	Reviewing Manching data, begin looking at how to approach it
+	Continue trying to figure out the qpcR package, issue with ratiocalc
+	Been going through Elena's data just to look for outliers
+	
