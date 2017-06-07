@@ -10,7 +10,8 @@ plot(f517mod)
 f517KOD<- KOD(f517mod, method = "uni1", plot = TRUE)
 is.outlier(f517KOD)
 #some of these have asterisks, but still aren't labeled as outliers
-m1<-pcrfit(data = f517, cyc = 1, fluo =9+36, model = l4)
+#from looking at the data
+m1<-pcrfit(data = f517, cyc = 1, fluo =c(9+12*0:7), model = l4)
 plot(m1)
 m<-pcrbatch(f517, cyc = 1, fluo = fluof, model = l4, check = "uni1", remove= "none", plot = TRUE)
 

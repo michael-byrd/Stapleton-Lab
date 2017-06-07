@@ -516,3 +516,19 @@ Friday 5/19 Meeting notes:
 	Continue trying to figure out the qpcR package, issue with ratiocalc
 	Been going through Elena's data just to look for outliers
 	
+	Going deeper and trying to run ratiocalc line by line, and getting into propagate line by line yields the following:
+	propagate tries to match an expression involving eff.gc, cp.gc etc. to our column names which are Vars, A2, A4 ... H12
+	These do not match, so propagate fails
+	Going through ratiocalc and propagate, I don't see how the dataframe switches to make new column headers involving these variables
+	
+	ok, so our normal data is not passed onto the propagate, it's a set called allDAT, which does have those headers
+	the issue is that most of the columns are full of null values. Lets see when the effs were calculated in ratiocalc.
+	
+6/6/17
+	Got script trying all possible parameters in ratiocalc to run, and they all failed. :(
+	
+6/7/17
+	Trying to get ratiobatch to run, and encountered the same error with ratiocalc, as it is nested withing ratiobatch :(
+	Tried running ratiobatch/calc in R 2.13.0 since that was the original version it was released in, but it still failed :(
+	
+	
