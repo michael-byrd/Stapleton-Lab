@@ -4,7 +4,7 @@ upper<-20
 mid<-20
 steep<-.35
 randc<-.05
-numrep<-12
+numrep<-35
 #run this through LogCurveRepPower.R
 curveseta<-curvesetgen(upper,mid,steep,randc,numrep)
 curvesetamod<- modlist(curveseta, cyc = 1, fluo = 2:(numrep+1), model = l5, weights = "1/error^2")

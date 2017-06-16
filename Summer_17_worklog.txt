@@ -530,5 +530,38 @@ Friday 5/19 Meeting notes:
 6/7/17
 	Trying to get ratiobatch to run, and encountered the same error with ratiocalc, as it is nested withing ratiobatch :(
 	Tried running ratiobatch/calc in R 2.13.0 since that was the original version it was released in, but it still failed :(
+	Going to try to rewrite the portion of the function that has the error
+		to do this I'll need to read the papers explaining what the function is trying to do
+	Tried with a max of 16 in any given category, and it yielded the same error as well
+		still doesn't work
+	Tried with a max of 16 in one gene gene of interest, and 16 in gene of reference
+		same error
+	The program runs significantly differenly in R 2.13.0. Is it better to run it in the current version, or the legacy version
 	
-	
+6/8/17
+	Determing error ratio for data (what percent of the cells can not fit a sigmoidal regression?)
+		both HEX and FAM data for elena
+	Looking over outlier methods with Elena
+
+6/12/17
+	Went through all the outlier detection analysis comapared to characteristics of actual curves
+	ratiobatch worked for HEX data but not FAM data when set up the same way
+
+6/13/17
+6/14/17
+	Field Day
+6/15/17
+	Looking for possible "y-values":
+		Efficiency of curves
+			efficiencies are calculated in pcrbatch
+			find a way to mass pull, and look at them in a good way
+		Critical Threshold
+			find a way to calculate these values
+			pull and analyze them
+		Inflection point
+			Look for second derivative
+		
+6/16/17
+	Finished with gathering eff data for FAM HEX
+	still have to work with the multiplex assays
+	Work with Dr. Stapleton on 
