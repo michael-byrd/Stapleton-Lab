@@ -18,7 +18,7 @@ fluof<- fluof[c(-1,-9)]
 fluog<- fluog[c(-1,-9)]
 m<-pcrbatch(f517, cyc = 1, fluo = fluof, model = l4, remove= "none", plot = TRUE)
 rat<-ratiocalc(data = m, group = fluog, which.eff = "sli",type.eff = "mean.single", which.cp = "cpD2")
-drat$summary
+rat$summary
 #testing indiviual curve fits
 fit<-pcrfit(data = f517, cyc = 1, fluo = fluof, model = l4)
 best<-mselect(fit, do.all = TRUE)

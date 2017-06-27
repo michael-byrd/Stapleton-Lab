@@ -548,6 +548,7 @@ Friday 5/19 Meeting notes:
 	ratiobatch worked for HEX data but not FAM data when set up the same way
 
 6/13/17
+
 6/14/17
 	Field Day
 6/15/17
@@ -564,4 +565,34 @@ Friday 5/19 Meeting notes:
 6/16/17
 	Finished with gathering eff data for FAM HEX
 	still have to work with the multiplex assays
-	Work with Dr. Stapleton on 
+	Work with Dr. Stapleton on going over data
+	Come up with a new way to display the NTC cells (don't show up in log scale charts)
+	
+	Multiplix assay column numbers:
+col: 12,13,	24,25,	36,37,	48,49,	60,61,	72,73,	84,85,	86:94,	96,97
+lv:	 3000	300		30		3		3000	300		30		3000,300,30,3,3,3
+fluom <- c(12,13,24,5,36,37,48,49,60,61,72,73,84,85,86:94,96,97)
+values<- c(3000,3000,300,300,30,30,3,3,3000,3000,300,300,30,30,3000,300,30,3,3,3)
+
+	running into issues with f517 column 85
+
+6/19/17
+	seems that we can't get a PCR fit on column 85 (G12 cell)
+	yeah, that data looks like a mess
+	
+6/20/17 - 6/22/17
+	Working on getting up to speed with Ben on vQTL
+
+6/23/17
+	As far as getting 'P-values' for all the markers
+	ultimately we need to run them through makeqtl and fitqtl
+		the issue with this is that makeqtl can only take one per chromosome
+			additionally, I'm not sure if the models are dependent on the other SNPs used to make the model
+			I think they are, but I'll ask Dr. Stapleton
+	
+6/26/17
+	There are 531 SNPs on the 1st chromosomes, and we can only do one SNP per chromosome at a time
+	So we need to run 531 fitqtl and makeqtls. I timed how long this took on my computer and it took around 3 minutes to run one
+	Extrapolating this, it would take ~ 26 hours to run on my computer. Maybe use one in the DA lab, try to integrate with Stampede?
+	start writing script
+	
