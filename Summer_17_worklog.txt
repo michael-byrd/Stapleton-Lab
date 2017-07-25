@@ -596,3 +596,26 @@ values<- c(3000,3000,300,300,30,30,3,3,3000,3000,300,300,30,30,3000,300,30,3,3,3
 	Extrapolating this, it would take ~ 26 hours to run on my computer. Maybe use one in the DA lab, try to integrate with Stampede?
 	start writing script
 	
+6/27/17
+	Finished writing script, and runs in a few minutes
+		the output is labeled pval, and it contains the following columns in order:
+		SNP name, position (in centiMorgans), pvalue for phenotype significance
+		
+7/3/17
+	Look at documentation for simulated output
+		good for testing methods
+		
+7/10/17
+	Continue working through qPCR stuff,
+	tidy the data for vQTl and continue troubleshooting why Random.csv doesn't work
+	Waiting to hear back about calcPred, but still trying to troubleshoot in the meantime
+	
+	I will be gone Thursday morning to take Exam P, and gone next week for a family vacation
+	
+7/14/17
+	Been going through vQTL trying to get mean and variance estimates
+	Progress on PReMiuM with CalcPredictions
+	will continue working on vQTL
+	and qPCR data as it becomes available
+	check output matrix, look at additive and dominant
+	

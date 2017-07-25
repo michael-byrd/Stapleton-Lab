@@ -71,3 +71,49 @@ fammframe = data.frame(PoI = fammcpD1, Treatment = values)
 hexmframe = data.frame(PoI = hexmcpD1, Treatment = values)
 plot(x = fammframe[,2], y = fammframe[,1], log = "x",xlab = "Treatment Level", ylab = "PoI Cycle", main = "FAM Multiplex")
 plot(x = hexmframe[,2], y = hexmframe[,1], log = "x",xlab = "Treatment Level", ylab = "PoI Cycle", main = "HEX Multiplex")
+
+
+#new 627 data
+f627 <- read.csv(file = "f627.csv", header = TRUE, sep = ",")
+h627<-  read.csv(file = "h627.csv", header = TRUE, sep = ",")
+#Generally what we want to use
+#A8 is a FAM NTC 
+#   use f627[,9]
+mdl<-pcrfit(f627,1,9,l4)
+efficiency(mdl)
+#    looks like last half of curve (sqrt looking)
+#A9 is also
+#   use f627[,10]
+mdl<-pcrfit(f627,1,10,l4)
+efficiency(mdl)
+#    looks like above curve
+#B2 is a 1:10 FAM: HEX multiplex
+#   use f627[,15] and h627[,15]
+mdl<-pcrfit(f627,1,15,l4)
+efficiency(mdl)
+#     fam looks like first half of curve (exponential section)
+mdl<-pcrfit(h627,1,15,l4)
+efficiency(mdl)
+#     hex looks the same, but has cpD1,cpD2 < 40
+#C2 is a 1:100 multiplex
+#   use f627[,27] and h627[,27]
+mdl<-pcrfit(f627,1,27,l4)
+efficiency(mdl)
+#    fam looks like start up, level off, then exponential cpD1/D2= 40
+mdl<-pcrfit(h627,1,27,l4)
+efficiency(mdl)
+#    hex looks very exponental, but with cpD1/D2 < 40
+#B5 is the same as B2
+#   use f627[,18] and h627[,18]
+mdl<-pcrfit(f627,1,18,l4)
+efficiency(mdl)
+#     fam looks the same as C2
+mdl<-pcrfit(h627,1,18,l4)
+efficiency(mdl)
+#     hex looks like C2
+#D7 is .03 copies of FAM
+#   use f627[,44]
+mdl<-pcrfit(f627,1,44,l4)
+efficiency(mdl)
+#     just starts taking off, CpD1/D2 = 40
+

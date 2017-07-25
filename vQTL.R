@@ -59,3 +59,11 @@ for (x in 1:531) {
 allpos<-outv[,2]
 pval <- data.frame(names,allpos,pval)
 pval
+write.csv(pval, file = "FamilyPvalues.csv")
+
+#Creating a Manhattan plot
+#   Specifically using the qqman package
+library(qqman)
+CHR = rep(1,length(pval[,1]))
+plotframe <- data.frame(SNP = pval[,1], BP = pval[,2], P = pval[,3], CHR = CHR)
+manhattan(plotframe)
