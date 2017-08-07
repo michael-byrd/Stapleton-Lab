@@ -619,3 +619,19 @@ values<- c(3000,3000,300,300,30,30,3,3,3000,3000,300,300,30,30,3000,300,30,3,3,3
 	and qPCR data as it becomes available
 	check output matrix, look at additive and dominant
 	
+7/24/17
+	issue with loading qtl library before vqtl library
+	for mean formula:
+	cross$phenotype$yvar ~ 
+	
+I have gotten the plots to work, and found influential SNPs
+	the functions I have written can pick out all SNPs with a certain FWER
+	then get their plot and almost output them to a folder
+	you can pick between mean, variance or both.
+	
+	So far I have only been doing it with the Random data, but can also do Family
+	Mostly just need to wrap up final outputting issues, and need more computing power
+	It took my computer like a day just to run Chromosome 1 for the Random data
+	need to run the whole genome for both, and probably run more permutations as well
+	Issue with only the last chart showing from a for loop trying to show them all
+	

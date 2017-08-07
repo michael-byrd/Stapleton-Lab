@@ -38,30 +38,43 @@ from Elena:
 	If we work without an rs group, we use the following columns/data
 	fluo = c(26,28,30,32,34, 
 	
-	
 	Lots of issues with ratiocalc/ratiobatch,
-	General outlier information:
-	HEX data:
-	whole Assay data:
-		Using "uni1" (testing against other curves with 5% Z test):
-			A4 B4 B6 D11 (4/95 or 4.2% error rate)
-		Using "uni2" (Difference between D1max and D2max > 10 cycles = fail):
-			C12 D3 D6 D7 D12 E12 F1 G6 G12 H7 (10/95 or 10.5% error rate)
-		Using "multi1" (Differences in parameters put in a matrix, Z transformed and checked in a covariance matrix against chi^2 dist):
-			D7 D10 D11 (3/95 or 3.2% error rate)
-		Using "multi2" (like multi 1 with D1max and max fluorescense as parameters):
-			A12 B1 C5 C12 D12 E2 E7 E12 G5 G6 G12 H5 H7 (12/95 or 12.6%)
-		Using "multi3" (like mult1 2 but also uses y value @ D1max):
-			A2 A4 A6 A10 A12 B1 B3 B4 B6 C5 C8 C12 D12 E2 E7 E12 F4 G5 G6 G12 H7 (21/95 or 22.1%)
-	FAM data:
-		Using "uni1" (testing against other curves with 5% Z test):
-			A11 (1/95 or 1.1% error rate)
-		Using "uni2" (Difference between D1max and D2max > 10 cycles = fail):
-			B4 B11 D4 D12 E127 (5/95 or 5.3% error rate)
-		Using "multi1" (Differences in parameters put in a matrix, Z transformed and checked in a covariance matrix against chi^2 dist):
-			B4 C4 C6 (4/95 or 4.2% error rate)
-		Using "multi2" (like multi 1 with D1max and max fluorescense as parameters):
-			A2 A4 A6 A7 A9 A11 A12 B2 B9 B11 B12 C9 C11 D4 D5 D8 D9 D11 D12 E5 E9 E11 E12 F2 F5 F9 F12 G1 G3 G5 G7 G8 G10 G11 H2 H3 H4 H6 H7 H8 H11  (41/95 or 43.2%)
-		Using "multi3" (like mult1 2 but also uses y value @ D1max):
-			A2 A4 A6 A7 A9 A10 A11 A12 B2 B6 B9 B11 B12 C9 C11 D4 D5 D8 D9 D11 D12 E5 E9 E11 E12 F2 F5 F9 F12 G1 G3 G5 G7 G8 G10 G11 H2 H3 H4 H5 H6 H7 H8 H11 (44/95 or 46.3%)
-			
+					General outlier information:
+					HEX data:
+					whole Assay data:
+						Using "uni1" (testing against other curves with 5% Z test):
+							A4 B4 B6 D11 (4/95 or 4.2% error rate)
+						Using "uni2" (Difference between D1max and D2max > 10 cycles = fail):
+							C12 D3 D6 D7 D12 E12 F1 G6 G12 H7 (10/95 or 10.5% error rate)
+						Using "multi1" (Differences in parameters put in a matrix, Z transformed and checked in a covariance matrix against chi^2 dist):
+							D7 D10 D11 (3/95 or 3.2% error rate)
+						Using "multi2" (like multi 1 with D1max and max fluorescense as parameters):
+							A12 B1 C5 C12 D12 E2 E7 E12 G5 G6 G12 H5 H7 (12/95 or 12.6%)
+						Using "multi3" (like mult1 2 but also uses y value @ D1max):
+							A2 A4 A6 A10 A12 B1 B3 B4 B6 C5 C8 C12 D12 E2 E7 E12 F4 G5 G6 G12 H7 (21/95 or 22.1%)
+					FAM data:
+						Using "uni1" (testing against other curves with 5% Z test):
+							A11 (1/95 or 1.1% error rate)
+						Using "uni2" (Difference between D1max and D2max > 10 cycles = fail):
+							B4 B11 D4 D12 E127 (5/95 or 5.3% error rate)
+						Using "multi1" (Differences in parameters put in a matrix, Z transformed and checked in a covariance matrix against chi^2 dist):
+							B4 C4 C6 (4/95 or 4.2% error rate)
+						Using "multi2" (like multi 1 with D1max and max fluorescense as parameters):
+							A2 A4 A6 A7 A9 A11 A12 B2 B9 B11 B12 C9 C11 D4 D5 D8 D9 D11 D12 E5 E9 E11 E12 F2 F5 F9 F12 G1 G3 G5 G7 G8 G10 G11 H2 H3 H4 H6 H7 H8 H11  (41/95 or 43.2%)
+						Using "multi3" (like mult1 2 but also uses y value @ D1max):
+							A2 A4 A6 A7 A9 A10 A11 A12 B2 B6 B9 B11 B12 C9 C11 D4 D5 D8 D9 D11 D12 E5 E9 E11 E12 F2 F5 F9 F12 G1 G3 G5 G7 G8 G10 G11 H2 H3 H4 H5 H6 H7 H8 H11 (44/95 or 46.3%)
+					
+	THE ABOVE WAS USING THE WHOLE ASSAY, WHICH WAS INCORRECT
+		Using HEX:
+			uni1 -> A4, B4
+			uni2-> D6, G6
+			multi1 -> D10
+			multi2 -> A4 B4 D4 E2 G6
+			multi3 -> D4 E2 F4 G6
+		Using FAM:
+			uni1 -> none
+			uni2 -> none
+			multi1 -> error
+			multi2 -> A7 A9 B9 C9 D5 D9 E5 E9 F5 F9 G1 G3 G5 G7
+			multi3 -> A7 A9 B9 C7 C9 D5 D9 E5 E9 F5 F9 G1 G3 G5 G7
+		

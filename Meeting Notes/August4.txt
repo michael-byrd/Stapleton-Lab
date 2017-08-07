@@ -1,0 +1,65 @@
+Meeting notes:
+
+Sean is up to speed on Slack
+
+Stapleton:
+	Talked to Katie Lauterhos?
+	made a theory paper for how she will take over Validate soon
+	wants more spatial GWAS, time/space stuff
+	talk to her about HPC
+	make baypass public
+	
+Austin A:
+	Did doc sprint yesterday, exciting
+	Took 1h 45m to explain process, had lots of different representatives
+	trying to set up what we had last year, documentation hosted in github
+	also moved into learning.cyverse.org
+	still work to be done, work on transferring cyverse learning materials
+	would it be useful for us to have templates?
+	Should we put the validate tutorial on learning.cyverse.org?
+		yes
+	App approval seem straightforward
+	Link to paper Jason was writing
+	Is the pipeline working? Can I get console log from next test run?
+			Remind Suggs
+
+Suggs:
+	The pipeline is running completely now
+	Make it more user intuitive
+	Have other people try it out
+	Give console log to Austin A
+	
+Austin G:
+	Gotten the generator to generate InsightMaker
+	have to talk to Suggs again about variables at the end
+	we can decide what the next step will be
+		educational or environmental factors etc
+	
+Sean K:
+	Introduction
+	Working with Stapleton now
+	
+Dave R:
+	Working on making scripts to pull data from HyperSpectral images
+	Should have stuff next week to start getting info
+	review of the project
+	Will start doing test runs for Validate
+
+Lauren P:
+	Working through genotype verification
+	Block last week from contaminated water
+	Gels working now
+	nice data collection
+
+Byrd:
+	Worked with hyperspectral data
+	using k-means clustering
+		issues with accuracy scores
+		0 or negative values
+	Talked with Suggs about pipeline
+	Get in touch with Gabe about plugins with hyper spectral plugins
+	
+Thomas:
+	Working with vQTL have SNP graphs for mean, variance and joint
+	Issues with computation and scripting for graphs
+	

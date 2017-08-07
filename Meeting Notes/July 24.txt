@@ -1,0 +1,48 @@
+Dave H:
+	Been researching bio containers
+	Docker and singularity files
+		getting close to using one for the AlphaSim app
+		lots of info to understand
+	set up Stampede 2 environment
+		ask Michael about running pipeline stuff
+		issues with first import, not seeing anything except first file
+		working to a degree locally
+	
+Austin:
+	going back to InsightMaker model
+		reading up on how to get script to run
+		put all of the script into a button
+		look into reading in csv files
+		worth careful thinking about
+		
+Gabe:
+	issues with plugin were issues with documentation
+		was trying to use a variable that no longer exists in current version
+	want to be able to scan images and get output for different wavelengths
+		close to getting it done
+
+Lauren:
+	Had interview with Stephanie
+	running PCR gels
+		then make table comparing expected/observed
+		better to do it as you go (so you don't waste gels)
+		doing it daily might be best
+		
+	push cross object
+	499 approved
+	reducing size of test data to a few hundred rows, might be able to use PReMiuM
+	
+Suggs:
+	Haven't heard back from Joe Stubbs
+		start with general channel
+	Also talk to John Fonner, Rion Dooley(give detail)
+	Want to get Validate running (finished)
+	practice installing BayPass, run our data through it
+	try running her simulations through BayPass
+	try running our large datasets through preinstalled apps also
+	Help:
+		technical issues with server responses
+	work on bundling AgavePy with the pipeline, install it in your workspace
+	Design Patterns?
+	
+Go to the poster thing

@@ -1,0 +1,61 @@
+Stapleton:
+	Data Science Students having a poster session 7/24 we could participate
+		eventually put it into a powerpoint (34*46ish to print at Honors)
+		can also do one for hyperspectral imaging analysis
+		
+	
+Austin:
+	Created list with API for relevant functions
+		have inputs for phenotypes and number of generations
+	Maybe have different types of breeding simulations within one insight
+		Document how you would teach others to learn the API
+	No communication from Sylvia
+		will be switching universities
+	
+Gabe:
+	going through videos for scikit learn
+	specifically going through spectranom plugin
+		go through documentation for linking to spectranom software
+	Pull data from servers -> spectranom and run with machine learning -> apply method to other pictures
+	iRODS is max speed for internet, still slower than a wire
+Suggs:
+	Worked with Ruddell for scikit machin learning
+		trying to parse int,float,string variables
+		assign categories, compare floats
+	want to try XGBoost, or random forest
+		every function has the ability to output a score (accuracy)
+		there is a package from scikit that looks for total error (different)
+		once you find ones that give good predictors, check individually and try ensembling
+		2 kinds of labels (steric acid measurements only have 58) and (genotype,density,nitrogen, which we have more of)
+		start with 58 rows, compactified
+		first improve what we pull out of the image, then add those to our set
+		metadata explains what the column headers mean
+	Validate is running right now, we'll see how it goes	
+		check with austin
+Ruddell:
+	using polynomial we have 100% accuracy, but probably overfit
+		parsing into smaller datasets to cross validate, but hard to do with data sets that are already small
+		effect of genotype may depend on other labels
+			dealing with this interaction is hard to do in statistics
+	machine learning straight from the data is good
+		possible follow up, do I need IR, or is visible light ok? (stuff like that)
+	
+Thomas:
+	Been working through qPCR analysis while we are waiting from Sylvia
+	Also working with Dave Hiltbrand, and helping him look over his app
+		having two people look over it is good
+	
+Byrd:
+	going through the video series
+		visualizes with an iPython notebook
+		been reading through that to skip video
+	looking into machine learning with Suggs
+	going through the csv
+		your data has all features (only 58 rows)
+			for the rest we have phenotype, density, regulator treatment
+		for now start with this csv
+		how was it created?
+	be careful about using integers as labels, regression might take it into account
+	
+On Monday talk about career development meetings for the upcoming week
+Donuts Monday
