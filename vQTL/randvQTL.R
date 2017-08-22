@@ -2,6 +2,7 @@ install.packages("vqtl")
 install.packages("qtl")
 library("qtl")
 library("vqtl")
+#we also got rid of "(" in SNP ID rz44bd and rz574bc
 random <-read.cross(dir = "~/PCR\ data/", file = "Random2.csv")
 random <- drop.nullmarkers(random)
 #scan with variance
@@ -166,7 +167,7 @@ SNP <- function(perm, type, thresh) {
 sigj<-SNP(perm = perm, type = "joint.empir.p", thresh = .001)
 sigom<- SNP(perm = routv, type = "mean.asymp.p", thresh = .005)
 
-#matching this for SNP index
+#matching this for SNP   index
 SNP.match <- function(perm, sig, type) {
   markers = NULL
   for (x in sig) {
@@ -230,6 +231,7 @@ mean_var_plot_model_based(cross = random,
                           genotype.names = c("AA","BB"),
                           focal.groups = scrub[1])
 #using source code for mean_var_plot_model_based, we try to cut out the graph, and extract the estimates
+library("dplyr")
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
                                       genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL, 
                                       title = paste(phenotype.name, "by", paste(focal.groups, 
@@ -291,9 +293,23 @@ sizes
 
 rsizedf <- data.frame(NULL)
 
-for (x in routv$result$loc.name){
-  
+y = 1:length(routv$result$loc.name)
+y = y[-c(458,2482,2483)]
+#effect sizes can not be computed for these 3 SNPs
+for (x in y){
+  tempm =  effect.sizes(cross = random,
+                       phenotype.name = "height.in.",
+                       genotype.names = c("AA","BB"),
+                       focal.groups = routv$result$loc.name[x])
+  tempv = c(tempm[1,2:7],tempm[2,2:7])
+  rsizedf = rbind(rsizedf,tempv)
 }
+undebug(effect.sizes)
+effect.sizes(cross = random,
+             phenotype.name = "height.in.",
+             genotype.names = c("AA","BB"),
+             focal.groups = routv$result$loc.name[470])
+
 
 routvdf<- data.frame(routv$result$loc.name,
                      routv$result$pos,
@@ -303,6 +319,9 @@ routvdf<- data.frame(routv$result$loc.name,
                      routv$result$var.asymp.p,
                      routv$result$joint.lod,
                      routv$result$joint.asymp.p)
+#dropping the SNPs whose effect sizes could not be computed
+routvdf = routvdf[-c(458,2482,2483),]
+routvdf = cbind(routvdf,rsizedf)
 colnames(routvdf) = c("SNP Names",
                       "Position (cM)",
                       "Mean LOD",
@@ -310,5 +329,18 @@ colnames(routvdf) = c("SNP Names",
                       "Variance LOD",
                       "Variance P Value",
                       "Joint LOD",
-                      "Joint P Value")
-write.csv(routvdf, file = "Random vQTL LOD and P values.csv")
+                      "Joint P Value",
+                      "A Mean Est",
+                      "A Mean Lower Bound",
+                      "A Mean Upper Bound",
+                      "A Standard Deviation Est",
+                      "A Standard Deviation Lower Bound",
+                      "A Standard Deviation Upper Bound",
+                      "B Mean Est",
+                      "B Mean Lower Bound",
+                      "B Mean Upper Bound",
+                      "B Standard Deviation Est",
+                      "B Standard Deviation Lower Bound",
+                      "B Standard Deviation Upper Bound")
+
+write.csv(routvdf, file = "RandomvQTL_LOD,Pvals,EffectSizes.csv")

@@ -1,0 +1,31 @@
+8/14/17 Meeting
+
+PReMiuM:
+	Look into calcpred (output people want to look at)
+		look at some parameters of Markov chains
+	make some documentation
+	
+vQTL:
+	Working on calculating FWER, very computationally intensive
+		learning about how to get it to run on Stampede
+		talk to Weijia Xu, talk to about R stuff on PReMiuM Slack
+
+DaveH talk to Dr. Chen about how to involve honors project with our data
+
+How do we want to organize during the semester?
+	looking into either Friday afternoons with everyone
+	or one on one task assigning and manageable assignments
+	
+Setting up meetings to talk about priority tasks
+
+Machine learning (DaveR):
+	look into John Fonner github for Docker documentation
+	difference between singularity and virtual machines
+	
+InsightMaker (Austin G):
+	Trying to get the graph working
+	maybe put on hold until we know what we really want to get out
+	will be starting to work on PReMiuM documentation in the mean time
+	
+Be doing some planning
+	
