@@ -115,17 +115,13 @@ effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.gr
 }
 #this works
 #this is an example of the first one
-debug(effect.sizes)
 sizes = effect.sizes(cross = cross,
                      phenotype.name = "Height",
                      genotype.names = c("AA","BB"),
                      focal.groups = outv$result$loc.name[1])
-sizes
-
 sizedf <- data.frame(NULL)
 
 y = 1:length(outv$result$loc.name)
-y = y[-c(458,2482,2483)]
 #effect sizes can not be computed for these 3 SNPs
 for (x in y){
   tempm =  effect.sizes(cross = cross,
@@ -135,25 +131,18 @@ for (x in y){
   tempv = c(tempm[1,2:7],tempm[2,2:7])
   sizedf = rbind(sizedf,tempv)
 }
-undebug(effect.sizes)
-effect.sizes(cross = cross,
-             phenotype.name = "height.in.",
-             genotype.names = c("AA","BB"),
-             focal.groups = routv$result$loc.name[470])
 
-
-routvdf<- data.frame(routv$result$loc.name,
-                     routv$result$pos,
-                     routv$result$mean.lod,
-                     routv$result$mean.asymp.p,
-                     routv$result$var.lod,
-                     routv$result$var.asymp.p,
-                     routv$result$joint.lod,
-                     routv$result$joint.asymp.p)
+outvdf<- data.frame(outv$result$loc.name,
+                     outv$result$pos,
+                     outv$result$mean.lod,
+                     outv$result$mean.asymp.p,
+                     outv$result$var.lod,
+                     outv$result$var.asymp.p,
+                     outv$result$joint.lod,
+                     outv$result$joint.asymp.p)
 #dropping the SNPs whose effect sizes could not be computed
-routvdf = routvdf[-c(458,2482,2483),]
-routvdf = cbind(routvdf,rsizedf)
-colnames(routvdf) = c("SNP Names",
+outvdf = cbind(outvdf,sizedf)
+colnames(outvdf) = c("SNP Names",
                       "Position (cM)",
                       "Mean LOD",
                       "Mean P Value",
@@ -173,5 +162,4 @@ colnames(routvdf) = c("SNP Names",
                       "B Standard Deviation Est",
                       "B Standard Deviation Lower Bound",
                       "B Standard Deviation Upper Bound")
-
-write.csv(routvdf, file = "crossvQTL_LOD,Pvals,EffectSizes.csv")
+write.csv(outvdf, file = "crossvQTL_LOD,Pvals,EffectSizes.csv")
