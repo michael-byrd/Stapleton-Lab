@@ -11,8 +11,9 @@ family <- drop.nullmarkers(family)
 #scan with variance
 family <- calc.genoprob(family)
 foutv <- scanonevar(cross = family,
-                    mean.formula = PlantHeight ~ mean.QTL.add + mean.QTL.dom,
-                    var.formula = ~ var.QTL.add + var.QTL.dom)
+                    mean.formula = PlantHeight ~ mean.QTL.add,
+                    var.formula = ~ var.QTL.add,
+                    chrs = 1)
 
 foutvdf<- data.frame(foutv$result$loc.name,
                      foutv$result$mean.lod,
