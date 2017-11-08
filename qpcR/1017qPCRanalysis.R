@@ -78,3 +78,24 @@ row.names(eff.frame) = c("FAM cpD1", "FAM cpD2",
               "cpD1 ratio", "cpD2 ratio")
 
 write.csv(eff.frame, file = "Github/Stapleton-Lab/qPCR/1017ratios.csv")
+
+#####Getting specific simplex FAM results####
+wanted = c(18:21,38:41,58:61,
+           78:81,98:101,110:113)
+wm <- modlist(x = f1017,fluo = wanted, cyc = 1, model = l4, remove = "none")
+wcpd1 = lapply(wm,function(x){
+  efficiency(x)$cpD1
+})
+wcpd1 = unlist(wcpd1)
+wcpd2 = lapply(wm,function(x){
+  efficiency(x)$cpD2
+})
+wantedcp = rbind(wcpd1,wcpd2)
+rownames(wantedcp) = c("cpD1","cpD2")
+colnames(wantedcp) = c("B1","B2","B3","B4",
+                       "D1","D2","D3","D4",
+                       "F1","F2","F3","F4",
+                       "H1","H2","H3","H4",
+                       "J1","J2","J3","J4",
+                       "L1","L2","L3","L4")
+write.csv(x = wantedcp,file = "Simplex\ Data1017.csv")
