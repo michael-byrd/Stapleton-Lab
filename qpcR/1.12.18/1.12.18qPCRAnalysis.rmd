@@ -1,0 +1,45 @@
+---
+title: "1.12.18 Stapleton qPCR"
+author: "Thomas Billman"
+output: html_document
+---
+##Loading packages
+If you do not already have the qpcR library installed in your R, please uncomment the top line and install before running the rest of the code.
+```{r}
+#install.packages("qpcR")
+library(qpcR)
+```
+##Reading in data
+I added this data to my Github so that this code can be run from other machines with internet connections. 
+```{r}
+hex <- read.csv(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/qpcR/1.12.18%20Data/1.12.18_Stapleton_HEX.csv"))[-1]
+```
+##Starting with the Analysis
+This is where I generate the models for all of the runs included. 
+```{r}
+m <- modlist(x = hex, cyc = 1, model = l4, remove = "none")
+```
+Calculating the efficiencies of all the models
+```{r}
+heff = lapply(m,function(x){
+  efficiency(x,plot = FALSE)
+})
+```
+This is where we explicitly extract the critical points of the first and second derivatives of the models
+```{r}
+hcpd1 = vector(); hcpd1 = lapply(1:length(heff),function(x){
+  hcpd1 = c(hcpd1, heff[[x]]$cpD1)
+})
+hcpd1 = unlist(hcpd1)
+
+hcpd2 = vector(); hcpd2 = lapply(1:length(heff),function(x){
+  hcpd2 = c(hcpd2, heff[[x]]$cpD2)
+})
+hcpd2 = unlist(hcpd2)
+```
+##Generating output
+```{r}
+eff.frame = as.data.frame(rbind(hcpd1,hcpd2))
+colnames(eff.frame) = colnames(hex)[-1]; rownames(eff.frame) = c("cpD1","cpD2")
+write.csv(eff.frame, file= "C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/qpcR/1.12.18/EffDat.csv")
+```
