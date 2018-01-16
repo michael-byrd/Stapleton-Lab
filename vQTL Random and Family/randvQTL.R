@@ -3,15 +3,13 @@ install.packages("qtl")
 library("qtl")
 library("vqtl")
 #we also got rid of "(" in SNP ID rz44bd and rz574bc
-random <-read.cross(dir = "~/PCR\ data/", file = "Random2.csv")
+random <-read.cross(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/vQTL%20Random%20and%20Family/data/tidied/Random2.csv"))
 random <- drop.nullmarkers(random)
 #scan with variance
 random <- calc.genoprob(random)
 routv <- scanonevar(cross = random,
                    mean.formula = height.in. ~ mean.QTL.add + mean.QTL.dom,
                    var.formula = ~ var.QTL.add + var.QTL.dom)
-random= sim.geno(random)
-
 routvdf<- data.frame(routv$result$loc.name,
                      routv$result$pos,
                      routv$result$mean.lod,
@@ -296,14 +294,14 @@ rsizedf <- data.frame(NULL)
 y = 1:length(routv$result$loc.name)
 y = y[-c(458,2482,2483)]
 #effect sizes can not be computed for these 3 SNPs
-for (x in y){
+rsizedf = sapply(y, function(x){
   tempm =  effect.sizes(cross = random,
-                       phenotype.name = "height.in.",
-                       genotype.names = c("AA","BB"),
-                       focal.groups = routv$result$loc.name[x])
+                        phenotype.name = "height.in.",
+                        genotype.names = c("AA","BB"),
+                        focal.groups = routv$result$loc.name[x])
   tempv = c(tempm[1,2:7],tempm[2,2:7])
-  rsizedf = rbind(rsizedf,tempv)
-}
+  return(unlist(tempv))
+})
 undebug(effect.sizes)
 effect.sizes(cross = random,
              phenotype.name = "height.in.",
@@ -321,8 +319,8 @@ routvdf<- data.frame(routv$result$loc.name,
                      routv$result$joint.asymp.p)
 #dropping the SNPs whose effect sizes could not be computed
 routvdf = routvdf[-c(458,2482,2483),]
-routvdf = cbind(routvdf,rsizedf)
-colnames(routvdf) = c("SNP Names",
+routvdf = cbind(routvdf,t(rsizedf))
+colnames(routvdf) = c("SNP Name",
                       "Position (cM)",
                       "Mean LOD",
                       "Mean P Value",
@@ -343,4 +341,4 @@ colnames(routvdf) = c("SNP Names",
                       "B Standard Deviation Lower Bound",
                       "B Standard Deviation Upper Bound")
 
-write.csv(routvdf, file = "RandomvQTL_LOD,Pvals,EffectSizes.csv")
+write.csv(routvdf, file = "RandomvQTL_LOD,Pvals,EffectSizes1.csv")

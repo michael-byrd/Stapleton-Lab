@@ -5,15 +5,13 @@ library("vqtl")
 library("dplyr")
 #we also got rid of "(" in SNP ID rz44bd and rz574bc
 #now with the Family dataset
-
-family <-read.cross(dir = "~/PCR\ data/", file = "family.csv")
+family <-read.cross(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/vQTL%20Random%20and%20Family/data/tidied/Family.csv"))
 family <- drop.nullmarkers(family)
 #scan with variance
 family <- calc.genoprob(family)
 foutv <- scanonevar(cross = family,
                     mean.formula = PlantHeight ~ mean.QTL.add,
-                    var.formula = ~ var.QTL.add,
-                    chrs = 1)
+                    var.formula = ~ var.QTL.add)
 
 foutvdf<- data.frame(foutv$result$loc.name,
                      foutv$result$mean.lod,
@@ -29,6 +27,7 @@ colnames(foutvdf) = c("SNP Names",
                       "Variance P Value",
                       "Joint LOD",
                       "Joint P Value")
+library("dplyr")
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL, 
                          title = paste(phenotype.name, "by", paste(focal.groups, 
@@ -93,14 +92,14 @@ fsizedf <- data.frame(NULL)
 y = 1:length(foutv$result$loc.name)
 y = y[-c(826)]
 #effect sizes can not be computed for these 3 SNPs
-for (x in y){
+fsizedf = sapply(y, function(x){
   tempm =  effect.sizes(cross = family,
                         phenotype.name = "PlantHeight",
                         genotype.names = c("AA","BB"),
                         focal.groups = foutv$result$loc.name[x])
   tempv = c(tempm[1,2:7],tempm[2,2:7])
-  fsizedf = rbind(fsizedf,tempv)
-}
+  return(tempv)
+})
 undebug(effect.sizes)
 effect.sizes(cross = random,
              phenotype.name = "height.in.",

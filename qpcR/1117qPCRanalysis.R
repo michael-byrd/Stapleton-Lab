@@ -6,12 +6,16 @@ m <- modlist(x = f1117, cyc = 1, model = l4, remove = "none")
 h1117<- read.csv(file = "C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/qpcR/1117hex2.csv", header = TRUE)
 h1117[,1] = NULL
 hm <- modlist(x = h1117, cyc = 1, model = l4)
-feff = lapply(1:length(m),function(x){
+#there seems to be an error with the 119th
+feff = lapply((1:length(m))[-119],function(x){
+  print(x)
   efficiency(m[[x]],plot = FALSE) 
 })
 heff= lapply(hm,function(x){
+  print(x)
   efficiency(x,plot = FALSE)
 })
+heff = heff[-119]
 ratiosf = lapply(1:length(feff), function(x){
   c(heff[[x]]$cpD1-feff[[x]]$cpD1,heff[[x]]$cpD2-feff[[x]]$cpD2)
 })
@@ -36,7 +40,7 @@ hcpd2 = vector(); hcpd2 = lapply(1:length(heff),function(x){
 })
 hcpd2 = unlist(hcpd2)
 
-eff.frame = as.data.frame(ratiosf, col.names = colnames(f1117)[-1], row.names = c("cpD1rat","cpD2rat"))
+eff.frame = as.data.frame(ratiosf, col.names = colnames(f1117)[c(-1,-119)], row.names = c("cpD1rat","cpD2rat"))
 eff.frame = rbind(fcpd1,fcpd2,hcpd1,hcpd2,eff.frame)
 row.names(eff.frame) = c("FAM cpD1", "FAM cpD2",
                          "HEX cpD1", "HEX cpD2",

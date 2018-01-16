@@ -1,20 +1,16 @@
-#####Multiple Stress vQTL#####
-#to be run in stampede2
-setwd("MultipleStress");
-library(qtl);
-library(vqtl);
-cross = read.cross(format = "csv", file = "ManchingScrubbed_GenoOnly.csv");
-cross = drop.nullmarkers(cross);
-evf = read.csv(file = "ManchingScrubbed_Environment.csv");
-cross[['pheno']][['LowWater']] = factor(evf$Low.Water)[-1:-2];
-cross[['pheno']][['LowNitrogen']] = factor(evf$Low.Nitrogen)[-1:-2];
-cross[['pheno']][['Pathogen']] = factor(evf$Pathogen)[-1:-2];
-gc();
-cgp = calc.genoprob(cross = cross);
-gc();
-scanv = scanonevar(cross = cgp, mean.formula = Height ~LowWater + LowNitrogen + Pathogen +  mean.QTL.add ,
-                   var.formula =  ~ LowWater + LowNitrogen + Pathogen + var.QTL.add);
-library("dplyr");
+#####Fam and Rand vQTL FINAL#####
+library("qtl")
+library("vqtl")
+#read in data
+random <-read.cross(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/vQTL%20Random%20and%20Family/data/tidied/Random2.csv"))
+random <- drop.nullmarkers(random)
+#scan with variance
+random <- calc.genoprob(random)
+routv <- scanonevar(cross = random,
+                    mean.formula = height.in. ~ mean.QTL.add + mean.QTL.dom,
+                    var.formula = ~ var.QTL.add + var.QTL.dom)
+#####Set up our own function to extract effect sizes from mean_var_plot function#####
+library("dplyr")
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL, 
                          title = paste(phenotype.name, "by", paste(focal.groups, 
@@ -65,33 +61,34 @@ effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.gr
                      group.sd.estim = mean(indiv.sd.estim), group.sd.lb = mean(indiv.sd.lb), 
                      group.sd.ub = mean(indiv.sd.ub))
   return(group.prediction.tbl)
-};
+}
 #set up a vector to run the function on
-y = 1:length(scanv$result$loc.name);
+y = 1:length(routv$result$loc.name)
 #effect sizes can not be computed for these 3 SNPs so we remove them from the vector
+y = y[-c(458,2482,2483)]
 #populating a dataframe with effect size estimates
 rsizedf = sapply(y, function(x){
-  tempm =  effect.sizes(cross = cgp,
+  tempm =  effect.sizes(cross = random,
                         phenotype.name = "height.in.",
                         genotype.names = c("AA","BB"),
-                        focal.groups = scanv$result$loc.name[x])
+                        focal.groups = routv$result$loc.name[x])
   tempv = c(tempm[1,2:7],tempm[2,2:7])
   return(unlist(tempv))
-});
+})
 #gathering data from the initial scan
-scanvdf<- data.frame(scanv$result$loc.name,
-                     scanv$result$pos,
-                     scanv$result$mean.lod,
-                     scanv$result$mean.asymp.p,
-                     scanv$result$var.lod,
-                     scanv$result$var.asymp.p,
-                     scanv$result$joint.lod,
-                     scanv$result$joint.asymp.p)
+routvdf<- data.frame(routv$result$loc.name,
+                     routv$result$pos,
+                     routv$result$mean.lod,
+                     routv$result$mean.asymp.p,
+                     routv$result$var.lod,
+                     routv$result$var.asymp.p,
+                     routv$result$joint.lod,
+                     routv$result$joint.asymp.p)
 #dropping the SNPs whose effect sizes could not be computed
-scanvdf = scanvdf[-c(458,2482,2483),]
+routvdf = routvdf[-c(458,2482,2483),]
 #combining both 
-scanvdf = cbind(scanvdf,t(rsizedf))
-colnames(scanvdf) = c("SNP Name",
+routvdf = cbind(routvdf,t(rsizedf))
+colnames(routvdf) = c("SNP Name",
                       "Position (cM)",
                       "Mean LOD",
                       "Mean P Value",
@@ -112,4 +109,4 @@ colnames(scanvdf) = c("SNP Name",
                       "B Standard Deviation Lower Bound",
                       "B Standard Deviation Upper Bound")
 
-write.csv(scanvdf, file = "MultipleStressvQTL_LOD,Pvals,EffectSizes1.csv")
+write.csv(routvdf, file = "RandomvQTL_LOD,Pvals,EffectSizes1.csv")
