@@ -1,0 +1,21 @@
+Spring 2018 Worklog:
+
+vQTL Projects:
+	Random/Family Manching:
+		rerun with consistant code
+	Mutiple Stress Manching:
+		add stresses as if they were sex data then run vQTL
+	namRIL Howell Data:
+		Correctly format with Z values
+
+1/16/18
+Start and complete qPCR assignment in 1.12.18 folder
+Try running Rand vQTL through Stampede2, get better time estimate 1 hr is too short
+	Once the Rand vQTL is through again, get QTL values for Rand and continue with BioMercator
+	
+1/18/18
+Worked with Byrd on planning out the rest of the g x e project
+submit SLURM file for vQTL for Random + Family, and Manching Multiple stress
+Talk to Stapleton and continue figuring out specifics of g x e project
+find bnlearn book online and start reading it
+Random + Family SLURM error seems to be in dglm fit, with something about no nonnegative numbers for gamma dists

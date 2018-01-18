@@ -108,5 +108,60 @@ colnames(routvdf) = c("SNP Name",
                       "B Standard Deviation Est",
                       "B Standard Deviation Lower Bound",
                       "B Standard Deviation Upper Bound")
-
 write.csv(routvdf, file = "RandomvQTL_LOD,Pvals,EffectSizes1.csv")
+#now with fam
+#read in data
+fam <-read.cross(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/vQTL%20Random%20and%20Family/data/tidied/Family.csv"))
+fam <- drop.nullmarkers(fam)
+#scan with variance
+fam <- calc.genoprob(fam)
+foutv <- scanonevar(cross = fam,
+                    mean.formula = PlantHeight ~ mean.QTL.add + mean.QTL.dom,
+                    var.formula = ~ var.QTL.add + var.QTL.dom)
+#set up a vector to run the function on
+y = 1:length(foutv$result$loc.name)
+#effect sizes can not be computed for these 3 SNPs so we remove them from the vector
+y = y[-826]
+#populating a dataframe with effect size estimates
+fsizedf = sapply(y, function(x){
+  tempm =  effect.sizes(cross = fam,
+                        phenotype.name = "PlantHeight",
+                        genotype.names = c("AA","BB"),
+                        focal.groups = foutv$result$loc.name[x])
+  tempv = c(tempm[1,2:7],tempm[2,2:7])
+  return(unlist(tempv))
+})
+#gathering data from the initial scan
+foutvdf<- data.frame(foutv$result$loc.name,
+                     foutv$result$pos,
+                     foutv$result$mean.lod,
+                     foutv$result$mean.asymp.p,
+                     foutv$result$var.lod,
+                     foutv$result$var.asymp.p,
+                     foutv$result$joint.lod,
+                     foutv$result$joint.asymp.p)
+#dropping the SNPs whose effect sizes could not be computed
+foutvdf = foutvdf[-826,]
+#combining both 
+foutvdf = cbind(foutvdf,t(fsizedf))
+colnames(foutvdf) = c("SNP Name",
+                      "Position (cM)",
+                      "Mean LOD",
+                      "Mean P Value",
+                      "Variance LOD",
+                      "Variance P Value",
+                      "Joint LOD",
+                      "Joint P Value",
+                      "A Mean Est",
+                      "A Mean Lower Bound",
+                      "A Mean Upper Bound",
+                      "A Standard Deviation Est",
+                      "A Standard Deviation Lower Bound",
+                      "A Standard Deviation Upper Bound",
+                      "B Mean Est",
+                      "B Mean Lower Bound",
+                      "B Mean Upper Bound",
+                      "B Standard Deviation Est",
+                      "B Standard Deviation Lower Bound",
+                      "B Standard Deviation Upper Bound")
+write.csv(foutvdf, file = "famvQTL_LOD,Pvals,EffectSizes1.csv")

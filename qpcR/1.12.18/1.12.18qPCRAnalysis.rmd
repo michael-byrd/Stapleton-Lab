@@ -12,11 +12,11 @@ library(qpcR)
 ##Reading in data
 I added this data to my Github so that this code can be run from other machines with internet connections. 
 ```{r}
-hex <- read.csv(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/qpcR/1.12.18%20Data/1.12.18_Stapleton_HEX.csv"))[-1]
+hex <- read.csv(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/qpcR/1.12.18/1.12.18_Stapleton_HEX.csv"))[-1]
 ```
 ##Starting with the Analysis
 This is where I generate the models for all of the runs included. 
-```{r}
+```{r include = FALSE}
 m <- modlist(x = hex, cyc = 1, model = l4, remove = "none")
 ```
 Calculating the efficiencies of all the models

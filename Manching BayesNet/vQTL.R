@@ -1,6 +1,5 @@
 #####Multiple Stress vQTL#####
 #to be run in stampede2
-setwd("MultipleStress");
 library(qtl);
 library(vqtl);
 cross = read.cross(format = "csv", file = "ManchingScrubbed_GenoOnly.csv");
@@ -70,7 +69,7 @@ effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.gr
 y = 1:length(scanv$result$loc.name);
 #effect sizes can not be computed for these 3 SNPs so we remove them from the vector
 #populating a dataframe with effect size estimates
-rsizedf = sapply(y, function(x){
+sizedf = sapply(y, function(x){
   tempm =  effect.sizes(cross = cgp,
                         phenotype.name = "height.in.",
                         genotype.names = c("AA","BB"),
@@ -87,10 +86,8 @@ scanvdf<- data.frame(scanv$result$loc.name,
                      scanv$result$var.asymp.p,
                      scanv$result$joint.lod,
                      scanv$result$joint.asymp.p)
-#dropping the SNPs whose effect sizes could not be computed
-scanvdf = scanvdf[-c(458,2482,2483),]
 #combining both 
-scanvdf = cbind(scanvdf,t(rsizedf))
+scanvdf = cbind(scanvdf,t(sizedf))
 colnames(scanvdf) = c("SNP Name",
                       "Position (cM)",
                       "Mean LOD",
