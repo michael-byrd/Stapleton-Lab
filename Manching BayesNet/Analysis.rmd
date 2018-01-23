@@ -1,0 +1,29 @@
+---
+title: "Manching BayesNet"
+author: "Thomas Billman and Michael Byrd"
+date: "January 19, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##Reading in Data and Loading Libraries
+We are reading in the initial data that we scrubbed from the Manching Multiple Stress Experiment. Addtionally, we are loading the require packages for this analysis.
+
+```{r Data Read include = FALSE}
+library("bnlearn")
+dat = read.csv(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/Manching%20BayesNet/ManchingScrubbed.csv"))
+dat = dat[3:dim(dat)[1],]
+```
+
+```{r}
+which(dat$Height > 100)
+dat$Height[which(dat$Height > 100)] = c(48,76,69,56)
+unique(dat$Height)
+```
+##Exploratory Analysis
+```{r}
+#Overall mean height
+mean(dat$Height)
+```

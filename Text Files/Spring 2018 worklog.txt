@@ -9,6 +9,7 @@ vQTL Projects:
 		Correctly format with Z values
 
 1/16/18
+
 Start and complete qPCR assignment in 1.12.18 folder
 Try running Rand vQTL through Stampede2, get better time estimate 1 hr is too short
 	Once the Rand vQTL is through again, get QTL values for Rand and continue with BioMercator
@@ -19,3 +20,8 @@ submit SLURM file for vQTL for Random + Family, and Manching Multiple stress
 Talk to Stapleton and continue figuring out specifics of g x e project
 find bnlearn book online and start reading it
 Random + Family SLURM error seems to be in dglm fit, with something about no nonnegative numbers for gamma dists
+
+1/19/18
+Talk with Byrd and Stapleton about all the details of g x e simulation
+Make and rewrite our plot of how to go about the simulations
+begin exploratory data analysis for how to best model these distributions
