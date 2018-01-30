@@ -25,3 +25,8 @@ Random + Family SLURM error seems to be in dglm fit, with something about no non
 Talk with Byrd and Stapleton about all the details of g x e simulation
 Make and rewrite our plot of how to go about the simulations
 begin exploratory data analysis for how to best model these distributions
+
+1/23/18
+Begin working on TASSEL/ Howell Project with Dave Hiltbrand
+Begin getting Howell Data ready to be read as a cross for vQTL
+big issue with finding loci for all the markers. We have site names but need incremental positions
