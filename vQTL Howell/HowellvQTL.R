@@ -53,7 +53,7 @@ write.table(precrossObj, "Howell-Cross-Object.csv",
 #####To be done in Stampede2#####
 library("qtl")
 library("vqtl")
-crossobj = read.cross(format = "csv", file = "Howell/Howell-Cross-Object.csv")
+crossobj = read.cross(format = "csv", file = "Howell/Howell-Cross-ObjectC3.csv")
 crossobjs = read.cross(crossframes)
 crossobj = drop.nullmarkers(crossobj);
 crossobj <- calc.genoprob(crossobj)

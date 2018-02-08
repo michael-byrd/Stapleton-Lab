@@ -1,21 +1,16 @@
-#####Multiple Stress vQTL#####
-#to be run in stampede2
-library(tidyverse)
-library(qtl);
-library(vqtl);
-setwd("C:/Users/Thomas/Documents/Github/Stapleton-Lab/Manching BayesNet")
-cross = read.cross(format = "csv", file = "ManchingScrubbed_GenoOnly.csv");
-cross = drop.nullmarkers(cross);
-evf = read_csv(file = "ManchingScrubbed_Environment.csv");
-cross[['pheno']][['LowWater']] = factor(evf$`Low Water`[-1:-2]);
-cross[['pheno']][['LowNitrogen']] = factor(evf$`Low Nitrogen`[-1:-2]);
-cross[['pheno']][['Pathogen']] = factor(evf$Pathogen[-1:-2]);
-gc();
-cgp = calc.genoprob(cross = cross);
-gc();
-scanv = scanonevar(cross = cgp, mean.formula = Height ~ LowWater + LowNitrogen + Pathogen +  mean.QTL.add ,
-                   var.formula =  ~ LowWater + LowNitrogen + Pathogen + var.QTL.add);
-library("dplyr");
+#####Running the vQTL#####
+#####To be done in Stampede2#####
+library("qtl")
+library("vqtl")
+crossobj = read.cross(format = "csv", file = "Howell-Cross-ObjectC3.csv")
+crossobjs = read.cross(crossframes)
+crossobj = drop.nullmarkers(crossobj);
+crossobj <- calc.genoprob(crossobj)
+outv <- scanonevar(cross = crossobj,
+                   mean.formula = Un.Spliced.bZIP60 ~ mean.QTL.add,
+                   var.formula = ~ var.QTL.add)
+#####Set up our own function to extract effect sizes from mean_var_plot function#####
+library("dplyr")
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL, 
                          title = paste(phenotype.name, "by", paste(focal.groups, 
@@ -66,49 +61,51 @@ effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.gr
                      group.sd.estim = mean(indiv.sd.estim), group.sd.lb = mean(indiv.sd.lb), 
                      group.sd.ub = mean(indiv.sd.ub))
   return(group.prediction.tbl)
-};
+}
 #set up a vector to run the function on
-y = 1:length(scanv$result$loc.name);
+y = 1:length(outv$result$loc.name)
 #effect sizes can not be computed for these 3 SNPs so we remove them from the vector
+y = y[-c(458,2482,2483)]
 #populating a dataframe with effect size estimates
 sizedf = sapply(y, function(x){
-  tempm =  effect.sizes(cross = cgp,
-                        phenotype.name = "Height",
+  tempm =  effect.sizes(cross = crossobj,
+                        phenotype.name = "height.in.",
                         genotype.names = c("AA","BB"),
-                        focal.groups = scanv$result$loc.name[x])
+                        focal.groups = outv$result$loc.name[x])
   tempv = c(tempm[1,2:7],tempm[2,2:7])
   return(unlist(tempv))
-});
+})
 #gathering data from the initial scan
-scanvdf<- data.frame(scanv$result$loc.name,
-                     scanv$result$pos,
-                     scanv$result$mean.lod,
-                     scanv$result$mean.asymp.p,
-                     scanv$result$var.lod,
-                     scanv$result$var.asymp.p,
-                     scanv$result$joint.lod,
-                     scanv$result$joint.asymp.p)
+outvdf<- data.frame(outv$result$loc.name,
+                    outv$result$pos,
+                    outv$result$mean.lod,
+                    outv$result$mean.asymp.p,
+                    outv$result$var.lod,
+                    outv$result$var.asymp.p,
+                    outv$result$joint.lod,
+                    outv$result$joint.asymp.p)
+#dropping the SNPs whose effect sizes could not be computed
+outvdf = outvdf[-c(458,2482,2483),]
 #combining both 
-scanvdf = cbind(scanvdf,t(sizedf))
-colnames(scanvdf) = c("SNP Name",
-                      "Position (cM)",
-                      "Mean LOD",
-                      "Mean P Value",
-                      "Variance LOD",
-                      "Variance P Value",
-                      "Joint LOD",
-                      "Joint P Value",
-                      "A Mean Est",
-                      "A Mean Lower Bound",
-                      "A Mean Upper Bound",
-                      "A Standard Deviation Est",
-                      "A Standard Deviation Lower Bound",
-                      "A Standard Deviation Upper Bound",
-                      "B Mean Est",
-                      "B Mean Lower Bound",
-                      "B Mean Upper Bound",
-                      "B Standard Deviation Est",
-                      "B Standard Deviation Lower Bound",
-                      "B Standard Deviation Upper Bound")
-
-write.csv(scanvdf, file = "MultipleStressvQTL_Height_LOD,Pvals,EffectSizes1.csv")
+outvdf = cbind(outvdf,t(sizedf))
+colnames(outvdf) = c("SNP Name",
+                     "Position (cM)",
+                     "Mean LOD",
+                     "Mean P Value",
+                     "Variance LOD",
+                     "Variance P Value",
+                     "Joint LOD",
+                     "Joint P Value",
+                     "A Mean Est",
+                     "A Mean Lower Bound",
+                     "A Mean Upper Bound",
+                     "A Standard Deviation Est",
+                     "A Standard Deviation Lower Bound",
+                     "A Standard Deviation Upper Bound",
+                     "B Mean Est",
+                     "B Mean Lower Bound",
+                     "B Mean Upper Bound",
+                     "B Standard Deviation Est",
+                     "B Standard Deviation Lower Bound",
+                     "B Standard Deviation Upper Bound")
+write.csv(outvdf, file = "HowellvQTL_LOD,Pvals,EffectSizes.csv")

@@ -53,3 +53,15 @@ Howell vQTL ran for 9 hours and error was as follows:
 		Error in factor(x = qtl::pull.geno(cross = cross)[, marker.name], labels = genotype.names) :
 		invalid 'labels'; length 2 should be 1 or 1 Calls: sapply -> lapply -> FUN -> effect.sizes -> factor
 	This is definitely in the effect.sizes function.
+	
+2/8/18
+Scrubbed the Howell Dataset 3 times
+	first was to get rid of any non ACTG entries and mark them as N
+	second was to translate ACTG into As and Bs with (A,C) as A and (G,T) as Begin
+	third was to filter out columns with only two unique entries (likely A and N or B and N)
+Finally we submitted another batch job to Stampede2 with the cross object as this new file ("Howell-Cross-ObjectC3.csv")
+Additionally, I redid the vQTL code for the Manching Multiple Stress experiment and resubmit it
+	first attempt had an issue with the tidyverse package not being installed
+	second attempt with install.packages("tidyverse") at the top, but didn't specify a CRAN mirror
+I opened an R session and installed the package (took a surprisingly long time)
+	third attempt submitted
