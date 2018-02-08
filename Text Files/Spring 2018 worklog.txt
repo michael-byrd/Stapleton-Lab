@@ -30,3 +30,26 @@ begin exploratory data analysis for how to best model these distributions
 Begin working on TASSEL/ Howell Project with Dave Hiltbrand
 Begin getting Howell Data ready to be read as a cross for vQTL
 big issue with finding loci for all the markers. We have site names but need incremental positions
+
+1/25/18
+Continue prepping Howell cross object
+looking for link between site loci and site numbers
+come to the conclusion that the loci are the number of basepairs deep into each respective chromosome
+Still an issue with forming the cross object
+
+1/30/18
+Hopefully final scrubbing for the Howell cross object prep
+Tried running vQTL in Stampede, but it was taking an awful long time even just reading in the data
+Going to try running it at a SLURM batch job
+Had issues with tidyverse package, I realized I wasn't actually using it, so it isn't an issue anymore
+Slurm Job submitted and running rest of the day 4+ hours, I only had it for 5 originally, so we'll see if I need to rerun it with more time
+
+2/1/18
+Resubmitting Howell vQTL job
+In the mean time try getting the Random/Family vQTL running
+
+2/6/18
+Howell vQTL ran for 9 hours and error was as follows:
+		Error in factor(x = qtl::pull.geno(cross = cross)[, marker.name], labels = genotype.names) :
+		invalid 'labels'; length 2 should be 1 or 1 Calls: sapply -> lapply -> FUN -> effect.sizes -> factor
+	This is definitely in the effect.sizes function.

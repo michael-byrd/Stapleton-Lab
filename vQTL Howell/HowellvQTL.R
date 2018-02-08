@@ -54,6 +54,7 @@ write.table(precrossObj, "Howell-Cross-Object.csv",
 library("qtl")
 library("vqtl")
 crossobj = read.cross(format = "csv", file = "Howell/Howell-Cross-Object.csv")
+crossobjs = read.cross(crossframes)
 crossobj = drop.nullmarkers(crossobj);
 crossobj <- calc.genoprob(crossobj)
 outv <- scanonevar(cross = crossobj,
