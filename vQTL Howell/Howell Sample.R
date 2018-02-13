@@ -86,14 +86,20 @@ length(which(unq == 3))
 keep = which(unq == 3)
 tablecc = tablec[,c(1,2,(keep+2))]
 tablecc[1:2,1:2] = ""
+ranc = sample(3:ncol(tablecc),500)
+sapply(3:ncol(tablecc), function(x){
+  colnames(tablecc)[x] <<- paste("Marker",colnames(tablecc)[x], sep = "")
+})
+write.table(tablecc[,c(1,2,ranc)], "Howell-Cross-ObjectC3-Sample.csv",
+             row.names = F,col.names = T, sep = ",")
 write_csv(tablecc, "Howell-Cross-ObjectC3.csv")
 #####now to run the small scale analysis#####
-crossobj = read.cross(format = "csv", file = "Howell-Cross-ObjectC3.csv")
+crossobj = read.cross(format = "csv", file = "Howell-Cross-ObjectC3-Sample.csv")
 crossobj = drop.nullmarkers(crossobj)
 crossobj <- calc.genoprob(crossobj)
 outv <- scanonevar(cross = crossobj,
-                   mean.formula = Un.Spliced.bZIP60 ~ mean.QTL.add,
-                   var.formula = ~ var.QTL.add)
+                   mean.formula = Un.Spliced.bZIP60 ~ mean.QTL.add + mean.QTL.dom,
+                   var.formula = ~ var.QTL.add + var.QTL.dom)
 #####Set up our own function to extract effect sizes from mean_var_plot function#####
 library("dplyr")
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
@@ -152,8 +158,8 @@ y = 1:length(outv$result$loc.name)
 #populating a dataframe with effect size estimates
 sizedf = sapply(y, function(x){
   tempm =  effect.sizes(cross = crossobj,
-                        phenotype.name = "height.in.",
-                        genotype.names = ngeno,
+                        phenotype.name = "Un.Spliced.bZIP60",
+                        genotype.names = c("A","B"),
                         focal.groups = outv$result$loc.name[x])
   tempv = c(tempm[1,2:7],tempm[2,2:7])
   return(unlist(tempv))
@@ -167,8 +173,6 @@ outvdf<- data.frame(outv$result$loc.name,
                     outv$result$var.asymp.p,
                     outv$result$joint.lod,
                     outv$result$joint.asymp.p)
-#dropping the SNPs whose effect sizes could not be computed
-outvdf = outvdf[-c(458,2482,2483),]
 #combining both 
 outvdf = cbind(outvdf,t(sizedf))
 colnames(outvdf) = c("SNP Name",
@@ -191,4 +195,4 @@ colnames(outvdf) = c("SNP Name",
                      "B Standard Deviation Est",
                      "B Standard Deviation Lower Bound",
                      "B Standard Deviation Upper Bound")
-write.csv(outvdf, file = "HowellvQTL_LOD,Pvals,EffectSizes.csv")
+write.csv(outvdf, file = "HowellvQTL_Sample_LOD,Pvals,EffectSizes.csv")
