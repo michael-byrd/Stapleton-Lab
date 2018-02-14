@@ -65,3 +65,11 @@ Additionally, I redid the vQTL code for the Manching Multiple Stress experiment 
 	second attempt with install.packages("tidyverse") at the top, but didn't specify a CRAN mirror
 I opened an R session and installed the package (took a surprisingly long time)
 	third attempt submitted
+	
+2/13/18
+Looking into issue with formula not being correctly read in effect.size function
+	It looks like it is an issue with the names being numeric, so I am adding in the character Marker right before each number
+Reuploaded new Howell-Cross-ObjectC3.csv to Stampede2 and changed the R code a bit. Resubmitted at 12:06
+Looking back at the Manching Multiple Stress dataset
+	Seems to be having the same extract vars issue where the program is unable to use the column names in the formula
+Letting both jobs keep running
