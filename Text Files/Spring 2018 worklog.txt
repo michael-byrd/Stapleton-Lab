@@ -73,3 +73,9 @@ Reuploaded new Howell-Cross-ObjectC3.csv to Stampede2 and changed the R code a b
 Looking back at the Manching Multiple Stress dataset
 	Seems to be having the same extract vars issue where the program is unable to use the column names in the formula
 Letting both jobs keep running
+
+2/15/18
+Submit Unspliced Howell to Stapleton
+Running Spliced Howell
+Also need to do Unspliced/Spliced ratio prediction
+New qPCR analysis to do today
