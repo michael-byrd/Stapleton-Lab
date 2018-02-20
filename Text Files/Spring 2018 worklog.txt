@@ -84,3 +84,15 @@ qPCR analysis sent to Dr. Stapleton
 2/16/18
 Submitted Ratio SLURM job, got Spliced data down from Stampede2
 
+2/20/18
+Stampede2 is down for maintainence today
+I will:
+	run some small scale Manching vQTL and make sure the formatting is working correctly
+Once Stampede2 is back up:
+	check what went wrong with the Howell Ratio vQTL
+	Run a better MultipleStress vQTL with the stuff I have tested today
+	
+It looks like the hyphen that scanonevar is adding is not able to be parsed in the DGLM portion of effect.sizes
+I'll write a script that only looks at the original SNPs and see if that changes things
+
+When I get back from lunch:

@@ -107,7 +107,7 @@ crossobj = read.cross(format = "csv", file = "Howell-Cross-Object-Ratio.csv")
 crossobj = drop.nullmarkers(crossobj)
 crossobj <- calc.genoprob(crossobj)
 outv <- scanonevar(cross = crossobj,
-                   mean.formula = Un.Spliced.bZIP60 ~ mean.QTL.add + mean.QTL.dom,
+                   mean.formula = Ratio ~ mean.QTL.add + mean.QTL.dom,
                    var.formula = ~ var.QTL.add + var.QTL.dom)
 #####Set up our own function to extract effect sizes from mean_var_plot function#####
 library("dplyr")
