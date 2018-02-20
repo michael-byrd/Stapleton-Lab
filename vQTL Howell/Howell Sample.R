@@ -93,8 +93,17 @@ sapply(3:ncol(tablecc), function(x){
 write.table(tablecc[,c(1,2,ranc)], "Howell-Cross-ObjectC3-Sample.csv",
              row.names = F,col.names = T, sep = ",")
 write_csv(tablecc, "Howell-Cross-ObjectC3.csv")
+
+#####Adding a column for the ratio of Spliced/Unspliced#####
+rat = sapply(3:dim(tablecc)[1],function(x){
+  as.numeric(tablecc[x,1])/
+    as.numeric(tablecc[x,2])
+})
+tablerat = cbind(c("","",rat),tablecc[,3:dim(tablecc)[2]])
+colnames(tablerat)[1] <- "Ratio"
+write_csv(tablerat, "Howell-Cross-Object-Ratio.csv")
 #####now to run the small scale analysis#####
-crossobj = read.cross(format = "csv", file = "Howell-Cross-ObjectC3-Sample.csv")
+crossobj = read.cross(format = "csv", file = "Howell-Cross-Object-Ratio.csv")
 crossobj = drop.nullmarkers(crossobj)
 crossobj <- calc.genoprob(crossobj)
 outv <- scanonevar(cross = crossobj,
