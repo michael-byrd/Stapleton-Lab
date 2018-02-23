@@ -5,14 +5,14 @@ library(qtl);
 library(vqtl);
 setwd("C:/Users/Thomas/Documents/Github/Stapleton-Lab/Manching BayesNet")
 #####Constructing a  Small scale sample set#####
-fullobj <- read_csv(file = "ManchingScrubbed.csv")
+fullobj <- read.csv(file = "ManchingScrubbed.csv")
 set.seed(569612)
-srows <- c(1,2,sample(3:dim(fullobj)[1], 500))
-scols <- c(1:4,sample(5:dim(fullobj)[2], 500))
+srows <- sort(c(1,2,sample(3:dim(fullobj)[1], 500)))
+scols <- sort(c(1:4,sample(5:dim(fullobj)[2], 500)))
 sampobj <- fullobj[srows,scols]
 sampobj[1:2,1:4] = ""
 colnames(sampobj) <- make.names(colnames(sampobj))
-write_csv(sampobj, path = "MSSample.csv")
+write.csv(sampobj, file = "MSSample.csv", row.names = F)
 #####Small Scale Analysis#####
 cross = read.cross(format = "csv", file = "MSSample.csv");
 cross = drop.nullmarkers(cross);
@@ -20,7 +20,6 @@ cgp = calc.genoprob(cross = cross);
 scanv = scanonevar(cross = cgp, mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen +  mean.QTL.add ,
                    var.formula =  ~ Low.Water + Low.Nitrogen + Pathogen + var.QTL.add);
 library("dplyr");
-library("dglm")
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL, 
                          title = paste(phenotype.name, "by", paste(focal.groups, 
@@ -76,13 +75,29 @@ effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.gr
 y = 1:length(scanv$result$loc.name);
 #effect sizes can not be computed for these 3 SNPs so we remove them from the vector
 #populating a dataframe with effect size estimates
-sizedf = sapply(y, function(x){
-  tempm =  effect.sizes(cross = cgp,
-                        phenotype.name = "Height",
-                        genotype.names = c("AA","BB"),
-                        focal.groups = scanv$result$loc.name[x])
-  tempv = c(tempm[1,2:7],tempm[2,2:7])
-  return(unlist(tempv))
+nnames <- sapply(y, function(x){
+  a <- scanv$result$loc.name[x]
+  b <- nchar(a)
+  if(substr(a,b-5,b) == "_loc-5"){
+    a <- 0
+  } else if(substr(a,b-4,b) == "_loc5"){
+    a <- 0
+  }
+  return(a)
+})
+nnames <- nnames[which(nnames != 0)]
+sizedf = sapply(1:length(nnames), function(x){
+  print(x)
+  tryCatch({
+   tempm <- effect.sizes(cross = cgp,
+                 phenotype.name = "Height",
+                 genotype.names = c("AA","BB"),
+                 focal.groups = nnames[x])
+    tempv = c(tempm[1,2:7],tempm[2,2:7])
+  },
+   error = function(e) message(e),
+   finally = return(unlist(tempv))
+  )
 });
 #gathering data from the initial scan
 scanvdf<- data.frame(scanv$result$loc.name,
