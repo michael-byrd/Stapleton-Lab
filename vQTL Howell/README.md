@@ -3,14 +3,14 @@
 This is to provide an in depth record of how this analysis was conducted for those interested in this project.
   
 ## Initial Data
-Our initial Dataset can be was the file [HeatStress.csv](HeatStress.csv). 
+Our initial Dataset can be was the file [Heat Stress.csv](Heat\ Stress.csv). 
 It contained three columns of data consisting of taxa identification numbers as well as Spliced and Unspliced bZIP60 information.
 These taxa are representative of corn lines with very precise genotypes. So our first step was translating these into corresponding genetic information.
 
 ### TASSEL5
 To do this, Dr. Ann Stapleton directed me to [this website](http://cbsuss05.tc.cornell.edu/hdf5new/query.asp "Genetic Data") to get the genetic data for our specific taxa.
-Given that the taxa list to enter was in a format that was more extended than that which was provided in [HeatStress.csv](HeatStress.csv), I had to use the [Taxa List](http://cbsuss05.tc.cornell.edu/hdf5new/taxa.asp) found on the same website.
-After using a quick [R Script](Full_Zs.R Converter) to to convert our short names to extended names, I got the genetic data emailed to me.
+Given that the taxa list to enter was in a format that was more extended than that which was provided in [Heat Stress.csv](Heat\ Stress.csv), I had to use the [Taxa List](http://cbsuss05.tc.cornell.edu/hdf5new/taxa.asp) found on the same website.
+After using a quick [R Script](Full_Zs.R "Converter") to to convert our short names to extended names, I got the genetic data emailed to me.
 Once the file was downloaded, I used a program called **TASSEL5** and applied the following filters:
 + Many of the Taxa had duplicate rows, so whenever there were two entries that shared a row from the [HeatStress.csv](HeatStress.csv), I removed the second one.
 + As far as sites go, they needed to have the following characteristics:
@@ -21,7 +21,7 @@ Once the file was downloaded, I used a program called **TASSEL5** and applied th
 The resulting file is [here](Howell_scrubbed_Z_to_SNPs.txt) and is used to stitch together our preliminary data set.
 
 ### Data Cleaning
-We begin by replacing the Z values in the [HeatStress](HeatStress.csv) file with their corresponding genetic data.
+We begin by replacing the Z values in the [HeatStress](Heat\ Stress.csv) file with their corresponding genetic data.
 This is done by referring to the [Genetic Data](Howell_scrubbed_Z_to_SNPs.txt) from the previous step.
 It is also important to note that the site locations are assumed to be in basepairs. The location was taken from the name in TASSEL.
 The code used for this is found [here](HowellvQTL.R) in the first half of the script. This output an object called [Howell-Cross-Object.csv](Howell-Cross-Object.csv).
