@@ -14,14 +14,6 @@ fullnames = vector()
 org  = lapply(1:length(zvals),function(x){
   gbs[which(gbsnames == zvals[x]),1]
 })
-scrubbed = sapply(org,function(ex){
-  cln = gregexpr(":",ex)[[1]]
-  bad = c(cln[1],cln[length(cln)])
-  paste(substr(ex,1,bad[1]),substr(ex,bad[2]+1,nchar(as.character(ex))), sep = "")
-})
-write.csv(scrubbed, file = "ScrubbedNames.csv", row.names = FALSE, col.names = FALSE)
-
-#Test1, just assume to use the first of the availabe Z vals with multiple Taxa
 used = (unlist(lapply(org, function(x){
   x[1]
 })))
@@ -48,7 +40,6 @@ x = 3:dim(precrossObj)[2]
 precrossObj[3,x] = precrossObj[1,x]
 write.table(precrossObj, "Howell-Cross-Object.csv",
           row.names = FALSE, col.names = FALSE, sep = ",")
-
 #####Running the vQTL#####
 #####To be done in Stampede2#####
 library("qtl")

@@ -103,3 +103,10 @@ Working on Manching in the mean time
 For some reason the sample data is producing really weird results, maybe it has to do with the sampling method, so I'm trying it with the full set
 
 While that is running as well, I'm working on the Family/Random and trying to make sure that code works for both sets locally
+
+2/27/18
+To-do list:
+		Look into issue with only 9 of 10 chromosomes being added in output
+		Write up methods in text document
+			specifically mention where position numbers came from
+			Add A/T or C/G Column to output

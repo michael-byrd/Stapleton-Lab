@@ -82,6 +82,12 @@ unq = sapply(3:ncol(tablec),function(x){
   print(x)
   dim(unique(tablec[3:134,x]))[1]
 })
+uunq = sapply(3:ncol(tablec),function(x){
+  print(x)
+  unique(tablec[3:134,x])
+})
+length(which(uunq == c("B", "A") | uunq == c("A", "B")))
+
 length(which(unq == 3))
 keep = which(unq == 3)
 tablecc = tablec[,c(1,2,(keep+2))]
@@ -205,3 +211,16 @@ colnames(outvdf) = c("SNP Name",
                      "B Standard Deviation Lower Bound",
                      "B Standard Deviation Upper Bound")
 write.csv(outvdf, file = "HowellvQTL_Sample_LOD,Pvals,EffectSizes.csv")
+
+#####Making sure that there are no rare alleles#####
+tabler <- read_csv(file = "Howell-Cross-Object-Ratio.csv")
+unqc <-sapply(2:dim(tabler)[2], function(x){
+  unique(tabler[3:dim(tabler)[1],x])
+})
+unique(unlist(unqc))
+
+tableu <- read_csv(file = "Howell-Cross-ObjectC3.csv")
+unqc <-sapply(3:dim(tableu)[2], function(x){
+  unique(tableu[3:dim(tableu)[1],x])
+})
+unique(unlist(unqc))
