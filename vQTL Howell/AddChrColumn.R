@@ -14,6 +14,7 @@ write_csv(outp,path = "HowellvQTL_Ratio_LOD,Pvals,EffectSizes.csv")
 
 #C3 Object still has 10 chromosomes#
 #Maybe it has 
+par(mfrow = c(2,1))
 orgr <- read_csv(file = "Howell-Cross-Object-Ratio.csv")
 posr <- as.numeric(orgr[2,-1])
 plot(posr)

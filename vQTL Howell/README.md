@@ -37,6 +37,6 @@ From here we used the [Howell Sample.R](Howell%20Sample.R) file to clean the dat
 Finally [this object](Howell-Cross-ObjectC3.csv "Howell-Cross-ObjectC3") was ready for vQTL analysis on the Unspliced_bZIP60 and Spliced_bZIP60.
 Additionally, I made a file to predict the ratio between the two (Unspliced/Spliced) labeled [Howell-Cross-Object-Ratio.csv](Howell-Cross-Object-Ratio.csv "Ratio Object").
 
-###vQTL Analysis
+### vQTL Analysis
 Finally, after uploading the necessary files to my Stampede2 environment. I ran the following 3 scripts to generate our output for [Spliced](Spliced.R), [Unspliced](Unspliced.R),
 and [Ratio](Ratio.R). 

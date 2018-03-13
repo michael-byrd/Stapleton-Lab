@@ -110,3 +110,8 @@ To-do list:
 		Write up methods in text document
 			specifically mention where position numbers came from
 			Add A/T or C/G Column to output
+Added code to AddChrColumn to check out chromosome issue
+	It seems that some markers are being added during the vQTL process so we aren't calculating the effect sizes for the whole set of markers
+	Need to look further into this
+	Got some solid documentation done today though, will finish it up once I resolve this issue
+	
