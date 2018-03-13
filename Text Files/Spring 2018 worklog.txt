@@ -114,4 +114,13 @@ Added code to AddChrColumn to check out chromosome issue
 	It seems that some markers are being added during the vQTL process so we aren't calculating the effect sizes for the whole set of markers
 	Need to look further into this
 	Got some solid documentation done today though, will finish it up once I resolve this issue
+
+3/13/18
+Have qPCR to run
+	issues with nonconvergence in two of the cells
+	made a trycatch statement to resolve this
+	also had to take the two out of the end product
+	All made in Rmd so that it is well commented and followable
+Back to Howell vQTL
+	Continue trying to fix formatting and finish up documentation.
 	

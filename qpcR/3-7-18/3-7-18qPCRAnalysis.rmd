@@ -10,8 +10,9 @@ If you do not already have the qpcR library installed in your R, please uncommen
 library(qpcR)
 ```
 ##Reading in data
+The data is hosted on my Github so that this code can be run from other machines than my own.
 ```{r}
-hex <- read.csv(file = "C:/Users/Thomas/Documents/Github/Stapleton-Lab/qPCR/3-7-18/Stapleton\ RNA\ test 3.7.18\ -\  Quantification\ Amplification\ Results.csv")
+hex <- read.csv(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/qpcR/3-7-18/Stapleton%20RNA%20test%203.7.18%20-%20%20Quantification%20Amplification%20Results.csv"))
 ```
 ##Starting with the Analysis
 This is where I generate the models for all of the runs included. 
