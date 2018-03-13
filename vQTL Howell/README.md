@@ -39,6 +39,9 @@ Additionally, I made a file to predict the ratio between the two (Unspliced/Spli
 
 ### vQTL Analysis
 Finally, after uploading the necessary files to my Stampede2 environment. I ran the following 3 scripts to generate our output for [Spliced](Spliced.R), [Unspliced](Unspliced.R),
-and [Ratio](Ratio.R). To submit these to Stampede2, I wrote some quick shell scripts and submitted them with the the sbatch function. After the analysis ran, I took the output csv files
+and [Ratio](Ratio.R). To submit these to Stampede2, I wrote some quick shell scripts and submitted them with the the sbatch function. 
+
+### Output
+After the analysis ran, I took the output csv files
 off of Stampede2 and the [Spliced](HowellvQTL_Spliced_LOD,Pvals,EffectSizes.csv),[Unspliced](HowellvQTL_Unspliced_LOD,Pvals,EffectSizes.csv), and [Ratio](HowellvQTL_Ratio_LOD,Pvals,EffectSizes.csv)
 can be found here as well.
