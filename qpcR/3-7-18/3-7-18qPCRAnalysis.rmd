@@ -1,28 +1,30 @@
 ---
-title: "2-15-18 Stapleton qPCR"
+title: "3-7-18 Stapleton qPCR"
 author: "Thomas Billman"
 output: html_document
 ---
 ##Loading packages
 If you do not already have the qpcR library installed in your R, please uncomment the top line and install before running the rest of the code.
-```{r}
+```{r, warning = F, message = F}
 #install.packages("qpcR")
 library(qpcR)
 ```
 ##Reading in data
-I added this data to my Github so that this code can be run from other machines with internet connections. 
 ```{r}
-hex <- read.csv(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/qpcR/2-13-18/Stapleton%20Test%202.13.18%20HEX.csv"))
+hex <- read.csv(file = "C:/Users/Thomas/Documents/Github/Stapleton-Lab/qPCR/3-7-18/Stapleton\ RNA\ test 3.7.18\ -\  Quantification\ Amplification\ Results.csv")
 ```
 ##Starting with the Analysis
 This is where I generate the models for all of the runs included. 
-```{r include = FALSE}
+```{r, results='hide'}
 m <- modlist(x = hex, cyc = 1, model = l4, remove = "none")
 ```
-Calculating the efficiencies of all the models
+Calculating the efficiencies of all the models. I had issues with a few cells, so their errors are reported along with which index of the modlist was associated with them.
 ```{r}
-heff = lapply(m,function(x){
-  efficiency(x,plot = FALSE)
+heff = lapply(1:length(m),function(x){
+  tryCatch(
+    efficiency(m[[x]],plot = FALSE)
+    , error = function(e) print(c(e,x))
+  )
 })
 ```
 This is where we explicitly extract the critical points of the first and second derivatives of the models
@@ -38,8 +40,9 @@ hcpd2 = vector(); hcpd2 = lapply(1:length(heff),function(x){
 hcpd2 = unlist(hcpd2)
 ```
 ##Generating output
+We bind the cpD1 and cpD2 results into a dataframe. We also remove the first, 188th, and 163rd column names because the first is for the cycles and the other two had errors in their efficiency calculation. These cells were F3 and H3 respectively. Finally we write a csv output file.
 ```{r}
 eff.frame = as.data.frame(rbind(hcpd1,hcpd2))
-colnames(eff.frame) = colnames(hex)[-1]; rownames(eff.frame) = c("cpD1","cpD2")
-write.csv(eff.frame, file= "C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/qpcR/2-13-18/EffDat.csv")
+colnames(eff.frame) = colnames(hex)[-c(1,118,163)]; rownames(eff.frame) = c("cpD1","cpD2")
+write.csv(eff.frame, file= "C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/qpcR/3-7-18/EffDat.csv")
 ```
