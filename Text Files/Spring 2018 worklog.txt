@@ -124,3 +124,16 @@ Have qPCR to run
 Back to Howell vQTL
 	Continue trying to fix formatting and finish up documentation.
 	
+5/7/18
+Documentation edits
+	Check out the Howell CHR issue
+	envirotyping
+	clever R  tricks (map functions)
+Hopefully fixed Howell chromosome matchup issue
+Code running now
+	For some reason CHr 10 was all being read as Chr 2
+	this is why chr10 disappeared, Chr2 was long, and the total number of SNPs was the same
+	Idk why this happened
+
+	
+	

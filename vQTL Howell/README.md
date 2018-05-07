@@ -43,5 +43,5 @@ and [Ratio](Ratio.R). To submit these to Stampede2, I wrote some quick shell scr
 
 ### Output
 After the analysis ran, I took the output csv files
-off of Stampede2 and the [Spliced](HowellvQTL_Spliced_LOD,Pvals,EffectSizes.csv),[Unspliced](HowellvQTL_Unspliced_LOD,Pvals,EffectSizes.csv), and [Ratio](HowellvQTL_Ratio_LOD,Pvals,EffectSizes.csv)
+off of Stampede2 and the [Spliced](HowellvQTL_Spliced_LOD,Pvals,EffectSizes.csv), [Unspliced](HowellvQTL_Unspliced_LOD,Pvals,EffectSizes.csv), and [Ratio](HowellvQTL_Ratio_LOD,Pvals,EffectSizes.csv)
 can be found here as well.

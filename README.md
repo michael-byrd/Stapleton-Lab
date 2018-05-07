@@ -10,9 +10,9 @@ This usually involves hundreds or thousands of individuals, along with thousands
 As such, this is the type of analysis that typically involves the use of Stampede2.
 To the best of my knowledge, Stampede2 does not have any integrations with Github, so some of my files may not be present in this repository.
 The projects I have worked on so far include:
-*Neighbor/Family
-*Multiple Stress
-*Spliced/Unspliced
+* Neighbor/Family
+* Multiple Stress
+* Spliced/Unspliced
 All of these projects have corresponding folders in this repository.
 
 ### QPCR

@@ -41,7 +41,7 @@ hcpd2 = vector(); hcpd2 = lapply(1:length(heff),function(x){
 hcpd2 = unlist(hcpd2)
 ```
 ##Generating output
-We bind the cpD1 and cpD2 results into a dataframe. We also remove the first, 188th, and 163rd column names because the first is for the cycles and the other two had errors in their efficiency calculation. These cells were F3 and H3 respectively. Finally we write a csv output file.
+We bind the cpD1 and cpD2 results into a dataframe. We also remove the first, 118th, and 163rd column names because the first is for the cycles and the other two had errors in their efficiency calculation. These cells were F3 and H3 respectively. Finally we write a csv output file.
 ```{r}
 eff.frame = as.data.frame(rbind(hcpd1,hcpd2))
 colnames(eff.frame) = colnames(hex)[-c(1,118,163)]; rownames(eff.frame) = c("cpD1","cpD2")
