@@ -130,10 +130,19 @@ Documentation edits
 	envirotyping
 	clever R  tricks (map functions)
 Hopefully fixed Howell chromosome matchup issue
-Code running now
 	For some reason CHr 10 was all being read as Chr 2
 	this is why chr10 disappeared, Chr2 was long, and the total number of SNPs was the same
 	Idk why this happened
+	Updated Howell-Cross-ObjectC3 and Howell-Ratio and rerunning analysis
+Code running now
 
-	
+5/8/2018
+Helped Michael Byrd with finding treatment effects for GxE project
+Yesterday's analysis ran successfully and we now have 10 chromosomes 
+11:30 Kickoff meeting
+Helped Byrd finish  data simulation and debugging
+Wrote vQTL script for simulated data
+Submitted batch job to Stampede2 to run 
+Beginning to teach Byrd how to run vQTL
+
 	
