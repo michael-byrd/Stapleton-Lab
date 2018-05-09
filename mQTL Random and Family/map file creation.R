@@ -14,3 +14,21 @@ chr1.pos = unlist(lapply(1:length(chr1.nums),function(x){
 }))
 chr1df = cbind(index, chr1.names, chr1.pos)
 write.table(chr1df, file = "Github/Stapleton-Lab/mQTL\ Random\ and\ Family/mapchr1.txt",quote = FALSE, col.names = FALSE, row.names = FALSE, sep = "\t")
+
+rand = read.csv(file = url("https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/vQTL%20Random%20and%20Family/data/tidied/Random2.csv"), header = TRUE)
+
+chr1.nums = unlist(lapply(4:length(rand[1,]),function(x){
+  a = NULL
+  if(as.character(rand[1,x]) == "1"){
+    a = c(a,x)
+  } else{a = a}
+  return(a)
+}))
+chr1.names = colnames(rand)[chr1.nums]
+index = 1:length(chr1.nums)
+chr1.pos = unlist(lapply(1:length(chr1.nums),function(x){
+  as.numeric(as.character(rand[2,chr1.nums[x]]))
+}))
+chr1df = cbind(index, chr1.names, chr1.pos)
+write.table(chr1df, file = "C://Users/Thomas/Documents/Github/Stapleton-Lab/mQTL\ Random\ and\ Family/Rand_map1.txt",quote = FALSE, col.names = FALSE, row.names = FALSE, sep = "\t")
+  

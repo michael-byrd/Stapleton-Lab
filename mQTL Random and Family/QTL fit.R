@@ -1,5 +1,6 @@
 library("qtl")
 library("vqtl")
+setwd("C://Users/Thomas/Documents")
 dat = read.csv(file = "Github/Stapleton-Lab/mQTL\ Random\ and\ Family/Input\ Files/Family.csv", header = FALSE, stringsAsFactors = FALSE)
 family <-read.cross(dir = "~/PCR\ data/", file = "family.csv")
 sigmark <- read.csv(file ="Github/Stapleton-Lab/mQTL\ Random\ and\ Family/Input\ Files/adj_jointP_fam.csv", header = TRUE)
@@ -93,34 +94,33 @@ routv <- scanonevar(cross = random,
                     mean.formula = height.in. ~ mean.QTL.add,
                     var.formula = ~ var.QTL.add)
 ran1 = NULL
-family = sim.geno(family)
-sigmrk1 = sigmark[-which(match(sigmark$jQTL_ID, "")== 1),]
-sig1 = sigmrk1[which(sigmrk1$jQTL_ID == "q1"),3]
-fam1 = makeqtl(cross = family, chr = rep(1,length(sig1)), pos = sig1)
+random = sim.geno(random)
+sigmrk1 = sigmark[-which(match(sigmark$qtl_id, "")== 1),]
+sig1 = sigmrk1$Position__cM_[which(sigmrk1$qtl_id == "q1")]
+rand1 = makeqtl(cross = random, chr = rep(1,length(sig1)), pos = sig1)
 
 qtlmaker = function(cross,sigmark, chr, index){
   qx = paste("q",index, sep = "")
   famx = paste("fam",index, sep = "")
-  sigmrk = sigmark[-which(match(sigmark$jQTL_ID,"") == 1),]
-  sig = sigmrk[which(sigmrk1$jQTL_ID == qx),]
-  sigpos = sig[,3]
+  sigmrk = sigmark[-which(match(sigmark$qtl_id,"") == 1),]
+  sig = sigmrk[which(sigmrk1$qtl_id == qx),]
+  sigpos = sig[,2]
   names = as.character(sig$SNP_Names)
   
   famx = makeqtl(cross = cross, chr = rep(chr,length(sigpos)), pos = sigpos)
   return(famx)
 }
-vect = (1:40)[-c(4,18)]
+vect <- 1:6
 chrvect = unlist(lapply(vect,function(x){
-  row = match(paste("q",x,sep = ""),sigmark$jQTL_ID)
-  snp = as.character(sigmark[row,2])
+  row = which(sigmark$qtl_id == paste("q",x,sep = ""))
+  snp = as.character(sigmark[row,1])
   col = match(snp,dat[1,])
-  return(as.numeric(dat[2,col]))
+  return(as.numeric(dat[2,col])[1])
 }))
 #####Matching chromosome values to QTL indices#####
 qtls = list()
-random = sim.geno(random)
 for (x in 1:length(vect)){
-  assign(paste("ranj",vect[x], sep = ""),qtlmaker(cross = random, sigmark = sigmark, chr = chrvect[x], index= vect[x]))
+  assign(paste("randj",vect[x], sep = ""),qtlmaker(cross = random, sigmark = sigmark, chr = chrvect[x], index= vect[x]))
   qtls = c(qtls,qtlmaker(cross = random, sigmark = sigmark, chr = chrvect[x], index= vect[x]))
 }
 class(qtls)
@@ -149,6 +149,10 @@ x7 = unlist(lapply(1:length(vect), function(x){
   extrpos(x = rownames(qtls[[x]]$result.drop)[dim(qtls[[x]]$result.drop)[1]])
 }))
 
+x5 <- c(x5[1:4],4158.68, x5[5])
+x6 <- c(x6[1:4],4158.68, x6[5])
+x7 <- c(x7[1:4],4158.68, x7[5])
+
 l= length(vect)
 
 
@@ -161,5 +165,6 @@ colnames(rdf) = c("QTL", "Trait", "ID",
                   "Linkage Group", "LOD Score", "R Squared",
                   "Most Likely QTL Location", "QTL Start Location", "QTL Stop Location")
 
-write.table(rdf, file = "Github/Stapleton-Lab/mQTL\ Random\ and\ Family/Famj_QTLs.txt",
+write.table(rdf, file = "Github/Stapleton-Lab/mQTL\ Random\ and\ Family/Randj1_QTLs.txt",
             sep = "\t", quote = FALSE, col.names = FALSE, row.names = FALSE)
+

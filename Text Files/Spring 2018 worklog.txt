@@ -145,4 +145,11 @@ Wrote vQTL script for simulated data
 Submitted batch job to Stampede2 to run 
 Beginning to teach Byrd how to run vQTL
 
+5/9/2018
+vQTL timed out
+Rerunning
+Working on Manching with small sample and getting a lot of NA output, working on debugging
+Great progress on BioMercator, got both maps and QTLs to show up 
+
+
 	

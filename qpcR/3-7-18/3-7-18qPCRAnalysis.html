@@ -132,7 +132,8 @@ library(qpcR)</code></pre>
 </div>
 <div id="reading-in-data" class="section level2">
 <h2>Reading in data</h2>
-<pre class="r"><code>hex &lt;- read.csv(file = &quot;C:/Users/Thomas/Documents/Github/Stapleton-Lab/qPCR/3-7-18/Stapleton\ RNA\ test 3.7.18\ -\  Quantification\ Amplification\ Results.csv&quot;)</code></pre>
+<p>The data is hosted on my Github so that this code can be run from other machines than my own.</p>
+<pre class="r"><code>hex &lt;- read.csv(file = url(&quot;https://raw.githubusercontent.com/tbillman/Stapleton-Lab/master/qpcR/3-7-18/Stapleton%20RNA%20test%203.7.18%20-%20%20Quantification%20Amplification%20Results.csv&quot;))</code></pre>
 </div>
 <div id="starting-with-the-analysis" class="section level2">
 <h2>Starting with the Analysis</h2>
@@ -175,7 +176,7 @@ hcpd2 = unlist(hcpd2)</code></pre>
 </div>
 <div id="generating-output" class="section level2">
 <h2>Generating output</h2>
-<p>We bind the cpD1 and cpD2 results into a dataframe. We also remove the first, 188th, and 163rd column names because the first is for the cycles and the other two had errors in their efficiency calculation. These cells were F3 and H3 respectively. Finally we write a csv output file.</p>
+<p>We bind the cpD1 and cpD2 results into a dataframe. We also remove the first, 118th, and 163rd column names because the first is for the cycles and the other two had errors in their efficiency calculation. These cells were F3 and H3 respectively. Finally we write a csv output file.</p>
 <pre class="r"><code>eff.frame = as.data.frame(rbind(hcpd1,hcpd2))
 colnames(eff.frame) = colnames(hex)[-c(1,118,163)]; rownames(eff.frame) = c(&quot;cpD1&quot;,&quot;cpD2&quot;)
 write.csv(eff.frame, file= &quot;C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/qpcR/3-7-18/EffDat.csv&quot;)</code></pre>

@@ -1,3 +1,4 @@
+mapName=Famj1
 Organism Genus=Zea
 Organism Species=mays
 Parent=b73
@@ -6,7 +7,6 @@ crossType=IRI02
 popSize=242
 mappingCrossType=IRI02
 mappingFunction=Haldane
-mapName=Famj1
 mapUnit=cM
 mapExpansion=0
 mapQuality=3

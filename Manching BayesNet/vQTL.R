@@ -14,11 +14,14 @@ sampobj[1:2,1:4] = ""
 colnames(sampobj) <- make.names(colnames(sampobj))
 write.csv(sampobj, file = "MSSample.csv", row.names = F)
 #####Small Scale Analysis#####
-cross = read.cross(format = "csv", file = "MSSample.csv");
+cross = read.cross(file = "MSSample.csv");
 cross = drop.nullmarkers(cross);
+cross$pheno$Low.Water <- as.factor(cross$pheno$Low.Water)
+cross$pheno$Low.Nitrogen <- as.factor(cross$pheno$Low.Nitrogen)
+cross$pheno$Pathogen <- as.factor(cross$pheno$Pathogen)
 cgp = calc.genoprob(cross = cross);
-scanv = scanonevar(cross = cgp, mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen +  mean.QTL.add ,
-                   var.formula =  ~ Low.Water + Low.Nitrogen + Pathogen + var.QTL.add);
+scanv = scanonevar(cross = cgp, mean.formula = Height ~ mean.QTL.add + mean.QTL.dom ,
+                   var.formula =  ~ var.QTL.add + var.QTL.dom);
 library("dplyr");
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL, 
@@ -130,7 +133,8 @@ colnames(scanvdf) = c("SNP Name",
                       "B Standard Deviation Est",
                       "B Standard Deviation Lower Bound",
                       "B Standard Deviation Upper Bound")
-write.csv(scanvdf, file = "MultipleStress_Sample_vQTL_Height_LOD,Pvals,EffectSizes.csv")
+write.csv(scanvdf, file = "MultipleStress_Sample_vQTL_Height_LOD,Pvals,EffectSizes.csv",
+          row.names = F)
 #####Full Sized Analysis####
 cross = read.cross(format = "csv", file = "ManchingScrubbed_GenoOnly.csv");
 cross = drop.nullmarkers(cross);

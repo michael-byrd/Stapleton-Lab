@@ -1,0 +1,2 @@
+mapName=Randj1
+QTL1	Trait1	ID:0	P1	Y1	chr1	linkage_group 1	6.08	3	396.6	395.7	398.4
