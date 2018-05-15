@@ -20,9 +20,11 @@ cross$pheno$Low.Water <- as.factor(cross$pheno$Low.Water)
 cross$pheno$Low.Nitrogen <- as.factor(cross$pheno$Low.Nitrogen)
 cross$pheno$Pathogen <- as.factor(cross$pheno$Pathogen)
 cgp = calc.genoprob(cross = cross);
+profvis(scanonevar(cross = cgp, mean.formula = Height ~ mean.QTL.add + mean.QTL.dom ,
+                          var.formula =  ~ var.QTL.add + var.QTL.dom))
 scanv = scanonevar(cross = cgp, mean.formula = Height ~ mean.QTL.add + mean.QTL.dom ,
-                   var.formula =  ~ var.QTL.add + var.QTL.dom);
-library("dplyr");
+                   var.formula =  ~ var.QTL.add + var.QTL.dom)
+
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL, 
                          title = paste(phenotype.name, "by", paste(focal.groups, 
@@ -96,10 +98,12 @@ sizedf = sapply(1:length(nnames), function(x){
                  phenotype.name = "Height",
                  genotype.names = c("AA","BB"),
                  focal.groups = nnames[x])
-    tempv = c(tempm[1,2:7],tempm[2,2:7])
   },
-   error = function(e) message(e),
-   finally = return(unlist(tempv))
+   error = function(e) {
+     message(e)
+     return(NA)
+   },
+   finally = return(unlist(c(tempm[1,2:7],tempm[2,2:7])))
   )
 });
 #gathering data from the initial scan
