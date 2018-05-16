@@ -150,6 +150,9 @@ vQTL timed out
 Rerunning
 Working on Manching with small sample and getting a lot of NA output, working on debugging
 Great progress on BioMercator, got both maps and QTLs to show up 
+Still waiting on new Simulated vQTL
 
 
-	
+5/16/18
+vQTL running again, I made a type after the scanonevar
+I also added in print statements to see how long certain parts of the analysis took 
