@@ -2,8 +2,8 @@
 #constructing the sample
 library("tidyverse")
 library("qtl")
-library("vqtl")
-setwd("C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/vQTL Howell")
+inslibrary("vqtl")
+setwd("C:/Users/mbyrd/Documents/StapletonLab/Thomas_Stapleton_Lab_Forked/Stapleton-Lab/vQTL Howell")
 # #generating a sample set
 # crossframe = read_csv(file = file.choose())
 # 
@@ -16,7 +16,7 @@ setwd("C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/vQTL Howell")
 # write.table(crossframes, "Howell-Cross-Object-Small.csv",
 #             row.names = FALSE, col.names = c(colnames(crossframe)[1:2],mnames), sep = ",")
 # #looking for unique markers
-crossframes = read_csv("Howell-Cross-Object.csv")
+crossframes = read_csv("Howell-Cross-Object-Small.csv")
 u1= sapply(3:dim(crossframes)[2],function(x){
   unique(crossframes[c(-1,-2),x])
 })
@@ -35,7 +35,7 @@ sapply(3:ncol(crossframes), function(x){#look at each geno column
   })
   crossframes[c(-1,-2),eval(x)] <<- xl #the new vector replaces the original
 })
-ranc = sample(3:ncol(crossframes),500)
+ranc = sample(3:ncol(crossframes),50)
 write.table(crossframes, "Howell-Cross-ObjectC1.csv",
  row.names = FALSE, col.names = T, sep = ",")
 write.table(crossframes[,c(1,2,ranc)], "Howell-Cross-ObjectC1-Sample.csv",
@@ -64,7 +64,7 @@ sapply(3:ncol(crossframec), function(x){#look at each geno column
   })
   crossframec[c(-1,-2),eval(x)] <<- xl #the new vector replaces the original
 })
-ranc = sample(3:ncol(crossframec),500)
+ranc = sample(3:ncol(crossframec),50)
 write.table(crossframec, "Howell-Cross-ObjectC2.csv",
             row.names = FALSE, col.names = T, sep = ",")
 write.table(crossframec[,c(1,2,ranc)], "Howell-Cross-ObjectC2-Sample.csv",
@@ -85,7 +85,7 @@ length(which(unq == 3))
 keep = which(unq == 3)
 tablecc = tablec[,c(1,2,(keep+2))]
 tablecc[1:2,1:2] = ""
-ranc = sample(3:ncol(tablecc),500)
+ranc = sample(3:ncol(tablecc),50)
 sapply(3:ncol(tablecc), function(x){
   colnames(tablecc)[x] <<- paste("Marker",colnames(tablecc)[x], sep = "")
 })

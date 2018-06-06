@@ -3,9 +3,11 @@ library("qtl")
 library("vqtl")
 
 # Michael Stampede Path
-dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
+# dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
 # Thomas Git Path
-# dat <- read.cross(file = "C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
+# dat <- read.cross(file = "./SimulatedResponse.csv")
+# RDS Path
+small_dat <- read.cross(file = "./small_dat.csv")
 
 dat <- drop.nullmarkers(dat)
 #scan with variance
