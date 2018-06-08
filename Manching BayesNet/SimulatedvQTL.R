@@ -7,7 +7,7 @@ library("vqtl")
 # Thomas Git Path
 # dat <- read.cross(file = "./SimulatedResponse.csv")
 # RDS Path
-small_dat <- read.cross(file = "./small_dat.csv")
+dat <- read.cross(file = "./small_dat.csv")
 
 dat <- drop.nullmarkers(dat)
 #scan with variance
@@ -77,6 +77,7 @@ sizedf = sapply(y, function(x){
                           phenotype.name = "Height",
                           genotype.names = c("AA","BB"),
                           focal.groups = outv$result$loc.name[x])
+    # sprintf("tempm success on %d", x)
   }, error = function(e) message(e),
   finally = function(tempm){
     tempv = c(tempm[1,2:7],tempm[2,2:7])
@@ -84,7 +85,7 @@ sizedf = sapply(y, function(x){
   }
   )
 })
-sizedf1 <- as.data.frame(matrix(rep(0,length(y)*12), ncol= 12))
+ sizedf1 <- as.data.frame(matrix(rep(0,length(y)*12), ncol= 12))
 sapply(1:length(sizedf), function(x){
   print(x)
   if(!is.null(sizedf[[x]])){
