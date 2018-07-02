@@ -4,9 +4,12 @@
 #read in the data
 library("qtl")
 library("vqtl")
-geno<-read.csv("C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/vQTL IBM and Manching/Data/IBM94markerset08seq.csv")
-randp<- read.csv("C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/vQTL IBM and Manching/Data/RandIBM642006PyearData.csv")
-famp<- read.csv("C:/Users/Thomas/Documents/GitHub/Stapleton-Lab/vQTL IBM and Manching/Data/Pyear2006fielddata.csv")
+
+setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/vQTL IBM and Manching")
+
+geno<-read.csv("Data/IBM94markerset08seq.csv")
+randp<- read.csv("Data/RandIBM642006PyearData.csv")
+famp<- read.csv("Data/Pyear2006fielddata.csv")
 #tidying data with bad genotypes (MO062, MO075, and MO066)
 bad = NULL
 for (w in 1:length(randp$Line)){
@@ -51,10 +54,11 @@ colnames(dat) = c("Height","Number of Branches","Branch Angle","Line",names)
 dat = dat[,-4]
 vect = c(rep("",3),inc)
 dat = rbind(vect,dat)
-write.csv(dat, file = "Github/Stapleton-Lab/vQTL IBM and Manching/cross.csv")
+write.csv(dat, file = "Data/cross.csv")
 #then delete the first column
 #####With the cross#####
-cross = read.cross(dir = "Github/Stapleton-Lab/vQTL IBM and Manching/", file= "cross.csv")cross <- drop.nullmarkers(cross)
+cross = read.cross(dir = "test/", file= "cross_test.csv")
+cross <- drop.nullmarkers(cross)
 #scan with variance
 cross <- calc.genoprob(cross)
 outv <- scanonevar(cross = cross,

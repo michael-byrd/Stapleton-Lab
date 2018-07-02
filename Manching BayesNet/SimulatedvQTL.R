@@ -4,7 +4,7 @@ library("vqtl")
 
 # Michael Stampede Path
 # dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
-# Thomas Git Path
+# Full Data Set Local Git Path
 # dat <- read.cross(file = "./SimulatedResponse.csv")
 # RDS Path
 dat <- read.cross(file = "./small_dat.csv")
@@ -115,7 +115,7 @@ colnames(outvdf) = c("SNP Name",
                       "Variance P Value",
                       "Joint LOD",
                       "Joint P Value",
-                      "A Mean Est",
+                      "A Mean Est",0
                       "A Mean Lower Bound",
                       "A Mean Upper Bound",
                       "A Standard Deviation Est",
