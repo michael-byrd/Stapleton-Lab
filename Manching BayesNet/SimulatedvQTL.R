@@ -1,13 +1,14 @@
 #vQTL with simulated data
 library("qtl")
 library("vqtl")
-
+setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
 # Michael Stampede Path
 # dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
 # Full Data Set Local Git Path
-# dat <- read.cross(file = "./SimulatedResponse.csv")
+dat <- read.cross(file = "./SimulatedResponse.csv")
 # RDS Path
-dat <- read.cross(file = "./small_dat.csv")
+
+# dat <- read.cross(file = "./small_dat.csv")
 
 dat <- drop.nullmarkers(dat)
 #scan with variance
@@ -16,12 +17,11 @@ outv <- scanonevar(cross = dat,
                     mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add + mean.QTL.dom,
                     var.formula = ~ var.QTL.add + var.QTL.dom)
 library("dplyr")
-effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL,
+effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL,
-                         title = paste(phenotype.name, "by", paste(focal.groups,
-                                                                   collapse = ", ")), draw_ribbons = TRUE, se_line_size = 1,
-                         point_size = 1)
-{
+                         title = paste(phenotype.name, "by", paste(focal.groups, collapse = ", ")),
+                         draw_ribbons = TRUE, se_line_size = 1,
+                         point_size = 1){
   indiv.mean.estim <- indiv.mean.lb <- indiv.mean.ub <- "fake_global_for_CRAN"
   indiv.sd.estim <- indiv.sd.lb <- indiv.sd.ub <- "fake_global_for_CRAN"
   group.mean.estim <- group.mean.ub <- group.mean.lb <- "fake_global_for_CRAN"
@@ -115,7 +115,7 @@ colnames(outvdf) = c("SNP Name",
                       "Variance P Value",
                       "Joint LOD",
                       "Joint P Value",
-                      "A Mean Est",0
+                      "A Mean Est",
                       "A Mean Lower Bound",
                       "A Mean Upper Bound",
                       "A Standard Deviation Est",

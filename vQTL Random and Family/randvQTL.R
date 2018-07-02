@@ -3,7 +3,7 @@
 library("qtl")
 library("vqtl")
 #we also got rid of "(" in SNP ID rz44bd and rz574bc
-setwd("C:/Users/Thomas/Documents/Github/Stapleton-Lab/vQTL\ Random\ and\ Family/")
+setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/vQTL Random and Family")
 random <-read.cross(file = "data/tidied/Random2.csv")
 random <- drop.nullmarkers(random)
 #scan with variance
