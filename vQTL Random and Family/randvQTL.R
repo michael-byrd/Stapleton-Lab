@@ -66,27 +66,49 @@ effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.gr
 
 y = 1:length(routv$result$loc.name)
 #effect sizes can not be computed for these 3 SNPs
-rsizedf = sapply(y, function(x){
+rsizedf = matrix(nrow = length(routv$result$loc.name), ncol = 12)
+
+map(y, function(x){
   tryCatch({
    print(x)
    tempm =  effect.sizes(cross = random,
                           phenotype.name = "height.in.",
                           genotype.names = c("AA","BB"),
                           focal.groups = routv$result$loc.name[x])
-   }, error = function(e) message(e),
-   finally = function(tempm){
-    tempv = c(tempm[1,2:7],tempm[2,2:7])
-    return(unlist(tempv))
-   }
+   tempv = matrix(nrow = 1, ncol = 12)
+   tempv[1,1:6] = as.numeric(tempm[1,2:7])
+   tempv[1,7:12] = as.numeric(tempm[2,2:7])
+   rsizedf[x,] <<- tempv
+   }, error = function(e){message(e)
+     rsizedf[x,] <<- rep(0,12)
+     
+   } 
   )
 })
-rsizedf1 <- as.data.frame(matrix(rep(0,length(y)*12), ncol= 12))
-sapply(1:length(rsizedf), function(x){
-  print(x)
-  if(!is.null(rsizedf[[x]])){
-    rsizedf1[x,] <<- c(rsizedf[[x]][1,2:7],rsizedf[[x]][2:7])
-  }
+
+rsizedf1 <- matrix(nrow = length(y), ncol = 12)
+
+map(y, function(x){
+  rsizedf1[x,] <<- rsizedf[[x]]
+  
 })
+  
+  
+
+# Change list of matrices into one large matrix
+
+#Broke Here
+
+# rsizedf1 <- as.data.frame(matrix(rep(0,length(y)*12), ncol= 12))
+# sapply(1:length(rsizedf), function(x){
+#   print(x)
+#   if(!is.null(rsizedf[[x]])){
+#     rsizedf1[x,] <<- c(rsizedf[[x]][1,2:7],rsizedf[[x]][2:7])
+#   }
+# })
+
+colnames(rsizedf1) <- c("loc.name", "pos", "mean.lod", "mean.asymp.p", "var.lod", "var.asymp.p", )
+
 nall0 <-sapply(1:dim(rsizedf1)[1], function(x){
   !all(rsizedf1[x,] == 0)
 })  
@@ -95,12 +117,12 @@ rsizedf1 <- rsizedf1[-ditch,]
 keep <- 1:3235; keep<- keep[-ditch]
 routvdf<- data.frame(routv$result$loc.name[keep],
                      routv$result$pos[keep],
-                     routv$result$mean.lod[keep],
-                     routv$result$mean.asymp.p[keep],
-                     routv$result$var.lod[keep],
-                     routv$result$var.asymp.p[keep],
-                     routv$result$joint.lod[keep],
-                     routv$result$joint.asymp.p[keep])
+                     routv$result$mQTL.lod[keep],
+                     routv$result$mQTL.asymp.p[keep],
+                     routv$result$vQTL.lod[keep],
+                     routv$result$vQTL.asymp.p[keep],
+                     routv$result$mvQTL.lod[keep],
+                     routv$result$mvQTL.asymp.p[keep])
 routvdf = cbind(routvdf,rsizedf1)
 colnames(routvdf) = c("SNP Name",
                       "Position (cM)",
