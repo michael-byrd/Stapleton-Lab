@@ -107,7 +107,6 @@ map(y, function(x){
 #   }
 # })
 
-colnames(rsizedf1) <- c("loc.name", "pos", "mean.lod", "mean.asymp.p", "var.lod", "var.asymp.p", )
 
 nall0 <-sapply(1:dim(rsizedf1)[1], function(x){
   !all(rsizedf1[x,] == 0)
