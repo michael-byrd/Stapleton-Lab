@@ -1,14 +1,16 @@
 #vQTL with simulated data
 library("qtl")
 library("vqtl")
-setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
+library("purrr")
+# setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
+setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet")
 # Michael Stampede Path
 # dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
 # Full Data Set Local Git Path
-dat <- read.cross(file = "./SimulatedResponse.csv")
+# dat <- read.cross(file = "./SimulatedResponse.csv")
 # RDS Path
 
-# dat <- read.cross(file = "./small_dat.csv")
+dat <- read.cross(file = "./small_dat.csv")
 
 dat <- drop.nullmarkers(dat)
 #scan with variance
@@ -17,7 +19,7 @@ outv <- scanonevar(cross = dat,
                     mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add + mean.QTL.dom,
                     var.formula = ~ var.QTL.add + var.QTL.dom)
 library("dplyr")
-effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL, 
+effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL,
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL,
                          title = paste(phenotype.name, "by", paste(focal.groups, collapse = ", ")),
                          draw_ribbons = TRUE, se_line_size = 1,
@@ -68,30 +70,62 @@ effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.gr
   return(group.prediction.tbl)
 }
 
+# y = 1:length(outv$result$loc.name)
+# #effect sizes can not be computed for these 3 SNPs
+# sizedf = sapply(y, function(x){
+#   tryCatch({
+#     print(x)
+#     tempm =  effect.sizes(cross = dat,
+#                           phenotype.name = "Height",
+#                           genotype.names = c("AA","BB"),
+#                           focal.groups = outv$result$loc.name[x])
+#     # sprintf("tempm success on %d", x)
+#   }, error = function(e) message(e),
+#   finally = function(tempm){
+#     tempv = c(tempm[1,2:7],tempm[2,2:7])
+#     return(unlist(tempv))
+#   }
+#   )
+# })
+#  sizedf1 <- as.data.frame(matrix(rep(0,length(y)*12), ncol= 12))
+# sapply(1:length(sizedf), function(x){
+#   print(x)
+#   if(!is.null(sizedf[[x]])){
+#     sizedf1[x,] <<- c(sizedf[[x]][1,2:7],sizedf[[x]][2:7])
+#   }
+# })
+
+
 y = 1:length(outv$result$loc.name)
 #effect sizes can not be computed for these 3 SNPs
-sizedf = sapply(y, function(x){
+sizedf = matrix(nrow = length(outv$result$loc.name), ncol = 12)
+
+map(y, function(x){
   tryCatch({
-    print(x)
-    tempm =  effect.sizes(cross = dat,
+   print(x)
+   tempm =  effect.sizes(cross = dat,
                           phenotype.name = "Height",
                           genotype.names = c("AA","BB"),
                           focal.groups = outv$result$loc.name[x])
-    # sprintf("tempm success on %d", x)
-  }, error = function(e) message(e),
-  finally = function(tempm){
-    tempv = c(tempm[1,2:7],tempm[2,2:7])
-    return(unlist(tempv))
-  }
+   tempv = matrix(nrow = 1, ncol = 12)
+   tempv[1,1:6] = as.numeric(tempm[1,2:7])
+   tempv[1,7:12] = as.numeric(tempm[2,2:7])
+   sizedf[x,] <<- tempv
+   }, error = function(e){message(e)
+     sizedf[x,] <<- rep(0,12)
+
+   }
   )
 })
- sizedf1 <- as.data.frame(matrix(rep(0,length(y)*12), ncol= 12))
-sapply(1:length(sizedf), function(x){
-  print(x)
-  if(!is.null(sizedf[[x]])){
-    sizedf1[x,] <<- c(sizedf[[x]][1,2:7],sizedf[[x]][2:7])
-  }
+
+sizedf1 <- matrix(nrow = length(y), ncol = 12)
+
+map(y, function(x){
+  sizedf1[x,] <<- sizedf[[x]]
+
 })
+
+
 nall0 <-sapply(1:dim(sizedf1)[1], function(x){
   !all(sizedf1[x,] == 0)
 })
@@ -100,12 +134,12 @@ sizedf1 <- sizedf1[-ditch,]
 keep <- y; keep<- keep[-ditch]
 outvdf<- data.frame(outv$result$loc.name[keep],
                      outv$result$pos[keep],
-                     outv$result$mean.lod[keep],
-                     outv$result$mean.asymp.p[keep],
-                     outv$result$var.lod[keep],
-                     outv$result$var.asymp.p[keep],
-                     outv$result$joint.lod[keep],
-                     outv$result$joint.asymp.p[keep])
+                     outv$result$mQTL.lod[keep],
+                     outv$result$mQTL.asymp.p[keep],
+                     outv$result$vQTL.lod[keep],
+                     outv$result$vQTL.asymp.p[keep],
+                     outv$result$mvQTL.lod[keep],
+                     outv$result$mvQTL.asymp.p[keep])
 outvdf = cbind(outvdf,sizedf1)
 colnames(outvdf) = c("SNP Name",
                       "Position (cM)",
@@ -128,4 +162,4 @@ colnames(outvdf) = c("SNP Name",
                       "B Standard Deviation Lower Bound",
                       "B Standard Deviation Upper Bound")
 
-write.csv(outvdf, file = "SimulatedvQTL_LOD,Pvals,EffectSizes-5-8-18.csv")
+write.csv(outvdf, file = "TestFile_7-9-18.csv")
