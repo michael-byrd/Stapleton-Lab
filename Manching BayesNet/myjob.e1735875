@@ -1,0 +1,14 @@
+mkdir: cannot create directory ‘output’: File exists
+running
+  '/opt/apps/intel17/impi17_0/Rstats/3.4.0/lib64/R/bin/R --slave --no-restore --vanilla --file=./SimulatedvQTL.R'
+
+
+Attaching package: ‘vqtl’
+
+The following object is masked from ‘package:qtl’:
+
+    scanonevar
+
+Error in setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet") : 
+  cannot change working directory
+Execution halted
