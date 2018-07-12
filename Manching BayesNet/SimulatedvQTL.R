@@ -2,22 +2,43 @@
 library("qtl")
 library("vqtl")
 library("purrr")
-# setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
-setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet")
+setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
+# setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet")
 # Michael Stampede Path
 # dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
 # Full Data Set Local Git Path
-# dat <- read.cross(file = "./SimulatedResponse.csv")
+dat <- read.cross(file = "./SimulatedResponse.csv")
 # RDS Path
 
-dat <- read.cross(file = "./small_dat.csv")
+# dat <- read.cross(file = "./small_dat.csv")
 
 dat <- drop.nullmarkers(dat)
 #scan with variance
 dat <- calc.genoprob(dat)
+
+# Working on the Scanonevar function 7.9.18
+
+
+# original
+# outv <- scanonevar(cross = dat,
+#                     mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add + mean.QTL.dom,
+#                     var.formula = ~ var.QTL.add + var.QTL.dom)
+
+
+# new function
 outv <- scanonevar(cross = dat,
-                    mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add + mean.QTL.dom,
-                    var.formula = ~ var.QTL.add + var.QTL.dom)
+                   mean.formula = Height ~ mean.QTL.add + mean.QTL.dom,
+                   var.formula = ~ var.QTL.add + var.QTL.dom)
+
+ # routv <- scanonevar(cross = random,
+#                     mean.formula = height.in. ~ mean.QTL.add + mean.QTL.dom,
+#                     var.formula = ~ var.QTL.add + var.QTL.dom)
+
+
+# grepl("chr", "chr629.01_loc-5", fixed = TRUE)
+
+
+
 library("dplyr")
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL,
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL,
@@ -163,3 +184,4 @@ colnames(outvdf) = c("SNP Name",
                       "B Standard Deviation Upper Bound")
 
 write.csv(outvdf, file = "TestFile_7-9-18.csv")
+

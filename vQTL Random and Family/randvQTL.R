@@ -2,6 +2,7 @@
 #install.packages("qtl")
 library("qtl")
 library("vqtl")
+library("purrr")
 #we also got rid of "(" in SNP ID rz44bd and rz574bc
 setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/vQTL Random and Family")
 random <-read.cross(file = "data/tidied/Random2.csv")
