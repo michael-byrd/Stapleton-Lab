@@ -7,7 +7,7 @@ setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Ma
 # Michael Stampede Path
 # dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
 # Full Data Set Local Git Path
-dat <- read.cross(file = "./small_manching.csv")
+dat <- read.cross(file = "./ManchingScrubbed.csv")
 # RDS Path
 
 # dat <- read.cross(file = "./small_dat.csv")
