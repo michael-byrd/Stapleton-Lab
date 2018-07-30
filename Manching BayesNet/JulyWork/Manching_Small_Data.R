@@ -1,4 +1,4 @@
-setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
+setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet/JulyWork")
 dat <- read.csv(file = "ManchingScrubbed.csv")
 
 small_dat <- dat[sample(4:6675, 5),]
