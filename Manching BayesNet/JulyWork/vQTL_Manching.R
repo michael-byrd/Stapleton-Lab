@@ -2,8 +2,8 @@
 library("qtl")
 library("vqtl")
 library("purrr")
-setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
-# setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet")
+# setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
+setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/JulyWork")
 # Michael Stampede Path
 # dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
 # Full Data Set Local Git Path
@@ -183,5 +183,5 @@ colnames(outvdf) = c("SNP Name",
                      "B Standard Deviation Lower Bound",
                      "B Standard Deviation Upper Bound")
 
-write.csv(outvdf, file = "TestFile_7-9-18.csv")
+write.csv(outvdf, file = "TestFile_July-28-18.csv")
 
