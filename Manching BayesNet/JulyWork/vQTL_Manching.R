@@ -2,8 +2,8 @@
 library("qtl")
 library("vqtl")
 library("purrr")
-setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
-# setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/JulyWork")
+# setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
+setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/JulyWork")
 # Michael Stampede Path
 # dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
 # Full Data Set Local Git Path
