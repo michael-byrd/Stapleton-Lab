@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J sim_vQTL_29_July           # Job name
+#SBATCH -J Manching_vQTL_31_July           # Job name
 #SBATCH -e myjob.e%j       # Name of stderr error file
 #SBATCH -p skx-normal          # Queue (partition) name
 #SBATCH -N 1               # Total # of nodes (must be 1 for serial)

@@ -2,8 +2,8 @@
 library("qtl")
 library("vqtl")
 library("purrr")
-# setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
-setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/JulyWork")
+setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
+# setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/JulyWork")
 # Michael Stampede Path
 # dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
 # Full Data Set Local Git Path
@@ -16,28 +16,10 @@ dat <- drop.nullmarkers(dat)
 #scan with variance
 dat <- calc.genoprob(dat)
 
-# Working on the Scanonevar function 7.9.18
-
-
 # original
 outv <- scanonevar(cross = dat,
-                    mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add + mean.QTL.dom,
-                    var.formula = ~ var.QTL.add + var.QTL.dom)
-
-
-# # new function
-# outv <- scanonevar(cross = dat,
-#                    mean.formula = Height ~ mean.QTL.add + mean.QTL.dom,
-#                    var.formula = ~ var.QTL.add + var.QTL.dom)
-
-# routv <- scanonevar(cross = random,
-#                     mean.formula = height.in. ~ mean.QTL.add + mean.QTL.dom,
-#                     var.formula = ~ var.QTL.add + var.QTL.dom)
-
-
-# grepl("chr", "chr629.01_loc-5", fixed = TRUE)
-
-
+                    mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add,
+                    var.formula = ~ var.QTL.add, return.covar.effects = TRUE)
 
 library("dplyr")
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL,
@@ -90,32 +72,6 @@ effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.gr
                      group.sd.ub = mean(indiv.sd.ub))
   return(group.prediction.tbl)
 }
-
-# y = 1:length(outv$result$loc.name)
-# #effect sizes can not be computed for these 3 SNPs
-# sizedf = sapply(y, function(x){
-#   tryCatch({
-#     print(x)
-#     tempm =  effect.sizes(cross = dat,
-#                           phenotype.name = "Height",
-#                           genotype.names = c("AA","BB"),
-#                           focal.groups = outv$result$loc.name[x])
-#     # sprintf("tempm success on %d", x)
-#   }, error = function(e) message(e),
-#   finally = function(tempm){
-#     tempv = c(tempm[1,2:7],tempm[2,2:7])
-#     return(unlist(tempv))
-#   }
-#   )
-# })
-#  sizedf1 <- as.data.frame(matrix(rep(0,length(y)*12), ncol= 12))
-# sapply(1:length(sizedf), function(x){
-#   print(x)
-#   if(!is.null(sizedf[[x]])){
-#     sizedf1[x,] <<- c(sizedf[[x]][1,2:7],sizedf[[x]][2:7])
-#   }
-# })
-
 
 y = 1:length(outv$result$loc.name)
 #effect sizes can not be computed for these 3 SNPs
@@ -183,5 +139,5 @@ colnames(outvdf) = c("SNP Name",
                      "B Standard Deviation Lower Bound",
                      "B Standard Deviation Upper Bound")
 
-write.csv(outvdf, file = "TestFile_July-28-18.csv")
+write.csv(outvdf, file = "Manching_vQTL_July-31-18.csv")
 
