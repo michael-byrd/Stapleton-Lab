@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<!--- pandoc test1.md -f markdown -t html -s -o test1.html --->
+<h1 id="vqtl-analysis-on-2012-manching-plant-height-data.">vQTL Analysis on 2012 Manching Plant Height Data.</h1>
+<p><strong>Original Data Set:</strong> Manching2012PlantHT.csv, IBM94markerset raw data.csv</p>
+<h2 id="process">Process</h2>
+<ul>
+<li><p>Clean and format the data to be in the <em>cross</em> format needed for scanonevar in vQTL. This results in the ManchingScrubbed.csv file.</p></li>
+<li><p>Run the ManchingScrubbed file through the R script vQTL_Manching.R which returns the vQTL results.</p></li>
+</ul>
+<p>vQTL_Manching.R can be found at the following GitHub <a href="https://github.com/michael-byrd/Stapleton-Lab/blob/development/Manching%20BayesNet/JulyWork/vQTL_Manching.R">link</a>.</p>
+<h3 id="july2018">29/July/2018</h3>
+<p><strong>Output File:</strong> Manching2012_vQTL_Analysis.csv</p>
+<ul>
+<li>These results use the following scanonevar function which is corrected later. <code>outv &lt;- scanonevar(cross = dat, mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add + mean.QTL.dom, var.formula = ~ var.QTL.add + var.QTL.dom)</code></li>
+</ul>
+<h3 id="july2018-1">31/July/2018</h3>
+<p><strong>Output File:</strong> Manching_vQTL_July-31-18.csv</p>
+<ul>
+<li>The scanonevar function was corrected removing the .dom terms and adding that covar.effects return True</li>
+</ul>
+<p><code>outv &lt;- scanonevar(cross = dat, mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add, var.formula = ~ var.QTL.add, return.covar.effects = TRUE)</code></p>
+</body>
+</html>
