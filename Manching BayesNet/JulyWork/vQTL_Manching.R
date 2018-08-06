@@ -174,5 +174,5 @@ colnames(outvdf) = c("SNP Name",
                      "B Standard Deviation Lower Bound",
                      "B Standard Deviation Upper Bound")
 
-write.csv(outvdf, file = "Manching_vQTL_Sim_Aug-2-18.csv")
+write.csv(outvdf, file = "Manching_vQTL_Sim_Aug-6-18.csv")
 
