@@ -3,27 +3,29 @@ library(qtl)
 library(vqtl)
 library(purrr)
 library(readr)
-setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet")
-# setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/JulyWork")
+# setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet/JulyWork")
+setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/JulyWork")
 # Michael Stampede Path
 # dat <- read.cross(file = "/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/SimulatedResponse.csv")
 # Full Data Set Local Git Path
-# dat <- read.cross(file = "./ManchingScrubbed.csv")
+dat <- read.cross(file = "./ManchingScrubbed.csv")
 # RDS Path
 
-dat <- read.cross(file = "./small_dat.csv")
+# dat <- read.cross(file = "./small_dat.csv")
 
 dat <- drop.nullmarkers(dat)
 #scan with variance
 dat <- calc.genoprob(dat)
 
+write_rds(dat, "manching_cross.rds", compress = "xz")
+
 # original
 outv <- scanonevar(cross = dat,
                     mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add,
-                    var.formula = ~ var.QTL.add)
+                    var.formula = ~ Low.Water + Low.Nitrogen + Pathogen + var.QTL.add, return.covar.effects = TRUE)
 
 write_rds(outv, "outv.rds", compress = "xz")
-
+ 
 outv <- read_rds("outv.rds")
 
 library(dplyr)
@@ -121,7 +123,21 @@ outvdf<- data.frame(outv$result$loc.name[keep],
                     outv$result$vQTL.lod[keep],
                     outv$result$vQTL.asymp.p[keep],
                     outv$result$mvQTL.lod[keep],
-                    outv$result$mvQTL.asymp.p[keep])
+                    outv$result$mvQTL.asymp.p[keep],
+                    outv$result$`m__est__(Intercept)`[keep],
+                    outv$result$`m__se__(Intercept)`[keep],
+                    outv$result$`v__est__(Intercept)`[keep],
+                    outv$result$`v__se__(Intercept)`[keep],
+                    outv$result$m__est__mean.QTL.add[keep],
+                    outv$result$m__se__mean.QTL.add[keep],
+                    outv$result$v__est__var.QTL.add[keep],
+                    outv$result$v__est__var.QTL.add[keep],
+                    outv$result$m__est__Low.Water[keep],
+                    outv$result$m__est__Low.Nitrogen[keep],
+                    outv$result$m__est__Pathogen[keep],
+                    outv$result$m__se__Low.Water[keep],
+                    outv$result$m__se__Low.Nitrogen[keep],
+                    outv$result$m__se__Pathogen[keep])
 outvdf = cbind(outvdf,sizedf1)
 colnames(outvdf) = c("SNP Name",
                      "Position (cM)",
@@ -131,6 +147,20 @@ colnames(outvdf) = c("SNP Name",
                      "Variance P Value",
                      "Joint LOD",
                      "Joint P Value",
+                     "Mean Est Intercept",
+                     "Mean SE Intercept",
+                     "Var Est Intercept",
+                     "Var SE Intercept",
+                     "Mean Est QTL",
+                     "Mean SE QTL",
+                     "Var Est QTL",
+                     "Var SE QTL",
+                     "Mean Est Low Water",
+                     "Mean Est Low Nitrogen",
+                     "Mean Est Pathogen",
+                     "Mean SE Low Water",
+                     "Mean SE Low Nitrogen",
+                     "Mean SE Pathogen",
                      "A Mean Est",
                      "A Mean Lower Bound",
                      "A Mean Upper Bound",
