@@ -3,6 +3,7 @@ library(qtl)
 library(vqtl)
 library(purrr)
 library(readr)
+library(dplyr)
 # setwd("/Users/mbyrd/StapletonLab/Thomas/Stapleton-Lab/Manching BayesNet/JulyWork")
 setwd ("/work/04908/mcb4548/stampede2/GitHub/Thomas_Code_Forked/Stapleton-Lab/Manching\ BayesNet/JulyWork")
 # Michael Stampede Path
@@ -21,14 +22,15 @@ write_rds(dat, "manching_cross.rds", compress = "xz")
 
 # original
 outv <- scanonevar(cross = dat,
-                    mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + mean.QTL.add,
-                    var.formula = ~ Low.Water + Low.Nitrogen + Pathogen + var.QTL.add, return.covar.effects = TRUE)
+                    mean.formula = Height ~ Low.Water + Low.Nitrogen + Pathogen + Low_W_N + mean.QTL.add,
+                    var.formula = ~ Low.Water + Low.Nitrogen + Pathogen + Low_W_N + var.QTL.add, return.covar.effects = TRUE)
 
 write_rds(outv, "outv.rds", compress = "xz")
- 
+
+# dat <- read_rds("ManchingScrubbed.csv")
+
 outv <- read_rds("outv.rds")
 
-library(dplyr)
 effect.sizes = function (cross, phenotype.name, focal.groups = NULL, nuisance.groups = NULL,
                          genotype.names = c("AA", "AB", "BB"), xlim = NULL, ylim = NULL,
                          title = paste(phenotype.name, "by", paste(focal.groups, collapse = ", ")),
@@ -135,9 +137,11 @@ outvdf<- data.frame(outv$result$loc.name[keep],
                     outv$result$m__est__Low.Water[keep],
                     outv$result$m__est__Low.Nitrogen[keep],
                     outv$result$m__est__Pathogen[keep],
+                    outv$result$m__est__Low_W_N[keep],
                     outv$result$m__se__Low.Water[keep],
                     outv$result$m__se__Low.Nitrogen[keep],
-                    outv$result$m__se__Pathogen[keep])
+                    outv$result$m__se__Pathogen[keep],
+                    outv$result$m__se__Low_W_N[keep]),
 outvdf = cbind(outvdf,sizedf1)
 colnames(outvdf) = c("SNP Name",
                      "Position (cM)",
@@ -158,9 +162,11 @@ colnames(outvdf) = c("SNP Name",
                      "Mean Est Low Water",
                      "Mean Est Low Nitrogen",
                      "Mean Est Pathogen",
+                     "Mean Est Low_W_N",
                      "Mean SE Low Water",
                      "Mean SE Low Nitrogen",
                      "Mean SE Pathogen",
+                     "Mean SE Low_W_N",
                      "A Mean Est",
                      "A Mean Lower Bound",
                      "A Mean Upper Bound",
@@ -174,5 +180,5 @@ colnames(outvdf) = c("SNP Name",
                      "B Standard Deviation Lower Bound",
                      "B Standard Deviation Upper Bound")
 
-write.csv(outvdf, file = "Manching_vQTL_Sim_Aug-6-18.csv")
+write.csv(outvdf, file = "Manching_vQTL_Sim_Aug-9-18.csv")
 
