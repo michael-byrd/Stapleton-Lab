@@ -141,7 +141,7 @@ outvdf<- data.frame(outv$result$loc.name[keep],
                     outv$result$m__se__Low.Water[keep],
                     outv$result$m__se__Low.Nitrogen[keep],
                     outv$result$m__se__Pathogen[keep],
-                    outv$result$m__se__Low_W_N[keep]),
+                    outv$result$m__se__Low_W_N[keep])
 outvdf = cbind(outvdf,sizedf1)
 colnames(outvdf) = c("SNP Name",
                      "Position (cM)",
